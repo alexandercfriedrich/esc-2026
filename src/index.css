@@ -128,6 +128,54 @@ body {
   animation: rainbow-flow 10s ease-in-out infinite;
 }
 
+/* Synchronized Stripe Lighting Animation - 8 stripes */
+@keyframes stripe-light-1 {
+  0%, 10% { opacity: 1; }
+  12.5%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-2 {
+  0%, 12.5% { opacity: 0.3; }
+  12.5%, 22.5% { opacity: 1; }
+  25%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-3 {
+  0%, 25% { opacity: 0.3; }
+  25%, 35% { opacity: 1; }
+  37.5%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-4 {
+  0%, 37.5% { opacity: 0.3; }
+  37.5%, 47.5% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-5 {
+  0%, 50% { opacity: 0.3; }
+  50%, 60% { opacity: 1; }
+  62.5%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-6 {
+  0%, 62.5% { opacity: 0.3; }
+  62.5%, 72.5% { opacity: 1; }
+  75%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-7 {
+  0%, 75% { opacity: 0.3; }
+  75%, 85% { opacity: 1; }
+  87.5%, 100% { opacity: 0.3; }
+}
+
+@keyframes stripe-light-8 {
+  0%, 87.5% { opacity: 0.3; }
+  87.5%, 97.5% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
 /* Floating Animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -148,32 +196,111 @@ body {
   animation: pride-wave 3s ease-in-out infinite;
 }
 
-/* Vertical Pride Stripes Overlay - 8 stripes with higher opacity */
+/* Vertical Pride Stripes Overlay - 8 synchronized animated stripes */
 .pride-stripes-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    var(--pride-red) 0%,
-    var(--pride-red) 12.5%,
-    var(--pride-orange) 12.5%,
-    var(--pride-orange) 25%,
-    var(--pride-yellow) 25%,
-    var(--pride-yellow) 37.5%,
-    var(--pride-green) 37.5%,
-    var(--pride-green) 50%,
-    var(--pride-cyan) 50%,
-    var(--pride-cyan) 62.5%,
-    var(--pride-blue) 62.5%,
-    var(--pride-blue) 75%,
-    var(--pride-purple) 75%,
-    var(--pride-purple) 87.5%,
-    var(--pride-magenta) 87.5%,
-    var(--pride-magenta) 100%
-  );
-  opacity: 0.8;
   z-index: 1;
+}
+
+.pride-stripes-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, var(--pride-red) 0%, var(--pride-red) 12.5%, transparent 12.5%),
+    linear-gradient(90deg, transparent 12.5%, var(--pride-orange) 12.5%, var(--pride-orange) 25%, transparent 25%),
+    linear-gradient(90deg, transparent 25%, var(--pride-yellow) 25%, var(--pride-yellow) 37.5%, transparent 37.5%),
+    linear-gradient(90deg, transparent 37.5%, var(--pride-green) 37.5%, var(--pride-green) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 50%, var(--pride-cyan) 50%, var(--pride-cyan) 62.5%, transparent 62.5%),
+    linear-gradient(90deg, transparent 62.5%, var(--pride-blue) 62.5%, var(--pride-blue) 75%, transparent 75%),
+    linear-gradient(90deg, transparent 75%, var(--pride-purple) 75%, var(--pride-purple) 87.5%, transparent 87.5%),
+    linear-gradient(90deg, transparent 87.5%, var(--pride-magenta) 87.5%, var(--pride-magenta) 100%);
+}
+
+/* Individual stripe animations */
+.pride-stripes-overlay .stripe-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-red);
+  animation: stripe-light-1 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-2 {
+  position: absolute;
+  top: 0;
+  left: 12.5%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-orange);
+  animation: stripe-light-2 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-3 {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-yellow);
+  animation: stripe-light-3 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-4 {
+  position: absolute;
+  top: 0;
+  left: 37.5%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-green);
+  animation: stripe-light-4 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-5 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-cyan);
+  animation: stripe-light-5 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-6 {
+  position: absolute;
+  top: 0;
+  left: 62.5%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-blue);
+  animation: stripe-light-6 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-7 {
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-purple);
+  animation: stripe-light-7 10s ease-in-out infinite;
+}
+
+.pride-stripes-overlay .stripe-8 {
+  position: absolute;
+  top: 0;
+  left: 87.5%;
+  width: 12.5%;
+  height: 100%;
+  background: var(--pride-magenta);
+  animation: stripe-light-8 10s ease-in-out infinite;
 }

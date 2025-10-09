@@ -211,8 +211,17 @@ function App() {
       <div className="h-2 rainbow-gradient"></div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-pride-blue via-pride-purple to-pride-red text-white py-20 overflow-hidden">
-        {/* Pride Stripes Overlay */}
-        <div className="pride-stripes-overlay"></div>
+        {/* Pride Stripes Overlay with individual animated stripes */}
+        <div className="pride-stripes-overlay">
+          <div className="stripe-1"></div>
+          <div className="stripe-2"></div>
+          <div className="stripe-3"></div>
+          <div className="stripe-4"></div>
+          <div className="stripe-5"></div>
+          <div className="stripe-6"></div>
+          <div className="stripe-7"></div>
+          <div className="stripe-8"></div>
+        </div>
         <div className="absolute inset-0 bg-black/30 z-[2]"></div>
         <div className="container mx-auto px-4 relative z-[10]">
           <div className="text-center max-w-4xl mx-auto">
