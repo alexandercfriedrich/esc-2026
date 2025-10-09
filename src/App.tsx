@@ -4,6 +4,7 @@ import { useKV } from '@github/spark/hooks'
 import { BookingSearchForm } from '@/components/BookingSearchForm'
 import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
 import { BookingWidget } from '@/components/BookingWidget'
+import { AffiliateInfo } from '@/components/AffiliateInfo'
 import { BookingHotel, HotelSearchParams, searchBookingHotels } from '@/services/hotelService'
 
 export default function App() {
@@ -99,6 +100,11 @@ export default function App() {
             onToggleFavorite={handleToggleFavorite}
           />
         )}
+        
+        {/* Affiliate Information */}
+        <div className="mt-12">
+          <AffiliateInfo />
+        </div>
       </div>
 
       <Toaster />
