@@ -74,7 +74,7 @@ const generateMockBookingHotels = (searchParams: HotelSearchParams): BookingHote
       amenities: ["WiFi", "Bar", "Gym", "24h Front Desk"],
       photos: ["ruby-1.jpg", "ruby-2.jpg"],
       description: "Modernes Lifestyle-Hotel mit innovativem Design und erstklassiger Lage.",
-      url: "https://www.booking.com/hotel/at/ruby-sofie.html",
+      url: "https://www.booking.com/hotel/at/ruby-sofie-hotel-vienna.html",
       is_lgbt_friendly: true,
       lgbt_certification: 'friendly'
     },
@@ -176,7 +176,7 @@ const generateMockBookingHotels = (searchParams: HotelSearchParams): BookingHote
       amenities: ["WiFi", "Parking", "Restaurant", "Gym", "Spa"],
       photos: ["konzerthaus-1.jpg", "konzerthaus-2.jpg"],
       description: "Elegantes Hotel nur wenige Schritte vom Konzerthaus entfernt.",
-      url: "https://www.booking.com/hotel/at/hotel-am-konzerthaus-vienna-mgallery.html",
+      url: "https://www.booking.com/hotel/at/am-konzerthaus-vienna-mgallery.html",
       is_lgbt_friendly: true,
       lgbt_certification: 'certified'
     },
@@ -292,13 +292,24 @@ export const searchBookingHotels = async (searchParams: HotelSearchParams): Prom
   }
 }
 
-// Generate Booking.com affiliate URL - FIXED to use proper Booking.com domain
+// Generate Booking.com affiliate URL - FIXED to use hotel-specific deep-links
 export const generateAffiliateUrl = (hotel: BookingHotel, searchParams: HotelSearchParams, affiliateId: string = '101370188'): string => {
-  // CRITICAL FIX: Use proper Booking.com domain with Commission Junction affiliate ID
-  const baseUrl = 'https://www.booking.com/hotel'
+  // Hotel-specific URL mappings for proper deep-links
+  const hotelSlugMapping: { [key: string]: string } = {
+    "Hotel Kärntnerhof": "karntnerhof",
+    "Ruby Sofie Hotel Vienna": "ruby-sofie-hotel-vienna", 
+    "Hilton Vienna Plaza": "hilton-vienna-plaza",
+    "Boutiquehotel Stadthalle": "boutiquehotel-stadthalle",
+    "Das Triest": "das-triest",
+    "Austria Trend Hotel Europa Wien": "austria-trend-europa-wien",
+    "Motel One Wien-Staatsoper": "motel-one-wien-staatsoper",
+    "Hotel Am Konzerthaus Vienna MGallery": "am-konzerthaus-vienna-mgallery",
+    "Hotel Imperial Vienna": "imperial-vienna",
+    "Hotel Topazz Vienna": "topazz-vienna"
+  }
   
-  // Extract hotel ID from the existing URL or generate one
-  const hotelPath = hotel.url.includes('booking.com') ? hotel.url.split('booking.com')[1] : '/at/vienna-hotel.html'
+  // Get hotel-specific slug or fallback
+  const hotelSlug = hotelSlugMapping[hotel.name] || hotel.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
   
   const params = new URLSearchParams({
     aid: affiliateId,
@@ -309,9 +320,9 @@ export const generateAffiliateUrl = (hotel: BookingHotel, searchParams: HotelSea
     group_children: searchParams.children.toString()
   })
   
-  // Construct proper Booking.com URL with affiliate parameters
-  const fullUrl = `${baseUrl}${hotelPath}?${params.toString()}`
+  // Construct proper hotel-specific deep-link
+  const fullUrl = `https://www.booking.com/hotel/at/${hotelSlug}.html?${params.toString()}`
   
-  console.log('Generated Booking.com affiliate URL:', fullUrl)
+  console.log('Generated hotel-specific Booking.com URL:', fullUrl)
   return fullUrl
 }

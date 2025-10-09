@@ -53,14 +53,6 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
     toast.success('Suche Hotels von Booking.com...')
   }
 
-  const handleBookingComSearch = () => {
-    // Generate direct Booking.com URL with affiliate ID
-    const bookingUrl = `https://www.booking.com/searchresults.html?aid=101370188&dest_id=-1991997&dest_type=city&checkin=${checkIn}&checkout=${checkOut}&group_adults=${adults}&no_rooms=${rooms}&group_children=${children}`
-    
-    window.open(bookingUrl, '_blank', 'noopener,noreferrer')
-    toast.success('Weiterleitung zu Booking.com...')
-  }
-
   return (
     <Card className="mb-8 border-pride-blue/20">
       <CardHeader>
@@ -222,20 +214,13 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           </div>
         </div>
 
-        {/* Search Buttons */}
+        {/* Search Button */}
         <div className="flex gap-4 pt-4">
           <Button
             onClick={handleSearch}
-            className="flex-1 bg-pride-orange hover:bg-pride-red transition-colors h-12 text-lg font-semibold"
+            className="w-full bg-pride-orange hover:bg-pride-red transition-colors h-12 text-lg font-semibold"
           >
-            🔍 Hotels auf dieser Seite suchen
-          </Button>
-          <Button
-            onClick={handleBookingComSearch}
-            variant="outline"
-            className="flex-1 border-pride-blue text-pride-blue hover:bg-pride-blue hover:text-white h-12 text-lg font-semibold"
-          >
-            🌐 Direkt auf Booking.com suchen
+            🔍 Hotels suchen
           </Button>
         </div>
 

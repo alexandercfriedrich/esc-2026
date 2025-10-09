@@ -92,9 +92,6 @@ export function BookingHotelsGrid({
         <h2 className="text-2xl font-bold">
           📍 {hotels.length} verfügbare Hotels in Wien
         </h2>
-        <Badge variant="outline" className="text-sm">
-          Live von Booking.com
-        </Badge>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -161,7 +158,7 @@ export function BookingHotelsGrid({
                     {/* Booking.com Info */}
                     <div>
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
-                        ℹ️ Booking.com Informationen
+                        ℹ️ Hotel Informationen
                       </h3>
                       <div className="bg-muted p-3 rounded-lg text-sm">
                         <div className="grid grid-cols-2 gap-2">
@@ -198,7 +195,7 @@ export function BookingHotelsGrid({
                         className="bg-pride-orange hover:bg-pride-red transition-colors px-8"
                         onClick={() => handleBooking(hotel)}
                       >
-                        Auf Booking.com buchen
+                        Jetzt buchen
                       </Button>
                     </div>
                   </div>
