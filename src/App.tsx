@@ -315,7 +315,7 @@ function App() {
     }
   ]
 
-  // Function to search through curated hotels only (no external API)
+  // Function to redirect to Booking.com with search parameters
   const searchBookingHotels = async () => {
     // Validate required fields
     if (!searchParams.checkIn || !searchParams.checkOut) {
@@ -334,12 +334,10 @@ function App() {
     }
 
     setIsSearching(true)
-    toast.info('Suche Hotels...')
+    toast.info('Weiterleitung zu Booking.com...')
 
     try {
-      // Simulate search delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
+      // Show our curated hotels first
       setSearchPerformed(true)
       
       const filteredCount = curatedEurovisionHotels.filter(hotel => {
@@ -353,14 +351,23 @@ function App() {
         if (searchParams.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
         return true
       }).length
+
+      // Build Booking.com deep link with all search parameters
+      const bookingUrl = `https://www.booking.com/searchresults.html?aid=${bookingAffiliate.aid}&dest_id=-1991997&dest_type=city&checkin=${searchParams.checkIn}&checkout=${searchParams.checkOut}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}`
       
-      toast.success(`${filteredCount} passende Hotels gefunden!`)
+      // Show success message and redirect
+      toast.success(`${filteredCount} handselektierte Hotels angezeigt • Weiterleitung zu Booking.com...`)
+      
+      // Wait a moment then redirect to Booking.com
+      setTimeout(() => {
+        window.open(bookingUrl, '_blank', 'noopener,noreferrer')
+      }, 1500)
       
     } catch (error) {
-      console.error('Hotel search error:', error)
-      toast.error('Fehler bei der Hotelsuche. Bitte versuchen Sie es erneut.')
+      console.error('Booking redirect error:', error)
+      toast.error('Fehler bei der Weiterleitung zu Booking.com.')
     } finally {
-      setIsSearching(false)
+      setTimeout(() => setIsSearching(false), 2000)
     }
   }
 

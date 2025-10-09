@@ -30,7 +30,7 @@ export function BookingWidget({ searchPerformed, filteredHotelsCount }: HotelSea
             <div className="mb-3">
               <h3 className="font-semibold">🎯 Eurovision-optimierte Hotelauswahl</h3>
               <p className="text-sm text-muted-foreground">
-                8 handselektierte LGBTQ+ freundliche Hotels • Direkte Booking.com-Weiterleitung
+                8 handselektierte LGBTQ+ freundliche Hotels • Suchbutton leitet zu Booking.com weiter
               </p>
             </div>
             
@@ -48,7 +48,7 @@ export function BookingWidget({ searchPerformed, filteredHotelsCount }: HotelSea
                 ✅ {filteredHotelsCount} passende Hotels gefunden
               </div>
               <p className="text-sm text-muted-foreground">
-                Alle Hotels unten verfügbar mit direkter Booking.com-Weiterleitung
+                Alle Hotels unten verfügbar • Der Suchbutton öffnet Booking.com mit Ihren Kriterien
               </p>
             </div>
           ) : (
@@ -57,7 +57,7 @@ export function BookingWidget({ searchPerformed, filteredHotelsCount }: HotelSea
                 🔍 Hotelsuche starten
               </div>
               <p className="text-sm text-muted-foreground">
-                Bitte füllen Sie die Suchkriterien aus, um unsere handselektierten Eurovision-Hotels anzuzeigen
+                Bitte füllen Sie die Suchkriterien aus. Diese werden dann zu Booking.com übertragen für die Vollsuche.
               </p>
             </div>
           )}
@@ -68,7 +68,7 @@ export function BookingWidget({ searchPerformed, filteredHotelsCount }: HotelSea
               <span className="font-medium">Booking.com Affiliate-Partner</span>
             </div>
             <p>
-              Alle "Jetzt buchen" Buttons führen direkt zu Booking.com mit unserer Affiliate-ID 101370188. 
+              Der "Zu Booking.com weiterleiten" Button öffnet Booking.com mit Ihren Suchkriterien und unserer Affiliate-ID 101370188. 
               Wir erhalten Provisionen für vermittelte Buchungen ohne Zusatzkosten für Sie.
             </p>
           </div>
