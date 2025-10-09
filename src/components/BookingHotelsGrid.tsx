@@ -47,6 +47,48 @@ export function BookingHotelsGrid({
     toast.success(`Weiterleitung zu Booking.com für ${hotel.name}...`)
   }
 
+  const getHotelImageUrl = (hotel: BookingHotel) => {
+    // Hotel-spezifische Bilder basierend auf dem Hotel-Namen
+    const hotelImages: { [key: string]: string } = {
+      'stadthalle': 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&h=200&fit=crop',
+      'das-triest': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=200&fit=crop',
+      'am-konzerthaus': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=200&fit=crop',
+      'regina': 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=200&fit=crop',
+      'sacher': 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop',
+      'imperial': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=200&fit=crop',
+      'ruby-marie': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=200&fit=crop',
+      'moxy-vienna': 'https://images.unsplash.com/photo-1551895009-882f7b3e6b2e?w=400&h=200&fit=crop',
+      'arthotel': 'https://images.unsplash.com/photo-1578774204375-51fa0ba81ae8?w=400&h=200&fit=crop',
+      'andaz': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=200&fit=crop',
+      'hilton-plaza': 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&h=200&fit=crop',
+      'budget-europa': 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=400&h=200&fit=crop',
+      'pride-rainbow': 'https://images.unsplash.com/photo-1576675466681-0e73a92026b3?w=400&h=200&fit=crop'
+    }
+    
+    return hotelImages[hotel.id] || `https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=200&fit=crop&auto=format&q=80`
+  }
+
+  const getHotelImageUrlLarge = (hotel: BookingHotel) => {
+    // Hotel-spezifische Bilder basierend auf dem Hotel-Namen - größere Versionen
+    const hotelImages: { [key: string]: string } = {
+      'stadthalle': 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&h=400&fit=crop',
+      'das-triest': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=400&fit=crop',
+      'am-konzerthaus': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop',
+      'regina': 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=400&fit=crop',
+      'sacher': 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&h=400&fit=crop',
+      'imperial': 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop',
+      'ruby-marie': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=400&fit=crop',
+      'moxy-vienna': 'https://images.unsplash.com/photo-1551895009-882f7b3e6b2e?w=800&h=400&fit=crop',
+      'arthotel': 'https://images.unsplash.com/photo-1578774204375-51fa0ba81ae8?w=800&h=400&fit=crop',
+      'andaz': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=400&fit=crop',
+      'hilton-plaza': 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&h=400&fit=crop',
+      'budget-europa': 'https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=800&h=400&fit=crop',
+      'pride-rainbow': 'https://images.unsplash.com/photo-1576675466681-0e73a92026b3?w=800&h=400&fit=crop'
+    }
+    
+    return hotelImages[hotel.id] || `https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop&auto=format&q=80`
+  }
+
   const getPrideBadgeColor = (certification: string) => {
     switch(certification) {
       case 'certified': return 'bg-pride-red text-white'
@@ -137,14 +179,20 @@ export function BookingHotelsGrid({
                   </DialogHeader>
                   
                   <div className="space-y-6">
-                    {/* Hotel Image Placeholder */}
-                    <div className="h-64 bg-gradient-to-br from-pride-blue to-pride-purple rounded-lg relative">
+                    {/* Hotel Image */}
+                    <div className="h-64 rounded-lg relative overflow-hidden">
+                      <img 
+                        src={getHotelImageUrlLarge(hotel)}
+                        alt={hotel.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                       <div className="absolute bottom-4 left-4">
                         <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
                           {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                         </Badge>
                       </div>
-                      <div className="absolute bottom-4 right-4 text-white text-sm">
+                      <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
                         📷 {hotel.photos?.length || 0} Fotos
                       </div>
                     </div>
@@ -203,8 +251,14 @@ export function BookingHotelsGrid({
               </Dialog>
             </div>
             
-            {/* Hotel Image Placeholder */}
-            <div className="h-48 bg-gradient-to-br from-pride-blue to-pride-purple relative">
+            {/* Hotel Image */}
+            <div className="h-48 relative overflow-hidden">
+              <img 
+                src={getHotelImageUrl(hotel)}
+                alt={hotel.name}
+                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
               <div className="absolute bottom-4 left-4">
                 <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
                   {getPrideBadgeText(hotel.lgbt_certification || 'standard')}

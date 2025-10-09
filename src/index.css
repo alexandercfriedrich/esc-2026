@@ -37,6 +37,7 @@
   --pride-blue: oklch(0.55 0.25 260);      /* Blue */
   --pride-indigo: oklch(0.45 0.20 280);    /* Indigo */
   --pride-violet: oklch(0.50 0.25 300);    /* Violet */
+  --pride-purple: oklch(0.45 0.25 300);    /* Purple (alias for violet) */
   --pride-pink: oklch(0.65 0.25 330);      /* Pink */
 
   /* Eurovision Gradients - 8 colors in Pride order */
@@ -102,6 +103,7 @@
   --color-pride-blue: var(--pride-blue);
   --color-pride-indigo: var(--pride-indigo);
   --color-pride-violet: var(--pride-violet);
+  --color-pride-purple: var(--pride-purple);
   --color-pride-pink: var(--pride-pink);
 
   --radius-sm: calc(var(--radius) * 0.5);
@@ -126,6 +128,22 @@ body {
   background: var(--rainbow-gradient);
   background-size: 200% 200%;
   animation: rainbow-flow 10s ease-in-out infinite;
+}
+
+/* Rainbow Header */
+.rainbow-header {
+  background: linear-gradient(90deg, 
+    var(--pride-red) 0%, 
+    var(--pride-orange) 16.66%, 
+    var(--pride-yellow) 33.33%, 
+    var(--pride-green) 50%, 
+    var(--pride-blue) 66.66%, 
+    var(--pride-purple) 83.33%, 
+    var(--pride-red) 100%
+  );
+  height: 8px;
+  animation: rainbow-flow 10s linear infinite;
+  background-size: 200% 200%;
 }
 
 /* Enhanced Synchronized Stripe Lighting Animation - 8 vibrant stripes matching horizontal flow */
