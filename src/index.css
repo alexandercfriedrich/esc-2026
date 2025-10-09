@@ -197,6 +197,12 @@ body {
 }
 
 /* Vertical Pride Stripes Overlay - 8 synchronized animated stripes */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .pride-stripes-overlay {
   position: absolute;
   top: 0;

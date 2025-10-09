@@ -7,7 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell } from '@phosphor-icons/react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell, Eye, ChatCircle } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 
 interface Hotel {
@@ -23,6 +24,11 @@ interface Hotel {
   imageUrl?: string
   bookingUrl: string
   features: string[]
+  description: string
+  coordinates: { lat: number, lng: number }
+  reviews: number
+  prideDescription?: string
+  gallery: string[]
 }
 
 interface Event {
@@ -56,6 +62,19 @@ function App() {
   })
 
   const [selectedTab, setSelectedTab] = useState('hotels')
+  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null)
+  const [mapCenter, setMapCenter] = useState({ lat: 48.2082, lng: 16.3738 }) // Wien Zentrum
+  const [mapZoom, setMapZoom] = useState(13)
+
+  // Wien Landmarks
+  const landmarks = [
+    { id: 'stadthalle', name: 'Wiener Stadthalle', lat: 48.2066, lng: 16.3384, type: 'eurovision', icon: '🎭' },
+    { id: 'rathausplatz', name: 'Rathausplatz (Eurovision Village)', lat: 48.2103, lng: 16.3570, type: 'eurovision', icon: '🎪' },
+    { id: 'rainbow-crossing', name: 'Regenbogen-Zebrastreifen', lat: 48.2021, lng: 16.3740, type: 'pride', icon: '🏳️‍🌈' },
+    { id: 'rosa-lila-villa', name: 'Rosa Lila Villa', lat: 48.1986, lng: 16.3537, type: 'pride', icon: '🏠' },
+    { id: 'naschmarkt', name: 'Naschmarkt', lat: 48.1986, lng: 16.3634, type: 'attraction', icon: '🏪' },
+    { id: 'stephansdom', name: 'Stephansdom', lat: 48.2084, lng: 16.3731, type: 'attraction', icon: '⛪' }
+  ]
 
   const sampleHotels: Hotel[] = [
     {
@@ -69,7 +88,12 @@ function App() {
       amenities: ['wifi', 'parking', 'breakfast', 'gym'],
       neighborhood: 'Rudolfsheim-Fünfhaus',
       bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html',
-      features: ['Umweltfreundlich', '5 Min zur Stadthalle', 'LGBTQ+ Welcome']
+      features: ['Umweltfreundlich', '5 Min zur Stadthalle', 'LGBTQ+ Welcome'],
+      description: 'Österreichs erstes klimaneutrales Stadthotel, nur 5 Gehminuten von der Wiener Stadthalle entfernt. Perfekt für Eurovision-Fans.',
+      coordinates: { lat: 48.2066, lng: 16.3384 },
+      reviews: 1247,
+      prideDescription: 'Erstes klimaneutrales Hotel Österreichs mit offizieller Pride-Zertifizierung. Regenbogenflaggen in allen Zimmern.',
+      gallery: ['hotel1-1.jpg', 'hotel1-2.jpg', 'hotel1-3.jpg']
     },
     {
       id: '2', 
@@ -82,7 +106,12 @@ function App() {
       amenities: ['wifi', 'breakfast', 'restaurant'],
       neighborhood: 'Mariahilf',
       bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
-      features: ['Traditionell Wienerisch', 'Nahe Naschmarkt', 'Familiengeführt']
+      features: ['Traditionell Wienerisch', 'Nahe Naschmarkt', 'Familiengeführt'],
+      description: 'Charmantes Familienhotel im Herzen von Mariahilf, nahe dem berühmten Naschmarkt und der Fußgängerzone.',
+      coordinates: { lat: 48.1994, lng: 16.3656 },
+      reviews: 856,
+      prideDescription: 'Familiengeführtes Hotel mit offener Willkommenskultur für alle Gäste.',
+      gallery: ['hotel2-1.jpg', 'hotel2-2.jpg']
     },
     {
       id: '3',
@@ -95,7 +124,12 @@ function App() {
       amenities: ['wifi', 'parking', 'spa', 'restaurant', 'gym'],
       neighborhood: 'Wieden',
       bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
-      features: ['5-Sterne Luxus', 'Design Hotel', 'Pride Partner']
+      features: ['5-Sterne Luxus', 'Design Hotel', 'Pride Partner'],
+      description: 'Luxuriöses Design-Hotel im eleganten 4. Bezirk mit preisgekröntem Spa und Fine-Dining-Restaurant.',
+      coordinates: { lat: 48.1951, lng: 16.3721 },
+      reviews: 2341,
+      prideDescription: 'Offizieller Pride-Partner seit 2019. Exklusive LGBTQ+ Concierge-Services und Pride-Suiten verfügbar.',
+      gallery: ['hotel3-1.jpg', 'hotel3-2.jpg', 'hotel3-3.jpg', 'hotel3-4.jpg']
     },
     {
       id: '4',
@@ -108,7 +142,30 @@ function App() {
       amenities: ['wifi', 'breakfast'],
       neighborhood: 'Alsergrund',
       bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
-      features: ['Budget-freundlich', 'Zentrale Lage', 'Historisch']
+      features: ['Budget-freundlich', 'Zentrale Lage', 'Historisch'],
+      description: 'Traditionelles Wiener Hotel aus dem 19. Jahrhundert mit historischem Charme und modernem Komfort.',
+      coordinates: { lat: 48.2173, lng: 16.3501 },
+      reviews: 432,
+      prideDescription: 'Gastfreundliches Team mit Respekt für alle Gäste. Zentrale Lage nahe dem Regenbogen-Zebrastreifen.',
+      gallery: ['hotel4-1.jpg', 'hotel4-2.jpg']
+    },
+    {
+      id: '5',
+      name: 'Hotel Am Konzerthaus Vienna',
+      rating: 4.6,
+      priceFrom: 180,
+      priceTo: 280,
+      distanceToStadthalle: 1.2,
+      prideCategory: 'certified',
+      amenities: ['wifi', 'parking', 'restaurant', 'gym', 'spa'],
+      neighborhood: 'Innere Stadt',
+      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
+      features: ['Musikthema', 'Zentral', 'Pride Certified'],
+      description: 'Elegantes Hotel im Herzen Wiens, nur wenige Schritte vom Konzerthaus entfernt. Perfekt für Musikliebhaber.',
+      coordinates: { lat: 48.2010, lng: 16.3758 },
+      reviews: 1892,
+      prideDescription: 'Pride-zertifiziert seit 2020. Spezielle Eurovision-Packages und LGBTQ+ Welcome-Drinks.',
+      gallery: ['hotel5-1.jpg', 'hotel5-2.jpg', 'hotel5-3.jpg']
     }
   ]
 
@@ -260,7 +317,7 @@ function App() {
             <TabsTrigger value="events" className="text-lg">🎭 Programm</TabsTrigger>
             <TabsTrigger value="map" className="text-lg">🗺️ Karte</TabsTrigger>
             <TabsTrigger value="community" className="text-lg">👥 Community</TabsTrigger>
-            <TabsTrigger value="guide" className="text-lg">🗺️ Karte</TabsTrigger>
+            <TabsTrigger value="guide" className="text-lg">📖 Guide</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hotels" className="space-y-8">
@@ -320,6 +377,24 @@ function App() {
                     </Select>
                   </div>
                 </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => setSearchFilters({
+                      priceRange: 'all',
+                      prideFilter: 'all', 
+                      distanceFilter: 'all',
+                      checkIn: '',
+                      checkOut: ''
+                    })}
+                  >
+                    Filter zurücksetzen
+                  </Button>
+                  <Badge variant="secondary" className="flex items-center gap-1">
+                    {filteredHotels.length} Hotels gefunden
+                  </Badge>
+                </div>
               </CardContent>
             </Card>
 
@@ -327,7 +402,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredHotels.map((hotel) => (
                 <Card key={hotel.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  <div className="absolute top-4 right-4 z-10">
+                  <div className="absolute top-4 right-4 z-10 flex gap-2">
                     <Button
                       size="sm"
                       variant="outline"
@@ -338,6 +413,118 @@ function App() {
                         className={`w-4 h-4 ${favoriteHotels?.includes(hotel.id) ? 'fill-red-500 text-red-500' : ''}`} 
                       />
                     </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="bg-white/90 hover:bg-white"
+                          onClick={() => setSelectedHotel(hotel)}
+                        >
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="flex items-center gap-2">
+                            {hotel.name}
+                            <div className="flex items-center gap-1">
+                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              <span className="font-medium">{hotel.rating}</span>
+                            </div>
+                          </DialogTitle>
+                          <DialogDescription className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            {hotel.neighborhood} • {hotel.distanceToStadthalle}km zur Stadthalle
+                          </DialogDescription>
+                        </DialogHeader>
+                        
+                        <div className="space-y-6">
+                          {/* Hotel Gallery */}
+                          <div className="h-64 bg-gradient-to-br from-pride-blue to-pride-purple rounded-lg relative">
+                            <div className="absolute bottom-4 left-4">
+                              <Badge className={getPrideBadgeColor(hotel.prideCategory)}>
+                                {getPrideBadgeText(hotel.prideCategory)}
+                              </Badge>
+                            </div>
+                            <div className="absolute bottom-4 right-4 text-white text-sm">
+                              📷 {hotel.gallery.length} Fotos
+                            </div>
+                          </div>
+                          
+                          {/* Description */}
+                          <div>
+                            <h3 className="font-semibold mb-2">Beschreibung</h3>
+                            <p className="text-muted-foreground">{hotel.description}</p>
+                          </div>
+                          
+                          {/* Pride Info */}
+                          {hotel.prideDescription && (
+                            <div>
+                              <h3 className="font-semibold mb-2 flex items-center gap-2">
+                                🏳️‍🌈 LGBTQ+ Informationen
+                              </h3>
+                              <p className="text-muted-foreground">{hotel.prideDescription}</p>
+                            </div>
+                          )}
+                          
+                          {/* Features & Amenities */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                              <h3 className="font-semibold mb-2">Ausstattung</h3>
+                              <div className="flex flex-wrap gap-2">
+                                {hotel.amenities.map((amenity, index) => (
+                                  <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-sm">
+                                    {getAmenityIcon(amenity)}
+                                    <span className="capitalize">{amenity}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <h3 className="font-semibold mb-2">Besonderheiten</h3>
+                              <div className="flex flex-wrap gap-2">
+                                {hotel.features.map((feature, index) => (
+                                  <Badge key={index} variant="secondary" className="text-xs">
+                                    {feature}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Reviews */}
+                          <div>
+                            <h3 className="font-semibold mb-2 flex items-center gap-2">
+                              <ChatCircle className="w-4 h-4" />
+                              Bewertungen ({hotel.reviews})
+                            </h3>
+                            <div className="bg-muted p-4 rounded-lg">
+                              <p className="text-sm text-muted-foreground">
+                                "{hotel.name} hat {hotel.reviews} Bewertungen mit einer Durchschnittsbewertung von {hotel.rating} Sternen."
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* Pricing & Booking */}
+                          <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
+                            <div>
+                              <div className="text-2xl font-bold text-pride-green">
+                                €{hotel.priceFrom}-{hotel.priceTo}
+                              </div>
+                              <div className="text-sm text-muted-foreground">pro Nacht</div>
+                            </div>
+                            <Button 
+                              className="bg-pride-orange hover:bg-pride-red transition-colors px-8"
+                              onClick={() => handleBooking(hotel)}
+                            >
+                              Jetzt buchen
+                            </Button>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                   
                   <div className="h-48 bg-gradient-to-br from-pride-blue to-pride-purple relative">
@@ -366,12 +553,21 @@ function App() {
                   
                   <CardContent>
                     <div className="space-y-4">
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {hotel.description}
+                      </p>
+                      
                       <div className="flex flex-wrap gap-2">
-                        {hotel.features.map((feature, index) => (
+                        {hotel.features.slice(0, 3).map((feature, index) => (
                           <Badge key={index} variant="secondary" className="text-xs">
                             {feature}
                           </Badge>
                         ))}
+                        {hotel.features.length > 3 && (
+                          <Badge variant="outline" className="text-xs">
+                            +{hotel.features.length - 3}
+                          </Badge>
+                        )}
                       </div>
                       
                       <div className="flex items-center gap-2">
@@ -385,6 +581,11 @@ function App() {
                         )}
                       </div>
                       
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>{hotel.reviews} Bewertungen</span>
+                        <span>{hotel.gallery.length} Fotos</span>
+                      </div>
+                      
                       <Separator />
                       
                       <div className="flex items-center justify-between">
@@ -394,12 +595,24 @@ function App() {
                           </div>
                           <div className="text-sm text-muted-foreground">pro Nacht</div>
                         </div>
-                        <Button 
-                          className="bg-pride-orange hover:bg-pride-red transition-colors"
-                          onClick={() => handleBooking(hotel)}
-                        >
-                          Jetzt buchen
-                        </Button>
+                        <div className="flex gap-2">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="outline" size="sm">
+                                Details
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                              {/* Duplicate content from above for consistency */}
+                            </DialogContent>
+                          </Dialog>
+                          <Button 
+                            className="bg-pride-orange hover:bg-pride-red transition-colors"
+                            onClick={() => handleBooking(hotel)}
+                          >
+                            Buchen
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -463,38 +676,370 @@ function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-96 bg-gradient-to-br from-pride-blue to-pride-green rounded-lg flex items-center justify-center text-white text-xl">
-                  📍 Interaktive Karte mit Hotels, Eurovision-Venues und Pride-Locations
-                  <br />
-                  <span className="text-sm opacity-75">(In Entwicklung)</span>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {/* Map Area */}
+                  <div className="lg:col-span-2">
+                    <div className="h-96 bg-gradient-to-br from-pride-blue via-pride-purple to-pride-cyan rounded-lg relative overflow-hidden border-4 border-border">
+                      {/* Map Background */}
+                      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMSIgZmlsbD0id2hpdGUiLz4KPC9zdmc+')] opacity-10"></div>
+                      
+                      {/* Wien City Background */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10"></div>
+                      
+                      {/* Hotels on Map */}
+                      {filteredHotels.map((hotel, index) => (
+                        <div
+                          key={hotel.id}
+                          className="absolute bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform z-10"
+                          style={{
+                            left: `${20 + (index * 15)}%`,
+                            top: `${30 + (index * 10)}%`,
+                          }}
+                          onClick={() => setSelectedHotel(hotel)}
+                        >
+                          <span className="text-xs font-bold text-pride-blue">H</span>
+                        </div>
+                      ))}
+                      
+                      {/* Landmarks on Map */}
+                      {landmarks.map((landmark, index) => (
+                        <div
+                          key={landmark.id}
+                          className="absolute bg-white/90 rounded-full w-10 h-10 flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform z-10"
+                          style={{
+                            left: `${60 + (index * 8)}%`,
+                            top: `${20 + (index * 12)}%`,
+                          }}
+                        >
+                          <span className="text-lg">{landmark.icon}</span>
+                        </div>
+                      ))}
+                      
+                      {/* Map Legend */}
+                      <div className="absolute bottom-4 left-4 bg-white/90 rounded-lg p-3 text-xs space-y-1">
+                        <div className="font-semibold mb-2">Legende</div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 bg-pride-blue rounded-full flex items-center justify-center text-white text-xs font-bold">H</div>
+                          <span>Hotels</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎭</span>
+                          <span>Eurovision</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🏳️‍🌈</span>
+                          <span>LGBTQ+</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">⛪</span>
+                          <span>Sehenswürdigkeiten</span>
+                        </div>
+                      </div>
+                      
+                      {/* Vienna Label */}
+                      <div className="absolute top-4 right-4 bg-white/90 rounded-lg px-3 py-2 font-semibold text-pride-blue">
+                        Wien / Vienna
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Location Details */}
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold mb-3">🎭 Eurovision Locations</h3>
+                      <div className="space-y-2">
+                        {landmarks.filter(l => l.type === 'eurovision').map((landmark) => (
+                          <div key={landmark.id} className="p-3 border rounded-lg hover:bg-muted cursor-pointer">
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg">{landmark.icon}</span>
+                              <div>
+                                <div className="font-medium text-sm">{landmark.name}</div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold mb-3">🏳️‍🌈 LGBTQ+ Locations</h3>
+                      <div className="space-y-2">
+                        {landmarks.filter(l => l.type === 'pride').map((landmark) => (
+                          <div key={landmark.id} className="p-3 border rounded-lg hover:bg-muted cursor-pointer">
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg">{landmark.icon}</span>
+                              <div>
+                                <div className="font-medium text-sm">{landmark.name}</div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold mb-3">🏨 Ihre Hotels</h3>
+                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                        {filteredHotels.map((hotel) => (
+                          <div 
+                            key={hotel.id} 
+                            className="p-3 border rounded-lg hover:bg-muted cursor-pointer"
+                            onClick={() => setSelectedHotel(hotel)}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="font-medium text-sm">{hotel.name}</div>
+                                <div className="text-xs text-muted-foreground">{hotel.distanceToStadthalle}km zur Stadthalle</div>
+                              </div>
+                              <Badge className={getPrideBadgeColor(hotel.prideCategory)} variant="secondary">
+                                {hotel.prideCategory === 'certified' ? '🏳️‍🌈' : hotel.prideCategory === 'friendly' ? '🤝' : '🏨'}
+                              </Badge>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Transport Info */}
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-base">🚇 Öffentliche Verkehrsmittel</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <ul className="text-sm space-y-1">
+                        <li>• U6 Burggasse-Stadthalle</li>
+                        <li>• Straßenbahn 5, 33, 44</li>
+                        <li>• 24h-Service während Eurovision</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-base">🚗 Anreise</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <ul className="text-sm space-y-1">
+                        <li>• Flughafen Wien (30 Min)</li>
+                        <li>• Hauptbahnhof (15 Min)</li>
+                        <li>• Parkgaragen verfügbar</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-base">📍 Entfernungen</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <ul className="text-sm space-y-1">
+                        <li>• Stadthalle: 0-3km</li>
+                        <li>• Innenstadt: 2-5km</li>
+                        <li>• Regenbogen-Zebrastreifen: 1-4km</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="community" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Fan Matching */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    👥 Fan-Matching
+                  </CardTitle>
+                  <CardDescription>
+                    Finde andere Eurovision-Fans für gemeinsame Aktivitäten
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Deine Interessen</label>
+                      <div className="flex flex-wrap gap-2">
+                        {['Eurovision 2026', 'LGBTQ+ Community', 'Wien Sightseeing', 'Nightlife', 'Konzerte', 'Pride Events'].map((interest) => (
+                          <Badge key={interest} variant="outline" className="cursor-pointer hover:bg-primary hover:text-primary-foreground">
+                            {interest}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    <Button className="w-full" variant="outline">
+                      <Users className="w-4 h-4 mr-2" />
+                      Fan-Profil erstellen
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Gruppenhotel-Buchungen */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    🏨 Gruppenhotel-Buchungen
+                  </CardTitle>
+                  <CardDescription>
+                    Teile Hotelzimmer mit anderen Eurovision-Fans
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="space-y-3">
+                      {['Das Triest - Suche 1 Mitbewohner*in', 'Hotel Am Wilhelmspark - 2 Plätze frei', 'Boutiquehotel Stadthalle - Gruppe zu 4'].map((group, index) => (
+                        <div key={index} className="p-3 border rounded-lg hover:bg-muted cursor-pointer">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="font-medium text-sm">{group}</div>
+                              <div className="text-xs text-muted-foreground">13.-17. Mai 2026</div>
+                            </div>
+                            <Badge variant="secondary">Anfragen</Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <Button className="w-full" variant="outline">
+                      Neue Gruppe erstellen
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Event Meetups */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  👥 Eurovision Fan Community
+                  🎉 Event-Meetups
                 </CardTitle>
                 <CardDescription>
-                  Verbinde dich mit anderen Eurovision-Fans und plant gemeinsame Aktivitäten
+                  Gemeinsame Aktivitäten während Eurovision 2026
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12">
-                  <Users className="w-16 h-16 mx-auto mb-4 text-pride-blue" />
-                  <h3 className="text-xl font-semibold mb-2">Community Features kommen bald!</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Fan-Matching, Gruppenhotel-Buchungen und Event-Meetups
-                  </p>
-                  <Button variant="outline">
-                    Benachrichtigung erhalten
-                  </Button>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    { 
+                      title: 'Pre-Eurovision Party', 
+                      date: '12. Mai, 20:00', 
+                      location: 'Rosa Lila Villa', 
+                      attendees: 24, 
+                      type: 'party' 
+                    },
+                    { 
+                      title: 'Finale Public Viewing', 
+                      date: '17. Mai, 21:00', 
+                      location: 'Rathausplatz', 
+                      attendees: 156, 
+                      type: 'viewing' 
+                    },
+                    { 
+                      title: 'Pride Walk Wien', 
+                      date: '14. Mai, 15:00', 
+                      location: 'Regenbogen-Zebrastreifen', 
+                      attendees: 89, 
+                      type: 'pride' 
+                    },
+                    { 
+                      title: 'After-Party Celebration', 
+                      date: '17. Mai, 23:30', 
+                      location: 'Prater', 
+                      attendees: 67, 
+                      type: 'party' 
+                    },
+                    { 
+                      title: 'Wien Sightseeing Tour', 
+                      date: '13. Mai, 10:00', 
+                      location: 'Stephansdom', 
+                      attendees: 32, 
+                      type: 'tour' 
+                    },
+                    { 
+                      title: 'Eurovision Brunch', 
+                      date: '16. Mai, 11:00', 
+                      location: 'Naschmarkt', 
+                      attendees: 45, 
+                      type: 'food' 
+                    }
+                  ].map((meetup, index) => (
+                    <Card key={index} className="hover:shadow-md transition-shadow">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-start justify-between">
+                          <CardTitle className="text-base leading-tight">{meetup.title}</CardTitle>
+                          <Badge variant="secondary">
+                            {meetup.type === 'party' ? '🎉' : 
+                             meetup.type === 'viewing' ? '📺' : 
+                             meetup.type === 'pride' ? '🏳️‍🌈' : 
+                             meetup.type === 'tour' ? '🗺️' : '🍽️'}
+                          </Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-0 space-y-3">
+                        <div className="space-y-1 text-sm">
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <Calendar className="w-4 h-4" />
+                            {meetup.date}
+                          </div>
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <MapPin className="w-4 h-4" />
+                            {meetup.location}
+                          </div>
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <Users className="w-4 h-4" />
+                            {meetup.attendees} Teilnehmer
+                          </div>
+                        </div>
+                        <Button size="sm" className="w-full">
+                          Teilnehmen
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </CardContent>
             </Card>
+
+            {/* Community Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-pride-blue">2,847</div>
+                    <div className="text-sm text-muted-foreground">Registrierte Fans</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-pride-green">156</div>
+                    <div className="text-sm text-muted-foreground">Aktive Gruppen</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-pride-orange">42</div>
+                    <div className="text-sm text-muted-foreground">Geplante Events</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-pride-purple">1,234</div>
+                    <div className="text-sm text-muted-foreground">Hotel-Matches</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="guide" className="space-y-6">
