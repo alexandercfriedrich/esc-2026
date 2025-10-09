@@ -5,11 +5,16 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell, Eye, ChatCircle, MagnifyingGlass, Spinner } from '@phosphor-icons/react'
+import { Calendar as CalendarComponent } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell, Eye, ChatCircle, MagnifyingGlass, Spinner, Plus, Minus, CalendarBlank, Bed } from '@phosphor-icons/react'
 import { toast } from 'sonner'
+import { BookingSearchForm } from '@/components/BookingSearchForm'
+import { BookingWidget } from '@/components/BookingWidget'
 
 interface Hotel {
   id: string
@@ -46,6 +51,45 @@ interface UserPreferences {
   prideOnly: boolean
 }
 
+interface SearchParams {
+  checkIn: string
+  checkOut: string
+  adults: number
+  rooms: number
+  children: number
+  priceMin: number
+  priceMax: number
+  stars: string
+  distanceFilter: string
+  lgbtFilter: string
+}
+
+interface BookingAffiliate {
+  aid: string
+  label: string
+  sid: string
+}
+
+interface CuratedHotel {
+  id: string
+  name: string
+  rating: number
+  priceFrom: number
+  priceTo: number
+  distanceToStadthalle: number
+  prideCategory: 'certified' | 'friendly' | 'standard'
+  amenities: string[]
+  neighborhood: string
+  bookingId: string | null
+  features: string[]
+  description: string
+  coordinates: { lat: number, lng: number }
+  reviews: number
+  prideDescription?: string
+  gallery: string[]
+  tags: string[]
+}
+
 interface BookingSearchResult {
   hotel_id: string
   hotel_name: string
@@ -77,21 +121,41 @@ function App() {
     maxPrice: 300,
     prideOnly: false
   })
-  const [searchFilters, setSearchFilters] = useState({
-    priceRange: 'all',
-    prideFilter: 'all',
-    distanceFilter: 'all',
+
+  // Booking.com Affiliate Configuration
+  const bookingAffiliate: BookingAffiliate = {
+    aid: '101370188',
+    label: 'eurovision-rainbow-city-vienna',
+    sid: 'esc2026'
+  }
+
+  // Enhanced Search State
+  const [searchParams, setSearchParams] = useState<SearchParams>({
     checkIn: '2026-05-12',
-    checkOut: '2026-05-17'
+    checkOut: '2026-05-17',
+    adults: 2,
+    rooms: 1,
+    children: 0,
+    priceMin: 50,
+    priceMax: 500,
+    stars: 'all',
+    distanceFilter: 'all',
+    lgbtFilter: 'all'
   })
-  
+
+  // Calendar state for date pickers
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date('2026-05-12'))
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date('2026-05-17'))
+  const [showCheckInCalendar, setShowCheckInCalendar] = useState(false)
+  const [showCheckOutCalendar, setShowCheckOutCalendar] = useState(false)
+
   // Booking.com search state
   const [bookingResults, setBookingResults] = useState<BookingSearchResult[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
 
   const [selectedTab, setSelectedTab] = useState('hotels')
-  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null)
+  const [selectedHotel, setSelectedHotel] = useState<CuratedHotel | null>(null)
   const [mapCenter, setMapCenter] = useState({ lat: 48.2082, lng: 16.3738 }) // Wien Zentrum
   const [mapZoom, setMapZoom] = useState(13)
 
@@ -105,8 +169,23 @@ function App() {
     { id: 'stephansdom', name: 'Stephansdom', lat: 48.2084, lng: 16.3731, type: 'attraction', icon: '⛪' }
   ]
 
-  // Enhanced hotel data with Pride categorization based on real Vienna hotels
-  const enhancedSampleHotels: Hotel[] = [
+  // Booking.com Deep Link Generator
+  const generateBookingLink = (hotelBookingId?: string | null) => {
+    const baseUrl = 'https://www.anrdoezrs.net/click-101370188-13822287'
+    const checkInFormatted = searchParams.checkIn
+    const checkOutFormatted = searchParams.checkOut
+    
+    if (hotelBookingId) {
+      // Direct hotel link
+      return `${baseUrl}?url=https://www.booking.com/hotel/at/${hotelBookingId}.html?aid=${bookingAffiliate.aid}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}&checkin=${checkInFormatted}&checkout=${checkOutFormatted}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}`
+    } else {
+      // Vienna search results with filters
+      return `${baseUrl}?url=https://www.booking.com/searchresults.html?aid=${bookingAffiliate.aid}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}&dest_id=-1991997&dest_type=city&checkin=${checkInFormatted}&checkout=${checkOutFormatted}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}`
+    }
+  }
+
+  // Curated Wien Hotels for Eurovision 2026 (with Booking.com IDs where available)
+  const curatedEurovisionHotels: CuratedHotel[] = [
     {
       id: '1',
       name: 'Boutiquehotel Stadthalle',
@@ -117,31 +196,33 @@ function App() {
       prideCategory: 'certified',
       amenities: ['wifi', 'parking', 'breakfast', 'gym'],
       neighborhood: 'Rudolfsheim-Fünfhaus',
-      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html',
+      bookingId: 'boutiquehotel-stadthalle',
       features: ['Umweltfreundlich', '5 Min zur Stadthalle', 'LGBTQ+ Welcome'],
       description: 'Österreichs erstes klimaneutrales Stadthotel, nur 5 Gehminuten von der Wiener Stadthalle entfernt. Perfekt für Eurovision-Fans.',
       coordinates: { lat: 48.2066, lng: 16.3384 },
       reviews: 1247,
       prideDescription: 'Erstes klimaneutrales Hotel Österreichs mit offizieller Pride-Zertifizierung. Regenbogenflaggen in allen Zimmern.',
-      gallery: ['hotel1-1.jpg', 'hotel1-2.jpg', 'hotel1-3.jpg']
+      gallery: ['hotel1-1.jpg', 'hotel1-2.jpg', 'hotel1-3.jpg'],
+      tags: ['LGBT-freundlich', 'Nahe Venue', 'Umweltfreundlich', 'Top bewertet']
     },
     {
       id: '2', 
-      name: 'Hotel Am Wilhelmspark',
+      name: 'Hotel Das Tyrol',
       rating: 4.2,
       priceFrom: 120,
       priceTo: 180,
       distanceToStadthalle: 0.8,
       prideCategory: 'friendly',
-      amenities: ['wifi', 'breakfast', 'restaurant'],
+      amenities: ['wifi', 'breakfast', 'restaurant', 'bar'],
       neighborhood: 'Mariahilf',
-      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
-      features: ['Traditionell Wienerisch', 'Nahe Naschmarkt', 'Familiengeführt'],
-      description: 'Charmantes Familienhotel im Herzen von Mariahilf, nahe dem berühmten Naschmarkt und der Fußgängerzone.',
+      bookingId: 'das-tyrol',
+      features: ['Traditionell Wienerisch', 'Nahe Mariahilfer Straße', 'Familiengeführt'],
+      description: 'Charmantes Hotel im Herzen von Mariahilf, nahe dem berühmten Naschmarkt und der Fußgängerzone.',
       coordinates: { lat: 48.1994, lng: 16.3656 },
       reviews: 856,
       prideDescription: 'Familiengeführtes Hotel mit offener Willkommenskultur für alle Gäste.',
-      gallery: ['hotel2-1.jpg', 'hotel2-2.jpg']
+      gallery: ['hotel2-1.jpg', 'hotel2-2.jpg'],
+      tags: ['LGBT-freundlich', 'Zentral', 'Familiengeführt']
     },
     {
       id: '3',
@@ -153,55 +234,115 @@ function App() {
       prideCategory: 'certified',
       amenities: ['wifi', 'parking', 'spa', 'restaurant', 'gym'],
       neighborhood: 'Wieden',
-      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
+      bookingId: 'das-triest',
       features: ['5-Sterne Luxus', 'Design Hotel', 'Pride Partner'],
       description: 'Luxuriöses Design-Hotel im eleganten 4. Bezirk mit preisgekröntem Spa und Fine-Dining-Restaurant.',
       coordinates: { lat: 48.1951, lng: 16.3721 },
       reviews: 2341,
       prideDescription: 'Offizieller Pride-Partner seit 2019. Exklusive LGBTQ+ Concierge-Services und Pride-Suiten verfügbar.',
-      gallery: ['hotel3-1.jpg', 'hotel3-2.jpg', 'hotel3-3.jpg', 'hotel3-4.jpg']
+      gallery: ['hotel3-1.jpg', 'hotel3-2.jpg', 'hotel3-3.jpg', 'hotel3-4.jpg'],
+      tags: ['LGBT-freundlich', 'Luxus', 'Pride Partner', 'Design Hotel']
     },
     {
       id: '4',
-      name: 'Hotel Regina',
-      rating: 4.0,
-      priceFrom: 90,
-      priceTo: 140,
-      distanceToStadthalle: 1.5,
+      name: 'Austria Trend Hotel Europa Wien',
+      rating: 4.3,
+      priceFrom: 150,
+      priceTo: 220,
+      distanceToStadthalle: 1.8,
       prideCategory: 'friendly',
-      amenities: ['wifi', 'breakfast'],
-      neighborhood: 'Alsergrund',
-      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
-      features: ['Budget-freundlich', 'Zentrale Lage', 'Historisch'],
-      description: 'Traditionelles Wiener Hotel aus dem 19. Jahrhundert mit historischem Charme und modernem Komfort.',
-      coordinates: { lat: 48.2173, lng: 16.3501 },
-      reviews: 432,
+      amenities: ['wifi', 'restaurant', 'business', 'roomservice'],
+      neighborhood: 'Innere Stadt',
+      bookingId: 'austria-trend-europa-wien',
+      features: ['Am Ring', 'Traditionell', 'Zentral'],
+      description: 'Elegantes Hotel am Ring mit traditionellem Wiener Charme und moderner Ausstattung.',
+      coordinates: { lat: 48.2021, lng: 16.3721 },
+      reviews: 2103,
       prideDescription: 'Gastfreundliches Team mit Respekt für alle Gäste. Zentrale Lage nahe dem Regenbogen-Zebrastreifen.',
-      gallery: ['hotel4-1.jpg', 'hotel4-2.jpg']
+      gallery: ['hotel4-1.jpg', 'hotel4-2.jpg'],
+      tags: ['Zentral', 'Am Ring', 'LGBT-freundlich']
     },
     {
       id: '5',
-      name: 'Hotel Am Konzerthaus Vienna',
+      name: 'Hilton Vienna Plaza',
       rating: 4.6,
+      priceFrom: 280,
+      priceTo: 400,
+      distanceToStadthalle: 2.2,
+      prideCategory: 'certified',
+      amenities: ['wifi', 'spa', 'gym', 'restaurant', 'bar', 'roomservice'],
+      neighborhood: 'Innere Stadt',
+      bookingId: 'hilton-vienna-plaza',
+      features: ['5-Sterne', 'Luxus-Spa', 'Pride Certified'],
+      description: 'Luxuriöses 5-Sterne-Hotel mit erstklassigem Service und Spa im Herzen von Wien.',
+      coordinates: { lat: 48.2156, lng: 16.3667 },
+      reviews: 3547,
+      prideDescription: 'Pride-zertifiziert seit 2020. Spezielle Eurovision-Packages und LGBTQ+ Welcome-Drinks.',
+      gallery: ['hotel5-1.jpg', 'hotel5-2.jpg', 'hotel5-3.jpg'],
+      tags: ['LGBT-freundlich', 'Luxus', 'Top bewertet', '5-Sterne']
+    },
+    {
+      id: '6',
+      name: 'Ruby Sofie Hotel Vienna',
+      rating: 4.4,
+      priceFrom: 140,
+      priceTo: 200,
+      distanceToStadthalle: 1.5,
+      prideCategory: 'friendly',
+      amenities: ['wifi', 'bar', 'gym', 'frontdesk24'],
+      neighborhood: 'Landstraße',
+      bookingId: 'ruby-sofie',
+      features: ['Lifestyle Design', 'Modern', 'Zentral'],
+      description: 'Modernes Lifestyle-Hotel mit innovativem Design und zentraler Lage.',
+      coordinates: { lat: 48.1987, lng: 16.3895 },
+      reviews: 1842,
+      prideDescription: 'Modernes Hotel mit aufgeschlossener Atmosphäre. Beliebter Treffpunkt der LGBTQ+ Community.',
+      gallery: ['hotel6-1.jpg', 'hotel6-2.jpg'],
+      tags: ['LGBT-freundlich', 'Modern', 'Design', 'Zentral']
+    },
+    {
+      id: '7',
+      name: 'Motel One Wien-Staatsoper',
+      rating: 4.1,
+      priceFrom: 90,
+      priceTo: 140,
+      distanceToStadthalle: 1.9,
+      prideCategory: 'friendly',
+      amenities: ['wifi', 'bar', 'frontdesk24'],
+      neighborhood: 'Innere Stadt',
+      bookingId: 'motel-one-wien-staatsoper',
+      features: ['Budget-freundlich', 'Nahe Staatsoper', 'Design'],
+      description: 'Stylisches Budget-Hotel nahe der Wiener Staatsoper mit komfortablen Zimmern.',
+      coordinates: { lat: 48.2016, lng: 16.3692 },
+      reviews: 4201,
+      prideDescription: 'Junges, offenes Team mit herzlicher Atmosphäre für alle Gäste.',
+      gallery: ['hotel7-1.jpg', 'hotel7-2.jpg'],
+      tags: ['Budget-freundlich', 'Zentral', 'LGBT-freundlich', 'Design']
+    },
+    {
+      id: '8',
+      name: 'Hotel Am Konzerthaus Vienna',
+      rating: 4.5,
       priceFrom: 180,
       priceTo: 280,
       distanceToStadthalle: 1.2,
       prideCategory: 'certified',
       amenities: ['wifi', 'parking', 'restaurant', 'gym', 'spa'],
       neighborhood: 'Innere Stadt',
-      bookingUrl: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?city=-39998',
+      bookingId: null, // Partnerhotel ohne Booking.com
       features: ['Musikthema', 'Zentral', 'Pride Certified'],
       description: 'Elegantes Hotel im Herzen Wiens, nur wenige Schritte vom Konzerthaus entfernt. Perfekt für Musikliebhaber.',
       coordinates: { lat: 48.2010, lng: 16.3758 },
       reviews: 1892,
       prideDescription: 'Pride-zertifiziert seit 2020. Spezielle Eurovision-Packages und LGBTQ+ Welcome-Drinks.',
-      gallery: ['hotel5-1.jpg', 'hotel5-2.jpg', 'hotel5-3.jpg']
+      gallery: ['hotel8-1.jpg', 'hotel8-2.jpg', 'hotel8-3.jpg'],
+      tags: ['LGBT-freundlich', 'Musikthema', 'Zentral', 'Pride Certified']
     }
   ]
 
-  // Function to search Booking.com hotels
+  // Function to search Booking.com hotels (simulate with deep links)
   const searchBookingHotels = async () => {
-    if (!searchFilters.checkIn || !searchFilters.checkOut) {
+    if (!searchParams.checkIn || !searchParams.checkOut) {
       toast.error('Bitte Check-in und Check-out Datum auswählen')
       return
     }
@@ -224,7 +365,7 @@ function App() {
           distance_to_venue: 0.7,
           star_rating: 4,
           price: { currency: 'EUR', amount: 145 },
-          booking_url: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/das-tyrol.html',
+          booking_url: generateBookingLink('das-tyrol'),
           amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Fitness Center'],
           description: 'Modernes Hotel in der Nähe der Mariahilfer Straße mit komfortablen Zimmern und ausgezeichnetem Service.',
           review_score: 8.2,
@@ -240,7 +381,7 @@ function App() {
           distance_to_venue: 1.8,
           star_rating: 4,
           price: { currency: 'EUR', amount: 189 },
-          booking_url: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/austria-trend-europa-wien.html',
+          booking_url: generateBookingLink('austria-trend-europa-wien'),
           amenities: ['Free WiFi', 'Restaurant', 'Business Center', 'Room Service'],
           description: 'Elegantes Hotel am Ring mit traditionellem Wiener Charme und moderner Ausstattung.',
           review_score: 8.7,
@@ -256,7 +397,7 @@ function App() {
           distance_to_venue: 2.2,
           star_rating: 5,
           price: { currency: 'EUR', amount: 295 },
-          booking_url: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/hilton-vienna-plaza.html',
+          booking_url: generateBookingLink('hilton-vienna-plaza'),
           amenities: ['Free WiFi', 'Spa', 'Fitness Center', 'Restaurant', 'Bar', 'Room Service'],
           description: 'Luxuriöses 5-Sterne-Hotel mit erstklassigem Service und Spa im Herzen von Wien.',
           review_score: 9.1,
@@ -272,7 +413,7 @@ function App() {
           distance_to_venue: 1.5,
           star_rating: 4,
           price: { currency: 'EUR', amount: 167 },
-          booking_url: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/ruby-sofie.html',
+          booking_url: generateBookingLink('ruby-sofie'),
           amenities: ['Free WiFi', 'Bar', 'Fitness Center', '24-hour Front Desk'],
           description: 'Modernes Lifestyle-Hotel mit innovativem Design und zentraler Lage.',
           review_score: 8.8,
@@ -288,7 +429,7 @@ function App() {
           distance_to_venue: 1.9,
           star_rating: 3,
           price: { currency: 'EUR', amount: 98 },
-          booking_url: 'https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/hotel/at/motel-one-wien-staatsoper.html',
+          booking_url: generateBookingLink('motel-one-wien-staatsoper'),
           amenities: ['Free WiFi', 'Bar', '24-hour Front Desk'],
           description: 'Stylisches Budget-Hotel nahe der Wiener Staatsoper mit komfortablen Zimmern.',
           review_score: 8.4,
@@ -301,16 +442,21 @@ function App() {
       let filteredResults = mockBookingResults
 
       // Apply price filter
-      if (searchFilters.priceRange === 'budget') {
-        filteredResults = filteredResults.filter(hotel => hotel.price.amount <= 150)
-      } else if (searchFilters.priceRange === 'mid') {
-        filteredResults = filteredResults.filter(hotel => hotel.price.amount > 150 && hotel.price.amount <= 250)
-      } else if (searchFilters.priceRange === 'luxury') {
-        filteredResults = filteredResults.filter(hotel => hotel.price.amount > 250)
+      if (searchParams.priceMin > 50) {
+        filteredResults = filteredResults.filter(hotel => hotel.price.amount >= searchParams.priceMin)
+      }
+      if (searchParams.priceMax < 500) {
+        filteredResults = filteredResults.filter(hotel => hotel.price.amount <= searchParams.priceMax)
+      }
+
+      // Apply star filter
+      if (searchParams.stars !== 'all') {
+        const starRating = parseInt(searchParams.stars)
+        filteredResults = filteredResults.filter(hotel => hotel.star_rating >= starRating)
       }
 
       // Apply distance filter
-      if (searchFilters.distanceFilter === 'walking') {
+      if (searchParams.distanceFilter === 'walking') {
         filteredResults = filteredResults.filter(hotel => hotel.distance_to_venue <= 1)
       }
 
@@ -327,9 +473,28 @@ function App() {
     }
   }
 
-  // Combine sample hotels with booking results for display
+  // Date formatting helper
+  const formatDate = (date: Date | undefined) => {
+    if (!date) return ''
+    return date.toISOString().split('T')[0]
+  }
+
+  // Update search params when dates change
+  useEffect(() => {
+    if (checkInDate) {
+      setSearchParams(prev => ({ ...prev, checkIn: formatDate(checkInDate) }))
+    }
+  }, [checkInDate])
+
+  useEffect(() => {
+    if (checkOutDate) {
+      setSearchParams(prev => ({ ...prev, checkOut: formatDate(checkOutDate) }))
+    }
+  }, [checkOutDate])
+
+  // Combine curated hotels with booking results for display
   const allHotels = [
-    ...enhancedSampleHotels,
+    ...curatedEurovisionHotels,
     ...bookingResults.map(result => ({
       id: result.hotel_id,
       name: result.hotel_name,
@@ -340,13 +505,14 @@ function App() {
       prideCategory: 'standard' as const, // Booking.com hotels default to standard
       amenities: result.amenities.map(a => a.toLowerCase().replace(/\s+/g, '')).slice(0, 4),
       neighborhood: result.address.split(',')[1]?.trim() || 'Wien',
-      bookingUrl: result.booking_url,
+      bookingId: null, // Booking.com hotels don't have our internal booking IDs
       features: [`${result.star_rating} Sterne`, 'Booking.com Partner', 'Zentral gelegen'],
       description: result.description,
       coordinates: { lat: result.coordinates.latitude, lng: result.coordinates.longitude },
       reviews: result.review_count,
       prideDescription: 'Booking.com Partner-Hotel - Kontaktieren Sie das Hotel direkt für LGBTQ+ Services.',
-      gallery: [`booking-${result.hotel_id}-1.jpg`, `booking-${result.hotel_id}-2.jpg`]
+      gallery: [`booking-${result.hotel_id}-1.jpg`, `booking-${result.hotel_id}-2.jpg`],
+      tags: [`${result.star_rating} Sterne`, 'Booking.com', 'Zentral']
     }))
   ]
 
@@ -394,11 +560,14 @@ function App() {
   ]
 
   const filteredHotels = allHotels.filter(hotel => {
-    if (searchFilters.prideFilter === 'certified' && hotel.prideCategory !== 'certified') return false
-    if (searchFilters.prideFilter === 'friendly' && hotel.prideCategory === 'standard') return false
-    if (searchFilters.priceRange === 'budget' && hotel.priceFrom > 150) return false
-    if (searchFilters.priceRange === 'luxury' && hotel.priceFrom < 200) return false
-    if (searchFilters.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
+    if (searchParams.lgbtFilter === 'certified' && hotel.prideCategory !== 'certified') return false
+    if (searchParams.lgbtFilter === 'friendly' && hotel.prideCategory === 'standard') return false
+    if (hotel.priceFrom < searchParams.priceMin || hotel.priceFrom > searchParams.priceMax) return false
+    if (searchParams.stars !== 'all') {
+      const minStars = parseInt(searchParams.stars)
+      if (hotel.rating < minStars) return false
+    }
+    if (searchParams.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
     return true
   })
 
@@ -412,7 +581,7 @@ function App() {
     toast.success('Favoriten aktualisiert!')
   }
 
-  const handleBooking = (hotel: Hotel) => {
+  const handleBooking = (hotel: CuratedHotel) => {
     // Track booking click for analytics
     try {
       // Trigger CJ tracking if available
@@ -430,8 +599,11 @@ function App() {
       console.warn('CJ tracking failed:', error)
     }
 
+    // Generate appropriate booking URL
+    const bookingUrl = hotel.bookingId ? generateBookingLink(hotel.bookingId) : generateBookingLink()
+    
     // Open booking URL in new tab
-    window.open(hotel.bookingUrl, '_blank', 'noopener,noreferrer')
+    window.open(bookingUrl, '_blank', 'noopener,noreferrer')
     
     const isBookingHotel = hotel.id.startsWith('booking_')
     toast.success(
@@ -526,120 +698,19 @@ function App() {
           </TabsList>
 
           <TabsContent value="hotels" className="space-y-8">
-            {/* Search Filters */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  🔍 Hotel-Suche für Eurovision 2026
-                </CardTitle>
-                <CardDescription>
-                  Finde die perfekte Unterkunft für deinen Eurovision-Aufenthalt in Wien. Powered by Booking.com Partnership.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Check-in</label>
-                    <Input 
-                      type="date" 
-                      value={searchFilters.checkIn}
-                      onChange={(e) => setSearchFilters({...searchFilters, checkIn: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Check-out</label>
-                    <Input 
-                      type="date"
-                      value={searchFilters.checkOut}
-                      onChange={(e) => setSearchFilters({...searchFilters, checkOut: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Preisbereich</label>
-                    <Select value={searchFilters.priceRange} onValueChange={(value) => setSearchFilters({...searchFilters, priceRange: value})}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Preis wählen" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Alle Preise</SelectItem>
-                        <SelectItem value="budget">Budget (bis €150)</SelectItem>
-                        <SelectItem value="mid">Mittelklasse (€150-250)</SelectItem>
-                        <SelectItem value="luxury">Luxus (€250+)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">LGBTQ+ Filter</label>
-                    <Select value={searchFilters.prideFilter} onValueChange={(value) => setSearchFilters({...searchFilters, prideFilter: value})}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Pride Level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Alle Hotels</SelectItem>
-                        <SelectItem value="certified">🏳️‍🌈 Pride Certified</SelectItem>
-                        <SelectItem value="friendly">🤝 LGBTQ+ Friendly</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-4 items-center justify-between">
-                  <div className="flex flex-wrap gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => setSearchFilters({
-                        priceRange: 'all',
-                        prideFilter: 'all', 
-                        distanceFilter: 'all',
-                        checkIn: '2026-05-12',
-                        checkOut: '2026-05-17'
-                      })}
-                    >
-                      Filter zurücksetzen
-                    </Button>
-                    <Badge variant="secondary" className="flex items-center gap-1">
-                      {filteredHotels.length} Hotels gefunden
-                    </Badge>
-                    {searchPerformed && bookingResults.length > 0 && (
-                      <Badge variant="outline" className="flex items-center gap-1 bg-pride-blue text-white">
-                        {bookingResults.length} Booking.com Hotels
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  <Button 
-                    onClick={searchBookingHotels}
-                    disabled={isSearching || !searchFilters.checkIn || !searchFilters.checkOut}
-                    className="bg-pride-orange hover:bg-pride-red transition-colors gap-2"
-                  >
-                    {isSearching ? (
-                      <>
-                        <Spinner className="w-4 h-4 animate-spin" />
-                        Suche...
-                      </>
-                    ) : (
-                      <>
-                        <MagnifyingGlass className="w-4 h-4" />
-                        Booking.com Hotels suchen
-                      </>
-                    )}
-                  </Button>
-                </div>
-                
-                {/* Search Status */}
-                {searchPerformed && (
-                  <div className="mt-4 p-4 bg-muted rounded-lg">
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-pride-green rounded-full"></div>
-                      <span className="font-medium">Live-Suche abgeschlossen</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Zeigt eine Kombination aus unseren Pride-zertifizierten Partner-Hotels und verfügbaren Booking.com Hotels für {searchFilters.checkIn} bis {searchFilters.checkOut}
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            {/* Booking.com Partner Widget */}
+            <BookingWidget />
+            
+            {/* Enhanced Search Interface */}
+            <BookingSearchForm
+              searchParams={searchParams}
+              setSearchParams={setSearchParams}
+              onSearch={searchBookingHotels}
+              isSearching={isSearching}
+              filteredHotelsCount={filteredHotels.length}
+              bookingResultsCount={bookingResults.length}
+              searchPerformed={searchPerformed}
+            />
 
             {/* Hotels Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
