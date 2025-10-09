@@ -30,7 +30,6 @@ interface BookingSearchFormProps {
   onSearch: () => void
   isSearching: boolean
   filteredHotelsCount: number
-  bookingResultsCount: number
   searchPerformed: boolean
 }
 
@@ -40,7 +39,6 @@ export function BookingSearchForm({
   onSearch,
   isSearching,
   filteredHotelsCount,
-  bookingResultsCount,
   searchPerformed
 }: BookingSearchFormProps) {
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date(searchParams.checkIn))
@@ -317,11 +315,6 @@ export function BookingSearchForm({
             <Badge variant="secondary" className="flex items-center gap-1">
               {filteredHotelsCount} Hotels gefunden
             </Badge>
-            {searchPerformed && bookingResultsCount > 0 && (
-              <Badge variant="outline" className="flex items-center gap-1 bg-pride-blue text-white">
-                {bookingResultsCount} Booking.com Hotels
-              </Badge>
-            )}
           </div>
           
           <Button 

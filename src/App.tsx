@@ -90,30 +90,6 @@ interface CuratedHotel {
   tags: string[]
 }
 
-interface BookingSearchResult {
-  hotel_id: string
-  hotel_name: string
-  address: string
-  city: string
-  country: string
-  distance_to_venue: number
-  star_rating: number
-  price: {
-    currency: string
-    amount: number
-  }
-  thumbnail_url?: string
-  booking_url: string
-  amenities: string[]
-  description: string
-  review_score: number
-  review_count: number
-  coordinates: {
-    latitude: number
-    longitude: number
-  }
-}
-
 function App() {
   const [favoriteHotels, setFavoriteHotels] = useKV<string[]>('favorite-hotels', [])
   const [userPreferences, setUserPreferences] = useKV<UserPreferences>('user-preferences', {
@@ -149,8 +125,7 @@ function App() {
   const [showCheckInCalendar, setShowCheckInCalendar] = useState(false)
   const [showCheckOutCalendar, setShowCheckOutCalendar] = useState(false)
 
-  // Booking.com search state
-  const [bookingResults, setBookingResults] = useState<BookingSearchResult[]>([])
+  // Hotel search state
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
 
@@ -340,134 +315,50 @@ function App() {
     }
   ]
 
-  // Function to search Booking.com hotels (simulate with deep links)
+  // Function to search through curated hotels only (no external API)
   const searchBookingHotels = async () => {
+    // Validate required fields
     if (!searchParams.checkIn || !searchParams.checkOut) {
       toast.error('Bitte Check-in und Check-out Datum auswählen')
       return
     }
 
+    if (!searchParams.adults || searchParams.adults < 1) {
+      toast.error('Bitte mindestens 1 Erwachsenen angeben')
+      return
+    }
+
+    if (!searchParams.rooms || searchParams.rooms < 1) {
+      toast.error('Bitte mindestens 1 Zimmer angeben')
+      return
+    }
+
     setIsSearching(true)
-    toast.info('Suche Hotels auf Booking.com...')
+    toast.info('Suche Hotels...')
 
     try {
-      // Simulate Booking.com API call (in real implementation, this would be a backend API call)
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Simulate search delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Generate realistic booking results based on search criteria
-      const mockBookingResults: BookingSearchResult[] = [
-        {
-          hotel_id: 'booking_1',
-          hotel_name: 'Hotel Das Tyrol',
-          address: 'Mariahilfer Str. 15, 1060 Wien',
-          city: 'Vienna',
-          country: 'Austria',
-          distance_to_venue: 0.7,
-          star_rating: 4,
-          price: { currency: 'EUR', amount: 145 },
-          booking_url: generateBookingLink('das-tyrol'),
-          amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Fitness Center'],
-          description: 'Modernes Hotel in der Nähe der Mariahilfer Straße mit komfortablen Zimmern und ausgezeichnetem Service.',
-          review_score: 8.2,
-          review_count: 1456,
-          coordinates: { latitude: 48.2005, longitude: 16.3541 }
-        },
-        {
-          hotel_id: 'booking_2',
-          hotel_name: 'Austria Trend Hotel Europa Wien',
-          address: 'Kärtner Ring 9, 1010 Wien',
-          city: 'Vienna',
-          country: 'Austria',
-          distance_to_venue: 1.8,
-          star_rating: 4,
-          price: { currency: 'EUR', amount: 189 },
-          booking_url: generateBookingLink('austria-trend-europa-wien'),
-          amenities: ['Free WiFi', 'Restaurant', 'Business Center', 'Room Service'],
-          description: 'Elegantes Hotel am Ring mit traditionellem Wiener Charme und moderner Ausstattung.',
-          review_score: 8.7,
-          review_count: 2103,
-          coordinates: { latitude: 48.2021, longitude: 16.3721 }
-        },
-        {
-          hotel_id: 'booking_3',
-          hotel_name: 'Hilton Vienna Plaza',
-          address: 'Schottenring 11, 1010 Wien',
-          city: 'Vienna',
-          country: 'Austria',
-          distance_to_venue: 2.2,
-          star_rating: 5,
-          price: { currency: 'EUR', amount: 295 },
-          booking_url: generateBookingLink('hilton-vienna-plaza'),
-          amenities: ['Free WiFi', 'Spa', 'Fitness Center', 'Restaurant', 'Bar', 'Room Service'],
-          description: 'Luxuriöses 5-Sterne-Hotel mit erstklassigem Service und Spa im Herzen von Wien.',
-          review_score: 9.1,
-          review_count: 3547,
-          coordinates: { latitude: 48.2156, longitude: 16.3667 }
-        },
-        {
-          hotel_id: 'booking_4',
-          hotel_name: 'Ruby Sofie Hotel Vienna',
-          address: 'Marxergasse 17, 1030 Wien',
-          city: 'Vienna',
-          country: 'Austria',
-          distance_to_venue: 1.5,
-          star_rating: 4,
-          price: { currency: 'EUR', amount: 167 },
-          booking_url: generateBookingLink('ruby-sofie'),
-          amenities: ['Free WiFi', 'Bar', 'Fitness Center', '24-hour Front Desk'],
-          description: 'Modernes Lifestyle-Hotel mit innovativem Design und zentraler Lage.',
-          review_score: 8.8,
-          review_count: 1842,
-          coordinates: { latitude: 48.1987, longitude: 16.3895 }
-        },
-        {
-          hotel_id: 'booking_5',
-          hotel_name: 'Motel One Wien-Staatsoper',
-          address: 'Elisabethstraße 5, 1010 Wien',
-          city: 'Vienna',
-          country: 'Austria',
-          distance_to_venue: 1.9,
-          star_rating: 3,
-          price: { currency: 'EUR', amount: 98 },
-          booking_url: generateBookingLink('motel-one-wien-staatsoper'),
-          amenities: ['Free WiFi', 'Bar', '24-hour Front Desk'],
-          description: 'Stylisches Budget-Hotel nahe der Wiener Staatsoper mit komfortablen Zimmern.',
-          review_score: 8.4,
-          review_count: 4201,
-          coordinates: { latitude: 48.2016, longitude: 16.3692 }
-        }
-      ]
-
-      // Filter results based on search criteria
-      let filteredResults = mockBookingResults
-
-      // Apply price filter
-      if (searchParams.priceMin > 50) {
-        filteredResults = filteredResults.filter(hotel => hotel.price.amount >= searchParams.priceMin)
-      }
-      if (searchParams.priceMax < 500) {
-        filteredResults = filteredResults.filter(hotel => hotel.price.amount <= searchParams.priceMax)
-      }
-
-      // Apply star filter
-      if (searchParams.stars !== 'all') {
-        const starRating = parseInt(searchParams.stars)
-        filteredResults = filteredResults.filter(hotel => hotel.star_rating >= starRating)
-      }
-
-      // Apply distance filter
-      if (searchParams.distanceFilter === 'walking') {
-        filteredResults = filteredResults.filter(hotel => hotel.distance_to_venue <= 1)
-      }
-
-      setBookingResults(filteredResults)
       setSearchPerformed(true)
-      toast.success(`${filteredResults.length} Hotels von Booking.com gefunden!`)
+      
+      const filteredCount = curatedEurovisionHotels.filter(hotel => {
+        if (searchParams.lgbtFilter === 'certified' && hotel.prideCategory !== 'certified') return false
+        if (searchParams.lgbtFilter === 'friendly' && hotel.prideCategory === 'standard') return false
+        if (hotel.priceFrom < searchParams.priceMin || hotel.priceFrom > searchParams.priceMax) return false
+        if (searchParams.stars !== 'all') {
+          const minStars = parseInt(searchParams.stars)
+          if (hotel.rating < minStars) return false
+        }
+        if (searchParams.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
+        return true
+      }).length
+      
+      toast.success(`${filteredCount} passende Hotels gefunden!`)
       
     } catch (error) {
-      console.error('Booking search error:', error)
+      console.error('Hotel search error:', error)
       toast.error('Fehler bei der Hotelsuche. Bitte versuchen Sie es erneut.')
-      setBookingResults([])
     } finally {
       setIsSearching(false)
     }
@@ -492,29 +383,8 @@ function App() {
     }
   }, [checkOutDate])
 
-  // Combine curated hotels with booking results for display
-  const allHotels = [
-    ...curatedEurovisionHotels,
-    ...bookingResults.map(result => ({
-      id: result.hotel_id,
-      name: result.hotel_name,
-      rating: result.review_score / 2, // Convert 10-point scale to 5-point scale
-      priceFrom: result.price.amount,
-      priceTo: result.price.amount + 50, // Estimate price range
-      distanceToStadthalle: result.distance_to_venue,
-      prideCategory: 'standard' as const, // Booking.com hotels default to standard
-      amenities: result.amenities.map(a => a.toLowerCase().replace(/\s+/g, '')).slice(0, 4),
-      neighborhood: result.address.split(',')[1]?.trim() || 'Wien',
-      bookingId: null, // Booking.com hotels don't have our internal booking IDs
-      features: [`${result.star_rating} Sterne`, 'Booking.com Partner', 'Zentral gelegen'],
-      description: result.description,
-      coordinates: { lat: result.coordinates.latitude, lng: result.coordinates.longitude },
-      reviews: result.review_count,
-      prideDescription: 'Booking.com Partner-Hotel - Kontaktieren Sie das Hotel direkt für LGBTQ+ Services.',
-      gallery: [`booking-${result.hotel_id}-1.jpg`, `booking-${result.hotel_id}-2.jpg`],
-      tags: [`${result.star_rating} Sterne`, 'Booking.com', 'Zentral']
-    }))
-  ]
+  // Only use curated hotels - no booking.com results
+  const allHotels = curatedEurovisionHotels
 
   const eurovisionEvents: Event[] = [
     {
@@ -698,8 +568,11 @@ function App() {
           </TabsList>
 
           <TabsContent value="hotels" className="space-y-8">
-            {/* Booking.com Partner Widget */}
-            <BookingWidget />
+            {/* Hotel Search Info */}
+            <BookingWidget 
+              searchPerformed={searchPerformed}
+              filteredHotelsCount={filteredHotels.length}
+            />
             
             {/* Enhanced Search Interface */}
             <BookingSearchForm
@@ -708,17 +581,15 @@ function App() {
               onSearch={searchBookingHotels}
               isSearching={isSearching}
               filteredHotelsCount={filteredHotels.length}
-              bookingResultsCount={bookingResults.length}
               searchPerformed={searchPerformed}
             />
 
-            {/* Hotels Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Hotels Grid - Only show after search performed */}
+            {searchPerformed && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredHotels.map((hotel) => {
-                const isBookingHotel = hotel.id.startsWith('booking_')
-                
                 return (
-                  <Card key={hotel.id} className={`group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden ${isBookingHotel ? 'border-pride-blue border-2' : ''}`}>
+                  <Card key={hotel.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
                     <div className="absolute top-4 right-4 z-10 flex gap-2">
                       <Button
                         size="sm"
@@ -749,9 +620,6 @@ function App() {
                                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                                 <span className="font-medium">{hotel.rating}</span>
                               </div>
-                              {isBookingHotel && (
-                                <Badge className="bg-pride-blue text-white">Booking.com</Badge>
-                              )}
                             </DialogTitle>
                             <DialogDescription className="flex items-center gap-1">
                               <MapPin className="w-4 h-4" />
@@ -770,13 +638,6 @@ function App() {
                               <div className="absolute bottom-4 right-4 text-white text-sm">
                                 📷 {hotel.gallery.length} Fotos
                               </div>
-                              {isBookingHotel && (
-                                <div className="absolute top-4 left-4">
-                                  <Badge className="bg-pride-blue text-white">
-                                    Booking.com Partner
-                                  </Badge>
-                                </div>
-                              )}
                             </div>
                             
                             {/* Description */}
@@ -821,18 +682,7 @@ function App() {
                               </div>
                             </div>
                             
-                            {/* Booking Source Info */}
-                            {isBookingHotel && (
-                              <div className="bg-pride-blue/10 p-4 rounded-lg">
-                                <h3 className="font-semibold mb-2 flex items-center gap-2 text-pride-blue">
-                                  <MagnifyingGlass className="w-4 h-4" />
-                                  Booking.com Live-Suche
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                  Dieses Hotel wurde in Echtzeit über die Booking.com-Suche gefunden. Preise und Verfügbarkeit werden live aktualisiert.
-                                </p>
-                              </div>
-                            )}
+                            {/* Booking Source Info - Remove since we only have curated hotels */}
                             
                             {/* Reviews */}
                             <div>
@@ -873,13 +723,6 @@ function App() {
                           {getPrideBadgeText(hotel.prideCategory)}
                         </Badge>
                       </div>
-                      {isBookingHotel && (
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-white/90 text-pride-blue text-xs">
-                            Booking.com
-                          </Badge>
-                        </div>
-                      )}
                     </div>
                     
                     <CardHeader>
@@ -966,7 +809,8 @@ function App() {
                   </Card>
                 )
               })}
-            </div>
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="events" className="space-y-6">
