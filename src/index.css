@@ -1,1 +1,121 @@
-/* This is where custom CSS goes */
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@layer base {
+  * {
+    @apply border-border
+  }
+}
+
+:root {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.20 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0 0);
+  --primary: oklch(0.45 0.15 255);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.02 45);
+  --secondary-foreground: oklch(0.20 0 0);
+  --muted: oklch(0.96 0.02 45);
+  --muted-foreground: oklch(0.50 0 0);
+  --accent: oklch(0.70 0.20 45);
+  --accent-foreground: oklch(0.20 0 0);
+  --destructive: oklch(0.55 0.25 20);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.90 0.02 45);
+  --input: oklch(0.90 0.02 45);
+  --ring: oklch(0.45 0.15 255);
+  --radius: 0.75rem;
+
+  /* Eurovision Pride Colors */
+  --pride-red: oklch(0.55 0.25 20);
+  --pride-orange: oklch(0.70 0.20 45);
+  --pride-yellow: oklch(0.85 0.15 85);
+  --pride-green: oklch(0.65 0.20 135);
+  --pride-blue: oklch(0.45 0.15 255);
+  --pride-purple: oklch(0.40 0.15 300);
+
+  /* Eurovision Gradients */
+  --rainbow-gradient: linear-gradient(90deg, 
+    var(--pride-red) 0%, 
+    var(--pride-orange) 16.66%, 
+    var(--pride-yellow) 33.33%, 
+    var(--pride-green) 50%, 
+    var(--pride-blue) 66.66%, 
+    var(--pride-purple) 83.33%);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Custom Eurovision Colors */
+  --color-pride-red: var(--pride-red);
+  --color-pride-orange: var(--pride-orange);
+  --color-pride-yellow: var(--pride-yellow);
+  --color-pride-green: var(--pride-green);
+  --color-pride-blue: var(--pride-blue);
+  --color-pride-purple: var(--pride-purple);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Eurovision Rainbow Animation */
+@keyframes rainbow-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.rainbow-gradient {
+  background: var(--rainbow-gradient);
+  background-size: 200% 200%;
+  animation: rainbow-flow 10s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pride Flag Wave Animation */
+@keyframes pride-wave {
+  0%, 100% { transform: scaleX(1) scaleY(1); }
+  50% { transform: scaleX(1.05) scaleY(0.95); }
+}
+
+.pride-wave {
+  animation: pride-wave 3s ease-in-out infinite;
+}
