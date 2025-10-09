@@ -15,26 +15,8 @@ import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell, E
 import { toast } from 'sonner'
 import { BookingSearchForm } from '@/components/BookingSearchForm'
 import { BookingWidget } from '@/components/BookingWidget'
-
-interface Hotel {
-  id: string
-  name: string
-  rating: number
-  priceFrom: number
-  priceTo: number
-  distanceToStadthalle: number
-  prideCategory: 'certified' | 'friendly' | 'standard'
-  amenities: string[]
-  neighborhood: string
-  imageUrl?: string
-  bookingUrl: string
-  features: string[]
-  description: string
-  coordinates: { lat: number, lng: number }
-  reviews: number
-  prideDescription?: string
-  gallery: string[]
-}
+import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
+import { searchBookingHotels, BookingHotel, HotelSearchParams } from '@/services/hotelService'
 
 interface Event {
   id: string
@@ -64,46 +46,8 @@ interface SearchParams {
   lgbtFilter: string
 }
 
-interface BookingAffiliate {
-  aid: string
-  label: string
-  sid: string
-}
-
-interface CuratedHotel {
-  id: string
-  name: string
-  rating: number
-  priceFrom: number
-  priceTo: number
-  distanceToStadthalle: number
-  prideCategory: 'certified' | 'friendly' | 'standard'
-  amenities: string[]
-  neighborhood: string
-  bookingId: string | null
-  features: string[]
-  description: string
-  coordinates: { lat: number, lng: number }
-  reviews: number
-  prideDescription?: string
-  gallery: string[]
-  tags: string[]
-}
-
 function App() {
   const [favoriteHotels, setFavoriteHotels] = useKV<string[]>('favorite-hotels', [])
-  const [userPreferences, setUserPreferences] = useKV<UserPreferences>('user-preferences', {
-    language: 'de',
-    maxPrice: 300,
-    prideOnly: false
-  })
-
-  // Booking.com Affiliate Configuration
-  const bookingAffiliate: BookingAffiliate = {
-    aid: '101370188',
-    label: 'eurovision-rainbow-city-vienna',
-    sid: 'esc2026'
-  }
 
   // Enhanced Search State
   const [searchParams, setSearchParams] = useState<SearchParams>({
@@ -128,9 +72,10 @@ function App() {
   // Hotel search state
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
+  const [bookingHotels, setBookingHotels] = useState<BookingHotel[]>([])
+  const [searchError, setSearchError] = useState<string | null>(null)
 
   const [selectedTab, setSelectedTab] = useState('hotels')
-  const [selectedHotel, setSelectedHotel] = useState<CuratedHotel | null>(null)
   const [mapCenter, setMapCenter] = useState({ lat: 48.2082, lng: 16.3738 }) // Wien Zentrum
   const [mapZoom, setMapZoom] = useState(13)
 
@@ -144,179 +89,8 @@ function App() {
     { id: 'stephansdom', name: 'Stephansdom', lat: 48.2084, lng: 16.3731, type: 'attraction', icon: '⛪' }
   ]
 
-  // Booking.com Deep Link Generator
-  const generateBookingLink = (hotelBookingId?: string | null) => {
-    const baseUrl = 'https://www.anrdoezrs.net/click-101370188-13822287'
-    const checkInFormatted = searchParams.checkIn
-    const checkOutFormatted = searchParams.checkOut
-    
-    if (hotelBookingId) {
-      // Direct hotel link
-      return `${baseUrl}?url=https://www.booking.com/hotel/at/${hotelBookingId}.html?aid=${bookingAffiliate.aid}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}&checkin=${checkInFormatted}&checkout=${checkOutFormatted}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}`
-    } else {
-      // Vienna search results with filters
-      return `${baseUrl}?url=https://www.booking.com/searchresults.html?aid=${bookingAffiliate.aid}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}&dest_id=-1991997&dest_type=city&checkin=${checkInFormatted}&checkout=${checkOutFormatted}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}`
-    }
-  }
-
-  // Curated Wien Hotels for Eurovision 2026 (with Booking.com IDs where available)
-  const curatedEurovisionHotels: CuratedHotel[] = [
-    {
-      id: '1',
-      name: 'Boutiquehotel Stadthalle',
-      rating: 4.5,
-      priceFrom: 160,
-      priceTo: 220,
-      distanceToStadthalle: 0.3,
-      prideCategory: 'certified',
-      amenities: ['wifi', 'parking', 'breakfast', 'gym'],
-      neighborhood: 'Rudolfsheim-Fünfhaus',
-      bookingId: 'boutiquehotel-stadthalle',
-      features: ['Umweltfreundlich', '5 Min zur Stadthalle', 'LGBTQ+ Welcome'],
-      description: 'Österreichs erstes klimaneutrales Stadthotel, nur 5 Gehminuten von der Wiener Stadthalle entfernt. Perfekt für Eurovision-Fans.',
-      coordinates: { lat: 48.2066, lng: 16.3384 },
-      reviews: 1247,
-      prideDescription: 'Erstes klimaneutrales Hotel Österreichs mit offizieller Pride-Zertifizierung. Regenbogenflaggen in allen Zimmern.',
-      gallery: ['hotel1-1.jpg', 'hotel1-2.jpg', 'hotel1-3.jpg'],
-      tags: ['LGBT-freundlich', 'Nahe Venue', 'Umweltfreundlich', 'Top bewertet']
-    },
-    {
-      id: '2', 
-      name: 'Hotel Das Tyrol',
-      rating: 4.2,
-      priceFrom: 120,
-      priceTo: 180,
-      distanceToStadthalle: 0.8,
-      prideCategory: 'friendly',
-      amenities: ['wifi', 'breakfast', 'restaurant', 'bar'],
-      neighborhood: 'Mariahilf',
-      bookingId: 'das-tyrol',
-      features: ['Traditionell Wienerisch', 'Nahe Mariahilfer Straße', 'Familiengeführt'],
-      description: 'Charmantes Hotel im Herzen von Mariahilf, nahe dem berühmten Naschmarkt und der Fußgängerzone.',
-      coordinates: { lat: 48.1994, lng: 16.3656 },
-      reviews: 856,
-      prideDescription: 'Familiengeführtes Hotel mit offener Willkommenskultur für alle Gäste.',
-      gallery: ['hotel2-1.jpg', 'hotel2-2.jpg'],
-      tags: ['LGBT-freundlich', 'Zentral', 'Familiengeführt']
-    },
-    {
-      id: '3',
-      name: 'Das Triest',
-      rating: 4.8,
-      priceFrom: 280,
-      priceTo: 450,
-      distanceToStadthalle: 2.1,
-      prideCategory: 'certified',
-      amenities: ['wifi', 'parking', 'spa', 'restaurant', 'gym'],
-      neighborhood: 'Wieden',
-      bookingId: 'das-triest',
-      features: ['5-Sterne Luxus', 'Design Hotel', 'Pride Partner'],
-      description: 'Luxuriöses Design-Hotel im eleganten 4. Bezirk mit preisgekröntem Spa und Fine-Dining-Restaurant.',
-      coordinates: { lat: 48.1951, lng: 16.3721 },
-      reviews: 2341,
-      prideDescription: 'Offizieller Pride-Partner seit 2019. Exklusive LGBTQ+ Concierge-Services und Pride-Suiten verfügbar.',
-      gallery: ['hotel3-1.jpg', 'hotel3-2.jpg', 'hotel3-3.jpg', 'hotel3-4.jpg'],
-      tags: ['LGBT-freundlich', 'Luxus', 'Pride Partner', 'Design Hotel']
-    },
-    {
-      id: '4',
-      name: 'Austria Trend Hotel Europa Wien',
-      rating: 4.3,
-      priceFrom: 150,
-      priceTo: 220,
-      distanceToStadthalle: 1.8,
-      prideCategory: 'friendly',
-      amenities: ['wifi', 'restaurant', 'business', 'roomservice'],
-      neighborhood: 'Innere Stadt',
-      bookingId: 'austria-trend-europa-wien',
-      features: ['Am Ring', 'Traditionell', 'Zentral'],
-      description: 'Elegantes Hotel am Ring mit traditionellem Wiener Charme und moderner Ausstattung.',
-      coordinates: { lat: 48.2021, lng: 16.3721 },
-      reviews: 2103,
-      prideDescription: 'Gastfreundliches Team mit Respekt für alle Gäste. Zentrale Lage nahe dem Regenbogen-Zebrastreifen.',
-      gallery: ['hotel4-1.jpg', 'hotel4-2.jpg'],
-      tags: ['Zentral', 'Am Ring', 'LGBT-freundlich']
-    },
-    {
-      id: '5',
-      name: 'Hilton Vienna Plaza',
-      rating: 4.6,
-      priceFrom: 280,
-      priceTo: 400,
-      distanceToStadthalle: 2.2,
-      prideCategory: 'certified',
-      amenities: ['wifi', 'spa', 'gym', 'restaurant', 'bar', 'roomservice'],
-      neighborhood: 'Innere Stadt',
-      bookingId: 'hilton-vienna-plaza',
-      features: ['5-Sterne', 'Luxus-Spa', 'Pride Certified'],
-      description: 'Luxuriöses 5-Sterne-Hotel mit erstklassigem Service und Spa im Herzen von Wien.',
-      coordinates: { lat: 48.2156, lng: 16.3667 },
-      reviews: 3547,
-      prideDescription: 'Pride-zertifiziert seit 2020. Spezielle Eurovision-Packages und LGBTQ+ Welcome-Drinks.',
-      gallery: ['hotel5-1.jpg', 'hotel5-2.jpg', 'hotel5-3.jpg'],
-      tags: ['LGBT-freundlich', 'Luxus', 'Top bewertet', '5-Sterne']
-    },
-    {
-      id: '6',
-      name: 'Ruby Sofie Hotel Vienna',
-      rating: 4.4,
-      priceFrom: 140,
-      priceTo: 200,
-      distanceToStadthalle: 1.5,
-      prideCategory: 'friendly',
-      amenities: ['wifi', 'bar', 'gym', 'frontdesk24'],
-      neighborhood: 'Landstraße',
-      bookingId: 'ruby-sofie',
-      features: ['Lifestyle Design', 'Modern', 'Zentral'],
-      description: 'Modernes Lifestyle-Hotel mit innovativem Design und zentraler Lage.',
-      coordinates: { lat: 48.1987, lng: 16.3895 },
-      reviews: 1842,
-      prideDescription: 'Modernes Hotel mit aufgeschlossener Atmosphäre. Beliebter Treffpunkt der LGBTQ+ Community.',
-      gallery: ['hotel6-1.jpg', 'hotel6-2.jpg'],
-      tags: ['LGBT-freundlich', 'Modern', 'Design', 'Zentral']
-    },
-    {
-      id: '7',
-      name: 'Motel One Wien-Staatsoper',
-      rating: 4.1,
-      priceFrom: 90,
-      priceTo: 140,
-      distanceToStadthalle: 1.9,
-      prideCategory: 'friendly',
-      amenities: ['wifi', 'bar', 'frontdesk24'],
-      neighborhood: 'Innere Stadt',
-      bookingId: 'motel-one-wien-staatsoper',
-      features: ['Budget-freundlich', 'Nahe Staatsoper', 'Design'],
-      description: 'Stylisches Budget-Hotel nahe der Wiener Staatsoper mit komfortablen Zimmern.',
-      coordinates: { lat: 48.2016, lng: 16.3692 },
-      reviews: 4201,
-      prideDescription: 'Junges, offenes Team mit herzlicher Atmosphäre für alle Gäste.',
-      gallery: ['hotel7-1.jpg', 'hotel7-2.jpg'],
-      tags: ['Budget-freundlich', 'Zentral', 'LGBT-freundlich', 'Design']
-    },
-    {
-      id: '8',
-      name: 'Hotel Am Konzerthaus Vienna',
-      rating: 4.5,
-      priceFrom: 180,
-      priceTo: 280,
-      distanceToStadthalle: 1.2,
-      prideCategory: 'certified',
-      amenities: ['wifi', 'parking', 'restaurant', 'gym', 'spa'],
-      neighborhood: 'Innere Stadt',
-      bookingId: null, // Partnerhotel ohne Booking.com
-      features: ['Musikthema', 'Zentral', 'Pride Certified'],
-      description: 'Elegantes Hotel im Herzen Wiens, nur wenige Schritte vom Konzerthaus entfernt. Perfekt für Musikliebhaber.',
-      coordinates: { lat: 48.2010, lng: 16.3758 },
-      reviews: 1892,
-      prideDescription: 'Pride-zertifiziert seit 2020. Spezielle Eurovision-Packages und LGBTQ+ Welcome-Drinks.',
-      gallery: ['hotel8-1.jpg', 'hotel8-2.jpg', 'hotel8-3.jpg'],
-      tags: ['LGBT-freundlich', 'Musikthema', 'Zentral', 'Pride Certified']
-    }
-  ]
-
-  // Function to redirect to Booking.com with search parameters
-  const searchBookingHotels = async () => {
+  // Function to search hotels from Booking.com
+  const searchBookingHotelsHandler = async () => {
     // Validate required fields
     if (!searchParams.checkIn || !searchParams.checkOut) {
       toast.error('Bitte Check-in und Check-out Datum auswählen')
@@ -334,40 +108,42 @@ function App() {
     }
 
     setIsSearching(true)
-    toast.info('Weiterleitung zu Booking.com...')
+    setSearchError(null)
+    toast.info('Hotels werden von Booking.com geladen...')
 
     try {
-      // Show our curated hotels first
+      // Convert search params to HotelSearchParams
+      const hotelSearchParams: HotelSearchParams = {
+        checkIn: searchParams.checkIn,
+        checkOut: searchParams.checkOut,
+        adults: searchParams.adults,
+        children: searchParams.children,
+        rooms: searchParams.rooms,
+        priceMin: searchParams.priceMin,
+        priceMax: searchParams.priceMax,
+        stars: searchParams.stars,
+        distanceFilter: searchParams.distanceFilter,
+        lgbtFilter: searchParams.lgbtFilter
+      }
+
+      // Search hotels using the service
+      const hotels = await searchBookingHotels(hotelSearchParams)
+      
+      setBookingHotels(hotels)
       setSearchPerformed(true)
       
-      const filteredCount = curatedEurovisionHotels.filter(hotel => {
-        if (searchParams.lgbtFilter === 'certified' && hotel.prideCategory !== 'certified') return false
-        if (searchParams.lgbtFilter === 'friendly' && hotel.prideCategory === 'standard') return false
-        if (hotel.priceFrom < searchParams.priceMin || hotel.priceFrom > searchParams.priceMax) return false
-        if (searchParams.stars !== 'all') {
-          const minStars = parseInt(searchParams.stars)
-          if (hotel.rating < minStars) return false
-        }
-        if (searchParams.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
-        return true
-      }).length
-
-      // Build Booking.com deep link with all search parameters
-      const bookingUrl = `https://www.booking.com/searchresults.html?aid=${bookingAffiliate.aid}&dest_id=-1991997&dest_type=city&checkin=${searchParams.checkIn}&checkout=${searchParams.checkOut}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}&label=${bookingAffiliate.label}&sid=${bookingAffiliate.sid}`
-      
-      // Show success message and redirect
-      toast.success(`${filteredCount} handselektierte Hotels angezeigt • Weiterleitung zu Booking.com...`)
-      
-      // Wait a moment then redirect to Booking.com
-      setTimeout(() => {
-        window.open(bookingUrl, '_blank', 'noopener,noreferrer')
-      }, 1500)
+      if (hotels.length === 0) {
+        toast.warning('Keine Hotels für Ihre Suchkriterien gefunden. Versuchen Sie andere Filter.')
+      } else {
+        toast.success(`${hotels.length} Hotels von Booking.com geladen!`)
+      }
       
     } catch (error) {
-      console.error('Booking redirect error:', error)
-      toast.error('Fehler bei der Weiterleitung zu Booking.com.')
+      console.error('Booking search error:', error)
+      setSearchError('Fehler beim Laden der Hotels von Booking.com. Bitte versuchen Sie es erneut.')
+      toast.error('Fehler beim Laden der Hotels von Booking.com.')
     } finally {
-      setTimeout(() => setIsSearching(false), 2000)
+      setIsSearching(false)
     }
   }
 
@@ -389,9 +165,6 @@ function App() {
       setSearchParams(prev => ({ ...prev, checkOut: formatDate(checkOutDate) }))
     }
   }, [checkOutDate])
-
-  // Only use curated hotels - no booking.com results
-  const allHotels = curatedEurovisionHotels
 
   const eurovisionEvents: Event[] = [
     {
@@ -436,18 +209,6 @@ function App() {
     }
   ]
 
-  const filteredHotels = allHotels.filter(hotel => {
-    if (searchParams.lgbtFilter === 'certified' && hotel.prideCategory !== 'certified') return false
-    if (searchParams.lgbtFilter === 'friendly' && hotel.prideCategory === 'standard') return false
-    if (hotel.priceFrom < searchParams.priceMin || hotel.priceFrom > searchParams.priceMax) return false
-    if (searchParams.stars !== 'all') {
-      const minStars = parseInt(searchParams.stars)
-      if (hotel.rating < minStars) return false
-    }
-    if (searchParams.distanceFilter === 'walking' && hotel.distanceToStadthalle > 1) return false
-    return true
-  })
-
   const toggleFavorite = (hotelId: string) => {
     setFavoriteHotels(current => {
       if (!current) return [hotelId]
@@ -456,64 +217,6 @@ function App() {
         : [...current, hotelId]
     })
     toast.success('Favoriten aktualisiert!')
-  }
-
-  const handleBooking = (hotel: CuratedHotel) => {
-    // Track booking click for analytics
-    try {
-      // Trigger CJ tracking if available
-      const cj = (window as any)._cj
-      if (cj && typeof cj.track === 'function') {
-        cj.track('booking-click', {
-          hotel_id: hotel.id,
-          hotel_name: hotel.name,
-          price_from: hotel.priceFrom,
-          pride_category: hotel.prideCategory,
-          source: hotel.id.startsWith('booking_') ? 'booking_api' : 'partner_hotel'
-        })
-      }
-    } catch (error) {
-      console.warn('CJ tracking failed:', error)
-    }
-
-    // Generate appropriate booking URL
-    const bookingUrl = hotel.bookingId ? generateBookingLink(hotel.bookingId) : generateBookingLink()
-    
-    // Open booking URL in new tab
-    window.open(bookingUrl, '_blank', 'noopener,noreferrer')
-    
-    const isBookingHotel = hotel.id.startsWith('booking_')
-    toast.success(
-      isBookingHotel 
-        ? `Weiterleitung zu Booking.com für ${hotel.name}...`
-        : `Weiterleitung zu ${hotel.name}...`
-    )
-  }
-
-  const getPrideBadgeColor = (category: string) => {
-    switch(category) {
-      case 'certified': return 'bg-pride-red text-white'
-      case 'friendly': return 'bg-pride-green text-white'
-      default: return 'bg-muted text-muted-foreground'
-    }
-  }
-
-  const getPrideBadgeText = (category: string) => {
-    switch(category) {
-      case 'certified': return '🏳️‍🌈 Pride Certified'
-      case 'friendly': return '🤝 LGBTQ+ Friendly'
-      default: return 'Standard'
-    }
-  }
-
-  const getAmenityIcon = (amenity: string) => {
-    switch(amenity) {
-      case 'wifi': return <WifiHigh className="w-4 h-4" />
-      case 'parking': return <Car className="w-4 h-4" />
-      case 'breakfast': return <Coffee className="w-4 h-4" />
-      case 'gym': return <Barbell className="w-4 h-4" />
-      default: return null
-    }
   }
 
   return (
@@ -578,245 +281,58 @@ function App() {
             {/* Hotel Search Info */}
             <BookingWidget 
               searchPerformed={searchPerformed}
-              filteredHotelsCount={filteredHotels.length}
+              bookingHotelsCount={bookingHotels.length}
+              isSearching={isSearching}
             />
             
             {/* Enhanced Search Interface */}
             <BookingSearchForm
               searchParams={searchParams}
               setSearchParams={setSearchParams}
-              onSearch={searchBookingHotels}
+              onSearch={searchBookingHotelsHandler}
               isSearching={isSearching}
-              filteredHotelsCount={filteredHotels.length}
+              filteredHotelsCount={bookingHotels.length}
               searchPerformed={searchPerformed}
             />
 
-            {/* Hotels Grid - Only show after search performed */}
-            {searchPerformed && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredHotels.map((hotel) => {
-                return (
-                  <Card key={hotel.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                    <div className="absolute top-4 right-4 z-10 flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-white/90 hover:bg-white"
-                        onClick={() => toggleFavorite(hotel.id)}
-                      >
-                        <Heart 
-                          className={`w-4 h-4 ${favoriteHotels?.includes(hotel.id) ? 'fill-red-500 text-red-500' : ''}`} 
-                        />
-                      </Button>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="bg-white/90 hover:bg-white"
-                            onClick={() => setSelectedHotel(hotel)}
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                          <DialogHeader>
-                            <DialogTitle className="flex items-center gap-2">
-                              {hotel.name}
-                              <div className="flex items-center gap-1">
-                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                <span className="font-medium">{hotel.rating}</span>
-                              </div>
-                            </DialogTitle>
-                            <DialogDescription className="flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              {hotel.neighborhood} • {hotel.distanceToStadthalle}km zur Stadthalle
-                            </DialogDescription>
-                          </DialogHeader>
-                          
-                          <div className="space-y-6">
-                            {/* Hotel Gallery */}
-                            <div className="h-64 bg-gradient-to-br from-pride-blue to-pride-purple rounded-lg relative">
-                              <div className="absolute bottom-4 left-4">
-                                <Badge className={getPrideBadgeColor(hotel.prideCategory)}>
-                                  {getPrideBadgeText(hotel.prideCategory)}
-                                </Badge>
-                              </div>
-                              <div className="absolute bottom-4 right-4 text-white text-sm">
-                                📷 {hotel.gallery.length} Fotos
-                              </div>
-                            </div>
-                            
-                            {/* Description */}
-                            <div>
-                              <h3 className="font-semibold mb-2">Beschreibung</h3>
-                              <p className="text-muted-foreground">{hotel.description}</p>
-                            </div>
-                            
-                            {/* Pride Info */}
-                            {hotel.prideDescription && (
-                              <div>
-                                <h3 className="font-semibold mb-2 flex items-center gap-2">
-                                  🏳️‍🌈 LGBTQ+ Informationen
-                                </h3>
-                                <p className="text-muted-foreground">{hotel.prideDescription}</p>
-                              </div>
-                            )}
-                            
-                            {/* Features & Amenities */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              <div>
-                                <h3 className="font-semibold mb-2">Ausstattung</h3>
-                                <div className="flex flex-wrap gap-2">
-                                  {hotel.amenities.map((amenity, index) => (
-                                    <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-sm">
-                                      {getAmenityIcon(amenity)}
-                                      <span className="capitalize">{amenity}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                              
-                              <div>
-                                <h3 className="font-semibold mb-2">Besonderheiten</h3>
-                                <div className="flex flex-wrap gap-2">
-                                  {hotel.features.map((feature, index) => (
-                                    <Badge key={index} variant="secondary" className="text-xs">
-                                      {feature}
-                                    </Badge>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* Booking Source Info - Remove since we only have curated hotels */}
-                            
-                            {/* Reviews */}
-                            <div>
-                              <h3 className="font-semibold mb-2 flex items-center gap-2">
-                                <ChatCircle className="w-4 h-4" />
-                                Bewertungen ({hotel.reviews})
-                              </h3>
-                              <div className="bg-muted p-4 rounded-lg">
-                                <p className="text-sm text-muted-foreground">
-                                  "{hotel.name} hat {hotel.reviews} Bewertungen mit einer Durchschnittsbewertung von {hotel.rating} Sternen."
-                                </p>
-                              </div>
-                            </div>
-                            
-                            {/* Pricing & Booking */}
-                            <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
-                              <div>
-                                <div className="text-2xl font-bold text-pride-green">
-                                  €{hotel.priceFrom}{hotel.priceTo && hotel.priceTo !== hotel.priceFrom ? `-${hotel.priceTo}` : ''}
-                                </div>
-                                <div className="text-sm text-muted-foreground">pro Nacht</div>
-                              </div>
-                              <Button 
-                                className="bg-pride-orange hover:bg-pride-red transition-colors px-8"
-                                onClick={() => handleBooking(hotel)}
-                              >
-                                Auf Booking.com buchen
-                              </Button>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                    
-                    <div className="h-48 bg-gradient-to-br from-pride-blue to-pride-purple relative">
-                      <div className="absolute bottom-4 left-4">
-                        <Badge className={getPrideBadgeColor(hotel.prideCategory)}>
-                          {getPrideBadgeText(hotel.prideCategory)}
-                        </Badge>
-                      </div>
-                    </div>
-                    
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <CardTitle className="text-lg">{hotel.name}</CardTitle>
-                          <CardDescription className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
-                            {hotel.neighborhood} • {hotel.distanceToStadthalle}km zur Stadthalle
-                          </CardDescription>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="font-medium">{hotel.rating}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    
-                    <CardContent>
-                      <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {hotel.description}
-                        </p>
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {hotel.features.slice(0, 3).map((feature, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {feature}
-                            </Badge>
-                          ))}
-                          {hotel.features.length > 3 && (
-                            <Badge variant="outline" className="text-xs">
-                              +{hotel.features.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          {hotel.amenities.slice(0, 4).map((amenity, index) => (
-                            <div key={index} className="flex items-center gap-1 text-muted-foreground">
-                              {getAmenityIcon(amenity)}
-                            </div>
-                          ))}
-                          {hotel.amenities.length > 4 && (
-                            <span className="text-sm text-muted-foreground">+{hotel.amenities.length - 4}</span>
-                          )}
-                        </div>
-                        
-                        <div className="flex items-center justify-between text-sm text-muted-foreground">
-                          <span>{hotel.reviews} Bewertungen</span>
-                          <span>{hotel.gallery.length} Fotos</span>
-                        </div>
-                        
-                        <Separator />
-                        
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="text-2xl font-bold text-pride-green">
-                              €{hotel.priceFrom}{hotel.priceTo && hotel.priceTo !== hotel.priceFrom ? `-${hotel.priceTo}` : ''}
-                            </div>
-                            <div className="text-sm text-muted-foreground">pro Nacht</div>
-                          </div>
-                          <div className="flex gap-2">
-                            <Dialog>
-                              <DialogTrigger asChild>
-                                <Button variant="outline" size="sm">
-                                  Details
-                                </Button>
-                              </DialogTrigger>
-                              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                                {/* Duplicate content from above for consistency */}
-                              </DialogContent>
-                            </Dialog>
-                            <Button 
-                              className="bg-pride-orange hover:bg-pride-red transition-colors"
-                              onClick={() => handleBooking(hotel)}
-                            >
-                              Buchen
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )
-              })}
+            {/* Error Display */}
+            {searchError && (
+              <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+                <div className="flex items-center gap-2 text-destructive">
+                  <div className="w-2 h-2 bg-destructive rounded-full"></div>
+                  <span className="font-medium">Fehler beim Laden der Hotels</span>
+                </div>
+                <p className="text-sm text-destructive/80 mt-1">{searchError}</p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-3"
+                  onClick={searchBookingHotelsHandler}
+                >
+                  Erneut versuchen
+                </Button>
               </div>
+            )}
+
+            {/* Booking.com Hotels Grid - Only show after search performed */}
+            {searchPerformed && !searchError && (
+              <BookingHotelsGrid
+                hotels={bookingHotels}
+                searchParams={{
+                  checkIn: searchParams.checkIn,
+                  checkOut: searchParams.checkOut,
+                  adults: searchParams.adults,
+                  children: searchParams.children,
+                  rooms: searchParams.rooms,
+                  priceMin: searchParams.priceMin,
+                  priceMax: searchParams.priceMax,
+                  stars: searchParams.stars,
+                  distanceFilter: searchParams.distanceFilter,
+                  lgbtFilter: searchParams.lgbtFilter
+                }}
+                favoriteHotels={favoriteHotels || null}
+                onToggleFavorite={toggleFavorite}
+              />
             )}
           </TabsContent>
 
@@ -886,7 +402,7 @@ function App() {
                       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10"></div>
                       
                       {/* Hotels on Map */}
-                      {filteredHotels.map((hotel, index) => (
+                      {bookingHotels.slice(0, 8).map((hotel, index) => (
                         <div
                           key={hotel.id}
                           className="absolute bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform z-10"
@@ -894,7 +410,7 @@ function App() {
                             left: `${20 + (index * 15)}%`,
                             top: `${30 + (index * 10)}%`,
                           }}
-                          onClick={() => setSelectedHotel(hotel)}
+                          title={hotel.name}
                         >
                           <span className="text-xs font-bold text-pride-blue">H</span>
                         </div>
@@ -979,23 +495,32 @@ function App() {
                     <div>
                       <h3 className="font-semibold mb-3">🏨 Ihre Hotels</h3>
                       <div className="space-y-2 max-h-40 overflow-y-auto">
-                        {filteredHotels.map((hotel) => (
+                        {bookingHotels.slice(0, 5).map((hotel) => (
                           <div 
                             key={hotel.id} 
                             className="p-3 border rounded-lg hover:bg-muted cursor-pointer"
-                            onClick={() => setSelectedHotel(hotel)}
                           >
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-medium text-sm">{hotel.name}</div>
-                                <div className="text-xs text-muted-foreground">{hotel.distanceToStadthalle}km zur Stadthalle</div>
+                                <div className="text-xs text-muted-foreground">{hotel.distance_to_venue}km zur Stadthalle</div>
                               </div>
-                              <Badge className={getPrideBadgeColor(hotel.prideCategory)} variant="secondary">
-                                {hotel.prideCategory === 'certified' ? '🏳️‍🌈' : hotel.prideCategory === 'friendly' ? '🤝' : '🏨'}
+                              <Badge className={hotel.lgbt_certification === 'certified' ? 'bg-pride-red text-white' : 'bg-pride-green text-white'} variant="secondary">
+                                {hotel.lgbt_certification === 'certified' ? '🏳️‍🌈' : hotel.lgbt_certification === 'friendly' ? '🤝' : '🏨'}
                               </Badge>
                             </div>
                           </div>
                         ))}
+                        {bookingHotels.length === 0 && searchPerformed && (
+                          <div className="text-center py-4 text-muted-foreground">
+                            <p className="text-sm">Keine Hotels gefunden</p>
+                          </div>
+                        )}
+                        {!searchPerformed && (
+                          <div className="text-center py-4 text-muted-foreground">
+                            <p className="text-sm">Suche Hotels um sie hier anzuzeigen</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -107,7 +107,7 @@ export function BookingSearchForm({
           🔍 Hotel-Suche für Eurovision 2026
         </CardTitle>
         <CardDescription>
-          Finde die perfekte Unterkunft für deinen Eurovision-Aufenthalt in Wien. Unten siehst du unsere handselektierten Hotels - der Suchbutton leitet dich mit deinen Kriterien zu Booking.com weiter.
+          Finde die perfekte Unterkunft für deinen Eurovision-Aufenthalt in Wien. Echte Hotels werden direkt von Booking.com geladen und hier angezeigt.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -325,12 +325,12 @@ export function BookingSearchForm({
             {isSearching ? (
               <>
                 <Spinner className="w-4 h-4 animate-spin" />
-                Weiterleitung...
+                Hotels laden...
               </>
             ) : (
               <>
                 <MagnifyingGlass className="w-4 h-4" />
-                Zu Booking.com weiterleiten
+                Hotels von Booking.com suchen
               </>
             )}
           </Button>
@@ -341,10 +341,10 @@ export function BookingSearchForm({
           <div className="p-4 bg-muted rounded-lg">
             <div className="flex items-center gap-2 text-sm">
               <div className="w-2 h-2 bg-pride-green rounded-full"></div>
-              <span className="font-medium">Hotelauswahl angezeigt</span>
+              <span className="font-medium">Booking.com Hotels geladen</span>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Unsere handselektierten Eurovision-Hotels werden unten angezeigt. Der Button öffnet Booking.com mit Ihren Suchkriterien: {searchParams.checkIn} bis {searchParams.checkOut}
+              Echte Hotels von Booking.com werden oben angezeigt. Suchkriterien: {searchParams.checkIn} bis {searchParams.checkOut}, {searchParams.adults} Erwachsene, {searchParams.rooms} Zimmer
             </p>
           </div>
         )}
