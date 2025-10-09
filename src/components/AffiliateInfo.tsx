@@ -79,11 +79,11 @@ export function AffiliateInfo() {
           <div className="space-y-2 text-xs text-muted-foreground font-mono">
             <div>
               <strong>Direkter Hotel-Link:</strong><br />
-              https://www.anrdoezrs.net/click-101370188-13822287?url=https://booking.com/hotel/at/[hotel-id]...
+              https://www.booking.com/hotel/at/[hotel-id].html?aid=101370188&checkin=[date]&checkout=[date]...
             </div>
             <div>
               <strong>Wien Such-Link:</strong><br />
-              https://www.anrdoezrs.net/click-101370188-13822287?url=https://booking.com/searchresults.html?dest_id=-1991997...
+              https://www.booking.com/searchresults.html?aid=101370188&dest_id=-1991997&dest_type=city&checkin=[date]...
             </div>
           </div>
         </div>

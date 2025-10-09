@@ -120,7 +120,7 @@ const affiliateConfig = {
 }
 
 // Deep-Link Schema
-const bookingUrl = `https://www.anrdoezrs.net/click-101370188-13822287?url=https://www.booking.com/searchresults.html?aid=${aid}&dest_id=${destId}&checkin=${checkIn}&checkout=${checkOut}&group_adults=${adults}&no_rooms=${rooms}`
+const bookingUrl = `https://www.booking.com/searchresults.html?aid=${aid}&dest_id=${destId}&dest_type=city&checkin=${checkIn}&checkout=${checkOut}&group_adults=${adults}&no_rooms=${rooms}`
 ```
 
 ### Commission Junction Tracking

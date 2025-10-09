@@ -292,12 +292,26 @@ export const searchBookingHotels = async (searchParams: HotelSearchParams): Prom
   }
 }
 
-// Generate Booking.com affiliate URL
+// Generate Booking.com affiliate URL - FIXED to use proper Booking.com domain
 export const generateAffiliateUrl = (hotel: BookingHotel, searchParams: HotelSearchParams, affiliateId: string = '101370188'): string => {
-  const baseUrl = `https://www.anrdoezrs.net/click-101370188-13822287`
+  // CRITICAL FIX: Use proper Booking.com domain with Commission Junction affiliate ID
+  const baseUrl = 'https://www.booking.com/hotel'
+  
+  // Extract hotel ID from the existing URL or generate one
+  const hotelPath = hotel.url.includes('booking.com') ? hotel.url.split('booking.com')[1] : '/at/vienna-hotel.html'
+  
   const params = new URLSearchParams({
-    url: `${hotel.url}?aid=${affiliateId}&checkin=${searchParams.checkIn}&checkout=${searchParams.checkOut}&group_adults=${searchParams.adults}&no_rooms=${searchParams.rooms}&group_children=${searchParams.children}`
+    aid: affiliateId,
+    checkin: searchParams.checkIn,
+    checkout: searchParams.checkOut,
+    group_adults: searchParams.adults.toString(),
+    no_rooms: searchParams.rooms.toString(),
+    group_children: searchParams.children.toString()
   })
   
-  return `${baseUrl}?${params.toString()}`
+  // Construct proper Booking.com URL with affiliate parameters
+  const fullUrl = `${baseUrl}${hotelPath}?${params.toString()}`
+  
+  console.log('Generated Booking.com affiliate URL:', fullUrl)
+  return fullUrl
 }
