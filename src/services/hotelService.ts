@@ -9,25 +9,41 @@ export interface BookingHotel {
   price: {
     amount: number
     currency: string
+    min?: number
+    max?: number
   }
-  distance_to_venue: number
-  address: string
-  city: string
-  country: string
-  coordinates: {
-    latitude: number
-    longitude: number
-  }
-  amenities: string[]
-  photos: string[]
-  description: string
-  url: string
-  is_lgbt_friendly: boolean
-  lgbt_certification: 'certified' | 'friendly' | 'standard'
-  available: boolean
-  rooms_available: number
+  stars: number
+  distance_km_to_venue: number
+  distance_to_venue?: number // alias for compatibility
+  lgbtq_friendly: boolean
+  lgbt_certification?: string // for Pride certifications
+  categories: string[]
+  slug?: string // booking.com hotel slug for deep-linking
+  images?: string[]
+  district?: string
+  address?: string
+  city?: string
+  description?: string
+  amenities?: string[]
+  photos?: string[]
+  available?: boolean
+  rooms_available?: number
 }
 
+export interface HotelSearchCriteria {
+  checkin: string // YYYY-MM-DD
+  checkout: string // YYYY-MM-DD
+  adults: number
+  rooms: number
+  minPrice?: number
+  maxPrice?: number
+  minStars?: number
+  maxDistanceKm?: number
+  lgbtqOnly?: boolean
+  categories?: string[]
+}
+
+// Alias for compatibility with other components
 export interface HotelSearchParams {
   checkIn: string
   checkOut: string
@@ -41,288 +57,189 @@ export interface HotelSearchParams {
   lgbtFilter?: string
 }
 
-// Mock hotel data that simulates Booking.com API responses
-const generateMockBookingHotels = (searchParams: HotelSearchParams): BookingHotel[] => {
-  const baseHotels: Omit<BookingHotel, 'id' | 'available' | 'rooms_available' | 'price'>[] = [
-    {
-      name: "Hotel Kärntnerhof",
-      rating: 4.5,
-      review_score: 8.9,
-      review_count: 2847,
-      distance_to_venue: 1.8,
-      address: "Grashofgasse 4",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2051, longitude: 16.3721 },
-      amenities: ["WiFi", "Breakfast", "Restaurant", "Bar", "Concierge"],
-      photos: ["hotel-1.jpg", "hotel-1-2.jpg"],
-      description: "Elegantes Boutique-Hotel im Herzen Wiens, nur wenige Minuten von der Wiener Staatsoper entfernt.",
-      url: "https://www.booking.com/hotel/at/karntnerhof.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    },
-    {
-      name: "Ruby Sofie Hotel Vienna",
-      rating: 4.4,
-      review_score: 8.7,
-      review_count: 1956,
-      distance_to_venue: 1.5,
-      address: "Marxergasse 17",
-      city: "Wien",
-      country: "Austria", 
-      coordinates: { latitude: 48.1987, longitude: 16.3895 },
-      amenities: ["WiFi", "Bar", "Gym", "24h Front Desk"],
-      photos: ["ruby-1.jpg", "ruby-2.jpg"],
-      description: "Modernes Lifestyle-Hotel mit innovativem Design und erstklassiger Lage.",
-      url: "https://www.booking.com/hotel/at/ruby-sofie-hotel-vienna.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    },
-    {
-      name: "Hilton Vienna Plaza",
-      rating: 4.6,
-      review_score: 9.1,
-      review_count: 3547,
-      distance_to_venue: 2.2,
-      address: "Schottenring 11",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2156, longitude: 16.3667 },
-      amenities: ["WiFi", "Spa", "Gym", "Restaurant", "Bar", "Room Service"],
-      photos: ["hilton-1.jpg", "hilton-2.jpg", "hilton-3.jpg"],
-      description: "Luxuriöses 5-Sterne-Hotel mit erstklassigem Service und Spa im Herzen von Wien.",
-      url: "https://www.booking.com/hotel/at/hilton-vienna-plaza.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'certified'
-    },
-    {
-      name: "Boutiquehotel Stadthalle",
-      rating: 4.5,
-      review_score: 9.0,
-      review_count: 1247,
-      distance_to_venue: 0.3,
-      address: "Hackengasse 20",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2066, longitude: 16.3384 },
-      amenities: ["WiFi", "Parking", "Breakfast", "Gym", "Eco-friendly"],
-      photos: ["stadthalle-1.jpg", "stadthalle-2.jpg"],
-      description: "Österreichs erstes klimaneutrales Stadthotel, nur 5 Gehminuten von der Wiener Stadthalle entfernt.",
-      url: "https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'certified'
-    },
-    {
-      name: "Das Triest",
-      rating: 4.8,
-      review_score: 9.3,
-      review_count: 2341,
-      distance_to_venue: 2.1,
-      address: "Wiedner Hauptstraße 12",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.1951, longitude: 16.3721 },
-      amenities: ["WiFi", "Parking", "Spa", "Restaurant", "Gym", "Design Hotel"],
-      photos: ["triest-1.jpg", "triest-2.jpg", "triest-3.jpg"],
-      description: "Luxuriöses Design-Hotel im eleganten 4. Bezirk mit preisgekröntem Spa.",
-      url: "https://www.booking.com/hotel/at/das-triest.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'certified'
-    },
-    {
-      name: "Austria Trend Hotel Europa Wien",
-      rating: 4.3,
-      review_score: 8.6,
-      review_count: 2103,
-      distance_to_venue: 1.8,
-      address: "Kärntner Ring 9-13",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2021, longitude: 16.3721 },
-      amenities: ["WiFi", "Restaurant", "Business Center", "Room Service"],
-      photos: ["europa-1.jpg", "europa-2.jpg"],
-      description: "Elegantes Hotel am Ring mit traditionellem Wiener Charme und moderner Ausstattung.",
-      url: "https://www.booking.com/hotel/at/austria-trend-europa-wien.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    },
-    {
-      name: "Motel One Wien-Staatsoper",
-      rating: 4.1,
-      review_score: 8.4,
-      review_count: 4201,
-      distance_to_venue: 1.9,
-      address: "Elisabethstraße 5",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2016, longitude: 16.3692 },
-      amenities: ["WiFi", "Bar", "24h Front Desk"],
-      photos: ["motel-one-1.jpg", "motel-one-2.jpg"],
-      description: "Stylisches Budget-Hotel nahe der Wiener Staatsoper mit komfortablen Zimmern.",
-      url: "https://www.booking.com/hotel/at/motel-one-wien-staatsoper.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    },
-    {
-      name: "Hotel Am Konzerthaus Vienna MGallery",
-      rating: 4.5,
-      review_score: 8.8,
-      review_count: 1892,
-      distance_to_venue: 1.2,
-      address: "Am Heumarkt 35-37",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2010, longitude: 16.3758 },
-      amenities: ["WiFi", "Parking", "Restaurant", "Gym", "Spa"],
-      photos: ["konzerthaus-1.jpg", "konzerthaus-2.jpg"],
-      description: "Elegantes Hotel nur wenige Schritte vom Konzerthaus entfernt.",
-      url: "https://www.booking.com/hotel/at/am-konzerthaus-vienna-mgallery.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'certified'
-    },
-    {
-      name: "Hotel Imperial Vienna",
-      rating: 4.7,
-      review_score: 9.2,
-      review_count: 1654,
-      distance_to_venue: 2.0,
-      address: "Kärntner Ring 16",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2018, longitude: 16.3711 },
-      amenities: ["WiFi", "Spa", "Restaurant", "Bar", "Concierge", "Luxury"],
-      photos: ["imperial-1.jpg", "imperial-2.jpg", "imperial-3.jpg"],
-      description: "Legendäres Luxushotel mit kaiserlicher Tradition und erstklassigem Service.",
-      url: "https://www.booking.com/hotel/at/imperial-vienna.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    },
-    {
-      name: "Hotel Topazz Vienna",
-      rating: 4.2,
-      review_score: 8.5,
-      review_count: 987,
-      distance_to_venue: 1.7,
-      address: "Lichtensteg 3",
-      city: "Wien",
-      country: "Austria",
-      coordinates: { latitude: 48.2082, longitude: 16.3738 },
-      amenities: ["WiFi", "Restaurant", "Bar", "Modern Design"],
-      photos: ["topazz-1.jpg", "topazz-2.jpg"],
-      description: "Modernes Design-Hotel mit spektakulärer Glasfassade im Zentrum Wiens.",
-      url: "https://www.booking.com/hotel/at/topazz-vienna.html",
-      is_lgbt_friendly: true,
-      lgbt_certification: 'friendly'
-    }
-  ]
+// Hand-curated base dataset; NEVER slice or limit when returning results
+const hotels: BookingHotel[] = [
+  {
+    id: 'stadthalle',
+    name: 'Boutiquehotel Stadthalle',
+    rating: 4.5,
+    review_score: 9.1,
+    review_count: 1247,
+    price: { amount: 160, currency: 'EUR', min: 160, max: 220 },
+    stars: 3,
+    distance_km_to_venue: 0.3,
+    distance_to_venue: 0.3,
+    lgbtq_friendly: true,
+    lgbt_certification: 'certified',
+    categories: ['Pride Certified', 'Eco-friendly', 'Near Venue'],
+    slug: 'boutiquehotel-stadthalle',
+    district: 'Rudolfsheim-Fünfhaus',
+    address: 'Hackengasse 20',
+    city: 'Wien',
+    description: 'Das umweltfreundlichste Hotel Wiens - perfekt für bewusste Eurovision-Fans!',
+    amenities: ['WiFi kostenlos', 'Frühstück', 'Klimaanlage', 'Fitnessstudio'],
+    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    available: true,
+    rooms_available: 12
+  },
+  {
+    id: 'das-triest',
+    name: 'Das Triest',
+    rating: 4.8,
+    review_score: 9.3,
+    review_count: 2341,
+    price: { amount: 280, currency: 'EUR', min: 280, max: 450 },
+    stars: 5,
+    distance_km_to_venue: 2.1,
+    distance_to_venue: 2.1,
+    lgbtq_friendly: true,
+    lgbt_certification: 'certified',
+    categories: ['Design', 'Luxury', 'Pride Certified'],
+    slug: 'das-triest',
+    district: 'Wieden',
+    address: 'Wiedner Hauptstraße 12',
+    city: 'Wien',
+    description: 'Luxuriöses Design-Hotel im Herzen von Wien mit LGBTQ+ freundlicher Atmosphäre.',
+    amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Parkplatz'],
+    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg', 'hotel4.jpg'],
+    available: true,
+    rooms_available: 8
+  },
+  {
+    id: 'am-konzerthaus',
+    name: 'Hotel Am Konzerthaus Vienna',
+    rating: 4.6,
+    review_score: 9.0,
+    review_count: 1892,
+    price: { amount: 180, currency: 'EUR', min: 180, max: 280 },
+    stars: 4,
+    distance_km_to_venue: 1.2,
+    distance_to_venue: 1.2,
+    lgbtq_friendly: true,
+    lgbt_certification: 'friendly',
+    categories: ['Music Theme', 'Central', 'Pride Certified'],
+    slug: 'am-konzerthaus-vienna-mgallery',
+    district: 'Innere Stadt',
+    address: 'Am Heumarkt 35-37',
+    city: 'Wien',
+    description: 'Musik-thematisches Hotel in zentraler Lage, nur wenige Minuten zur Stadthalle.',
+    amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Klimaanlage'],
+    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    available: true,
+    rooms_available: 15
+  },
+  {
+    id: 'regina',
+    name: 'Hotel Regina',
+    rating: 4.0,
+    review_score: 8.3,
+    review_count: 432,
+    price: { amount: 90, currency: 'EUR', min: 90, max: 140 },
+    stars: 3,
+    distance_km_to_venue: 1.5,
+    distance_to_venue: 1.5,
+    lgbtq_friendly: false,
+    lgbt_certification: 'standard',
+    categories: ['Historic', 'Budget'],
+    slug: 'regina-vienna',
+    district: 'Alsergrund',
+    address: 'Rooseveltplatz 15',
+    city: 'Wien',
+    description: 'Traditionelles Hotel mit historischem Charme zu erschwinglichen Preisen.',
+    amenities: ['WiFi kostenlos', 'Frühstück', 'Rezeption 24h'],
+    photos: ['hotel1.jpg', 'hotel2.jpg'],
+    available: true,
+    rooms_available: 20
+  },
+]
 
-  // Generate dynamic pricing based on search params
-  const generatePrice = (baseRating: number): { amount: number; currency: string } => {
-    const basePricePerStar = 60
-    const basePrice = Math.round(baseRating * basePricePerStar)
-    const variation = Math.random() * 0.4 - 0.2 // ±20% variation
-    const finalPrice = Math.round(basePrice * (1 + variation))
-    return {
-      amount: Math.max(80, Math.min(450, finalPrice)),
-      currency: 'EUR'
-    }
-  }
-
-  // Convert to full BookingHotel objects with dynamic data
-  const hotels: BookingHotel[] = baseHotels.map((hotel, index) => ({
-    ...hotel,
-    id: `booking_${index + 1}`,
-    price: generatePrice(hotel.rating),
-    available: Math.random() > 0.1, // 90% availability
-    rooms_available: Math.floor(Math.random() * 8) + 1
-  }))
-
-  // Apply filters
-  return hotels.filter(hotel => {
-    // Price filter
-    if (hotel.price.amount < searchParams.priceMin || hotel.price.amount > searchParams.priceMax) {
-      return false
-    }
-
-    // Star filter
-    if (searchParams.stars && searchParams.stars !== 'all') {
-      const minStars = parseInt(searchParams.stars)
-      if (hotel.rating < minStars) return false
-    }
-
-    // Distance filter
-    if (searchParams.distanceFilter === 'walking' && hotel.distance_to_venue > 1) {
-      return false
-    }
-
-    // LGBT filter
-    if (searchParams.lgbtFilter === 'certified' && hotel.lgbt_certification !== 'certified') {
-      return false
-    }
-    if (searchParams.lgbtFilter === 'friendly' && hotel.lgbt_certification === 'standard') {
-      return false
-    }
-
-    // Availability
-    if (!hotel.available) return false
-
-    return true
-  })
-}
-
-// Simulate API call with delay
-export const searchBookingHotels = async (searchParams: HotelSearchParams): Promise<BookingHotel[]> => {
-  console.log('Searching Booking.com hotels with params:', searchParams)
-  
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000))
-  
-  try {
-    // In a real implementation, this would be an API call to Booking.com
-    // For now, we use sophisticated mock data
-    const hotels = generateMockBookingHotels(searchParams)
-    
-    console.log(`Found ${hotels.length} hotels from Booking.com`)
-    return hotels
-    
-  } catch (error) {
-    console.error('Hotel search error:', error)
-    toast.error('Fehler beim Laden der Hotels von Booking.com')
-    throw error
-  }
-}
-
-// Generate Booking.com affiliate URL - FIXED to use hotel-specific deep-links
-export const generateAffiliateUrl = (hotel: BookingHotel, searchParams: HotelSearchParams, affiliateId: string = '101370188'): string => {
-  // Hotel-specific URL mappings for proper deep-links
-  const hotelSlugMapping: { [key: string]: string } = {
-    "Hotel Kärntnerhof": "karntnerhof",
-    "Ruby Sofie Hotel Vienna": "ruby-sofie-hotel-vienna", 
-    "Hilton Vienna Plaza": "hilton-vienna-plaza",
-    "Boutiquehotel Stadthalle": "boutiquehotel-stadthalle",
-    "Das Triest": "das-triest",
-    "Austria Trend Hotel Europa Wien": "austria-trend-europa-wien",
-    "Motel One Wien-Staatsoper": "motel-one-wien-staatsoper",
-    "Hotel Am Konzerthaus Vienna MGallery": "am-konzerthaus-vienna-mgallery",
-    "Hotel Imperial Vienna": "imperial-vienna",
-    "Hotel Topazz Vienna": "topazz-vienna"
-  }
-  
-  // Get hotel-specific slug or fallback
-  const hotelSlug = hotelSlugMapping[hotel.name] || hotel.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-  
+// Build booking.com deep link for city-wide search
+export function buildSearchDeepLink(criteria: HotelSearchCriteria): string {
   const params = new URLSearchParams({
-    aid: affiliateId,
+    aid: '101370188',
+    dest_id: '-1991997',
+    dest_type: 'city',
+    checkin: criteria.checkin,
+    checkout: criteria.checkout,
+    group_adults: String(criteria.adults),
+    no_rooms: String(criteria.rooms),
+  })
+
+  return `https://www.booking.com/searchresults.html?${params.toString()}`
+}
+
+// Build booking.com deep link for a specific hotel
+export function buildHotelDeepLink(hotel: BookingHotel, criteria: HotelSearchCriteria): string | null {
+  if (!hotel.slug) return null
+  const base = `https://www.booking.com/hotel/at/${hotel.slug}.html`
+  const params = new URLSearchParams({
+    aid: '101370188',
+    checkin: criteria.checkin,
+    checkout: criteria.checkout,
+    group_adults: String(criteria.adults),
+    no_rooms: String(criteria.rooms),
+  })
+  return `${base}?${params.toString()}`
+}
+
+// Alias for compatibility with existing components
+export function generateAffiliateUrl(hotel: BookingHotel, searchParams: HotelSearchParams): string {
+  const criteria: HotelSearchCriteria = {
     checkin: searchParams.checkIn,
     checkout: searchParams.checkOut,
-    group_adults: searchParams.adults.toString(),
-    no_rooms: searchParams.rooms.toString(),
-    group_children: searchParams.children.toString()
+    adults: searchParams.adults,
+    rooms: searchParams.rooms
+  }
+  return buildHotelDeepLink(hotel, criteria) || buildSearchDeepLink(criteria)
+}
+
+// Core filter applying ALL user criteria and returning ALL matches (no slicing/limits)
+export function searchHotels(criteria: HotelSearchCriteria): BookingHotel[] {
+  try {
+    const result = hotels.filter(h => {
+      if (criteria.minPrice !== undefined && (h.price.min ?? h.price.amount) < criteria.minPrice) return false
+      if (criteria.maxPrice !== undefined && (h.price.max ?? h.price.amount) > criteria.maxPrice) return false
+      if (criteria.minStars !== undefined && h.stars < criteria.minStars) return false
+      if (criteria.maxDistanceKm !== undefined && h.distance_km_to_venue > criteria.maxDistanceKm) return false
+      if (criteria.lgbtqOnly && !h.lgbtq_friendly) return false
+      if (criteria.categories && criteria.categories.length > 0) {
+        const ok = criteria.categories.every(c => h.categories.includes(c))
+        if (!ok) return false
+      }
+      return true
+    })
+
+    // IMPORTANT: Never slice or cap results; return full filtered array
+    return result
+  } catch (e) {
+    console.error('Hotel search failed', e)
+    toast.error('Fehler bei der Hotelsuche')
+    return []
+  }
+}
+
+// Expose all base hotels if needed (no limits)
+export function getAllHotels(): BookingHotel[] {
+  return [...hotels]
+}
+
+// Alias for compatibility with App.tsx
+export function searchBookingHotels(params: HotelSearchParams): Promise<BookingHotel[]> {
+  return new Promise((resolve) => {
+    // Convert HotelSearchParams to HotelSearchCriteria
+    const criteria: HotelSearchCriteria = {
+      checkin: params.checkIn,
+      checkout: params.checkOut,
+      adults: params.adults,
+      rooms: params.rooms,
+      minPrice: params.priceMin,
+      maxPrice: params.priceMax,
+      lgbtqOnly: params.lgbtFilter === 'friendly' || params.lgbtFilter === 'certified'
+    }
+    
+    // Simulate async operation
+    setTimeout(() => {
+      resolve(searchHotels(criteria))
+    }, 1000)
   })
-  
-  // Construct proper hotel-specific deep-link
-  const fullUrl = `https://www.booking.com/hotel/at/${hotelSlug}.html?${params.toString()}`
-  
-  console.log('Generated hotel-specific Booking.com URL:', fullUrl)
-  return fullUrl
 }

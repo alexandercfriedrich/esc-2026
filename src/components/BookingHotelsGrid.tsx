@@ -132,7 +132,7 @@ export function BookingHotelsGrid({
                     </DialogTitle>
                     <DialogDescription className="flex items-center gap-1">
                       <MapPin className="w-4 h-4" />
-                      {hotel.address}, {hotel.city} • {hotel.distance_to_venue}km zur Stadthalle
+                      {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km zur Stadthalle
                     </DialogDescription>
                   </DialogHeader>
                   
@@ -140,12 +140,12 @@ export function BookingHotelsGrid({
                     {/* Hotel Image Placeholder */}
                     <div className="h-64 bg-gradient-to-br from-pride-blue to-pride-purple rounded-lg relative">
                       <div className="absolute bottom-4 left-4">
-                        <Badge className={getPrideBadgeColor(hotel.lgbt_certification)}>
-                          {getPrideBadgeText(hotel.lgbt_certification)}
+                        <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
+                          {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                         </Badge>
                       </div>
                       <div className="absolute bottom-4 right-4 text-white text-sm">
-                        📷 {hotel.photos.length} Fotos
+                        📷 {hotel.photos?.length || 0} Fotos
                       </div>
                     </div>
                     
@@ -174,7 +174,7 @@ export function BookingHotelsGrid({
                     <div>
                       <h3 className="font-semibold mb-2">Ausstattung</h3>
                       <div className="flex flex-wrap gap-2">
-                        {hotel.amenities.map((amenity, index) => (
+                        {(hotel.amenities || []).map((amenity, index) => (
                           <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-sm">
                             {getAmenityIcon(amenity)}
                             <span>{amenity}</span>
@@ -206,8 +206,8 @@ export function BookingHotelsGrid({
             {/* Hotel Image Placeholder */}
             <div className="h-48 bg-gradient-to-br from-pride-blue to-pride-purple relative">
               <div className="absolute bottom-4 left-4">
-                <Badge className={getPrideBadgeColor(hotel.lgbt_certification)}>
-                  {getPrideBadgeText(hotel.lgbt_certification)}
+                <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
+                  {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                 </Badge>
               </div>
               {!hotel.available && (
@@ -240,14 +240,14 @@ export function BookingHotelsGrid({
                 </p>
                 
                 <div className="flex flex-wrap gap-2">
-                  {hotel.amenities.slice(0, 3).map((amenity, index) => (
+                  {(hotel.amenities || []).slice(0, 3).map((amenity, index) => (
                     <Badge key={index} variant="secondary" className="text-xs">
                       {amenity}
                     </Badge>
                   ))}
-                  {hotel.amenities.length > 3 && (
+                  {(hotel.amenities || []).length > 3 && (
                     <Badge variant="outline" className="text-xs">
-                      +{hotel.amenities.length - 3}
+                      +{(hotel.amenities || []).length - 3}
                     </Badge>
                   )}
                 </div>
