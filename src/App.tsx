@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Separator } from '@/components/ui/separator'
 import { Heart, MapPin, Calendar, Users, Star, WifiHigh, Car, Coffee, Barbell } from '@phosphor-icons/react'
 import { toast } from 'sonner'
+import prideStripesImage from '@/assets/images/4d955f17-5b1b-465f-915c-1b5eb8c8c018.png.jpeg'
 
 interface Hotel {
   id: string
@@ -211,7 +212,12 @@ function App() {
       <div className="h-2 rainbow-gradient"></div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-pride-blue via-pride-purple to-pride-red text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* Pride Stripes Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{ backgroundImage: `url(${prideStripesImage})` }}
+        ></div>
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-6 flex justify-center space-x-4">
