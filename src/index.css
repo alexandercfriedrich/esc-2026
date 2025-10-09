@@ -149,7 +149,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: repeating-linear-gradient(
+  background: linear-gradient(
     90deg,
     var(--pride-red) 0%,
     var(--pride-red) 16.66%,
@@ -164,7 +164,6 @@ body {
     var(--pride-purple) 83.33%,
     var(--pride-purple) 100%
   );
-  background-size: 120px 100%;
   opacity: 0.3;
   z-index: 1;
 }
