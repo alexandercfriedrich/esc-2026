@@ -141,3 +141,30 @@ body {
 .pride-wave {
   animation: pride-wave 3s ease-in-out infinite;
 }
+
+/* Vertical Pride Stripes Overlay */
+.pride-stripes-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pride-red) 0%,
+    var(--pride-red) 16.66%,
+    var(--pride-orange) 16.66%,
+    var(--pride-orange) 33.33%,
+    var(--pride-yellow) 33.33%,
+    var(--pride-yellow) 50%,
+    var(--pride-green) 50%,
+    var(--pride-green) 66.66%,
+    var(--pride-blue) 66.66%,
+    var(--pride-blue) 83.33%,
+    var(--pride-purple) 83.33%,
+    var(--pride-purple) 100%
+  );
+  background-size: 120px 100%;
+  opacity: 0.3;
+  z-index: 1;
+}
