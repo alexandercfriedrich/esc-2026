@@ -29,22 +29,26 @@
   --ring: oklch(0.45 0.15 260);
   --radius: 0.5rem;
 
-  /* Eurovision Pride Colors */
-  --pride-red: oklch(0.55 0.25 20);
-  --pride-orange: oklch(0.70 0.20 45);
-  --pride-yellow: oklch(0.85 0.15 85);
-  --pride-green: oklch(0.65 0.20 135);
-  --pride-blue: oklch(0.45 0.15 255);
-  --pride-purple: oklch(0.40 0.15 300);
+  /* Eurovision Pride Colors - 8 vibrant stripes */
+  --pride-red: oklch(0.60 0.30 25);
+  --pride-orange: oklch(0.75 0.25 50);
+  --pride-yellow: oklch(0.90 0.20 90);
+  --pride-green: oklch(0.70 0.25 140);
+  --pride-cyan: oklch(0.65 0.20 200);
+  --pride-blue: oklch(0.55 0.25 260);
+  --pride-purple: oklch(0.50 0.20 300);
+  --pride-magenta: oklch(0.55 0.25 330);
 
-  /* Eurovision Gradients */
+  /* Eurovision Gradients - 8 colors */
   --rainbow-gradient: linear-gradient(90deg, 
     var(--pride-red) 0%, 
-    var(--pride-orange) 16.66%, 
-    var(--pride-yellow) 33.33%, 
-    var(--pride-green) 50%, 
-    var(--pride-blue) 66.66%, 
-    var(--pride-purple) 83.33%);
+    var(--pride-orange) 12.5%, 
+    var(--pride-yellow) 25%, 
+    var(--pride-green) 37.5%, 
+    var(--pride-cyan) 50%,
+    var(--pride-blue) 62.5%, 
+    var(--pride-purple) 75%,
+    var(--pride-magenta) 87.5%);
   --font-sans: Inter;
   --font-serif: Noto Serif;
   --font-mono: JetBrains Mono;
@@ -90,13 +94,15 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   
-  /* Custom Eurovision Colors */
+  /* Custom Eurovision Colors - 8 stripes */
   --color-pride-red: var(--pride-red);
   --color-pride-orange: var(--pride-orange);
   --color-pride-yellow: var(--pride-yellow);
   --color-pride-green: var(--pride-green);
+  --color-pride-cyan: var(--pride-cyan);
   --color-pride-blue: var(--pride-blue);
   --color-pride-purple: var(--pride-purple);
+  --color-pride-magenta: var(--pride-magenta);
 
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: var(--radius);
@@ -142,7 +148,7 @@ body {
   animation: pride-wave 3s ease-in-out infinite;
 }
 
-/* Vertical Pride Stripes Overlay */
+/* Vertical Pride Stripes Overlay - 8 stripes with higher opacity */
 .pride-stripes-overlay {
   position: absolute;
   top: 0;
@@ -152,18 +158,22 @@ body {
   background: linear-gradient(
     90deg,
     var(--pride-red) 0%,
-    var(--pride-red) 16.66%,
-    var(--pride-orange) 16.66%,
-    var(--pride-orange) 33.33%,
-    var(--pride-yellow) 33.33%,
-    var(--pride-yellow) 50%,
+    var(--pride-red) 12.5%,
+    var(--pride-orange) 12.5%,
+    var(--pride-orange) 25%,
+    var(--pride-yellow) 25%,
+    var(--pride-yellow) 37.5%,
+    var(--pride-green) 37.5%,
     var(--pride-green) 50%,
-    var(--pride-green) 66.66%,
-    var(--pride-blue) 66.66%,
-    var(--pride-blue) 83.33%,
-    var(--pride-purple) 83.33%,
-    var(--pride-purple) 100%
+    var(--pride-cyan) 50%,
+    var(--pride-cyan) 62.5%,
+    var(--pride-blue) 62.5%,
+    var(--pride-blue) 75%,
+    var(--pride-purple) 75%,
+    var(--pride-purple) 87.5%,
+    var(--pride-magenta) 87.5%,
+    var(--pride-magenta) 100%
   );
-  opacity: 0.3;
+  opacity: 0.8;
   z-index: 1;
 }
