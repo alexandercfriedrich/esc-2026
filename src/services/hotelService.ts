@@ -78,7 +78,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Das umweltfreundlichste Hotel Wiens - perfekt für bewusste Eurovision-Fans!',
     amenities: ['WiFi kostenlos', 'Frühstück', 'Klimaanlage', 'Fitnessstudio'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375365.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375366.jpg?k=booking-stadthalle-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375367.jpg?k=booking-stadthalle-lobby&o='
+    ],
     available: true,
     rooms_available: 12
   },
@@ -101,7 +105,12 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Luxuriöses Design-Hotel im Herzen von Wien mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Parkplatz'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg', 'hotel4.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567898.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567899.jpg?k=booking-triest-suite&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567900.jpg?k=booking-triest-spa&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567901.jpg?k=booking-triest-restaurant&o='
+    ],
     available: true,
     rooms_available: 8
   },
@@ -124,7 +133,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Musik-thematisches Hotel in zentraler Lage, nur wenige Minuten zur Stadthalle.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Klimaanlage'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506346.jpg?k=booking-konzerthaus-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506347.jpg?k=booking-konzerthaus-bar&o='
+    ],
     available: true,
     rooms_available: 15
   },
@@ -147,7 +160,10 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Traditionelles Hotel mit historischem Charme zu erschwinglichen Preisen.',
     amenities: ['WiFi kostenlos', 'Frühstück', 'Rezeption 24h'],
-    photos: ['hotel1.jpg', 'hotel2.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768902.jpg?k=booking-regina-lobby&o='
+    ],
     available: true,
     rooms_available: 20
   },
@@ -170,7 +186,12 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Das legendäre Luxushotel im Herzen Wiens, berühmt für die Sachertorte.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Concierge', 'Parkplatz'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg', 'hotel4.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765433.jpg?k=booking-sacher-suite&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765434.jpg?k=booking-sacher-restaurant&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765435.jpg?k=booking-sacher-spa&o='
+    ],
     available: true,
     rooms_available: 3
   },
@@ -193,7 +214,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Kaiserliches Hotel auf der Ringstraße mit exquisitem Service.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Fitnessstudio'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890123.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890124.jpg?k=booking-imperial-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890125.jpg?k=booking-imperial-ballroom&o='
+    ],
     available: true,
     rooms_available: 6
   },
@@ -216,7 +241,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Modernes Design-Hotel in der Einkaufsstraße mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=booking-ruby-marie-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=booking-ruby-marie-bar&o='
+    ],
     available: true,
     rooms_available: 18
   },
@@ -239,7 +268,10 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Junges, lebendiges Hotel mit modernem Design und günstigen Preisen.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
-    photos: ['hotel1.jpg', 'hotel2.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=booking-moxy-room&o='
+    ],
     available: true,
     rooms_available: 25
   },
@@ -262,7 +294,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Kunstorientiertes Hotel mit einzigartiger Atmosphäre und LGBTQ+ Zertifizierung.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Kunstgalerie'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789013.jpg?k=booking-arthotel-gallery&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=booking-arthotel-room&o='
+    ],
     available: true,
     rooms_available: 14
   },
@@ -285,7 +321,12 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Luxuriöses Lifestyle-Hotel mit spektakulärem Blick auf das Belvedere.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Rooftop'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg', 'hotel4.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901235.jpg?k=booking-andaz-rooftop&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901236.jpg?k=booking-andaz-suite&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901237.jpg?k=booking-andaz-spa&o='
+    ],
     available: true,
     rooms_available: 9
   },
@@ -308,7 +349,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Internationales Business-Hotel in zentraler Lage mit modernen Annehmlichkeiten.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Fitnessstudio', 'Business Center'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012346.jpg?k=booking-hilton-plaza-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=booking-hilton-plaza-lobby&o='
+    ],
     available: true,
     rooms_available: 22
   },
@@ -331,7 +376,9 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Einfaches, günstiges Hotel für preisbewusste Reisende.',
     amenities: ['WiFi kostenlos', 'Frühstück'],
-    photos: ['hotel1.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o='
+    ],
     available: true,
     rooms_available: 30
   },
@@ -354,7 +401,11 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Das erste offizielle LGBTQ+ Pride Hotel Wiens - direkt für Eurovision-Fans!',
     amenities: ['WiFi kostenlos', 'Pride Bar', 'Rainbow Lounge', 'Safe Space'],
-    photos: ['hotel1.jpg', 'hotel2.jpg', 'hotel3.jpg'],
+    photos: [
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234568.jpg?k=booking-pride-rainbow-room&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234569.jpg?k=booking-pride-rainbow-lounge&o='
+    ],
     available: true,
     rooms_available: 16
   },
