@@ -209,7 +209,6 @@ function App() {
     <div className="min-h-screen bg-background">
       {/* Rainbow Header */}
       <div className="h-2 rainbow-gradient"></div>
-      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-pride-blue via-pride-purple to-pride-red text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -242,16 +241,15 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="hotels" className="text-lg">🏨 Hotels</TabsTrigger>
-            <TabsTrigger value="events" className="text-lg">🎭 Events</TabsTrigger>
+            <TabsTrigger value="events" className="text-lg">🎭 Programm</TabsTrigger>
             <TabsTrigger value="map" className="text-lg">🗺️ Karte</TabsTrigger>
             <TabsTrigger value="community" className="text-lg">👥 Community</TabsTrigger>
-            <TabsTrigger value="guide" className="text-lg">📖 Guide</TabsTrigger>
+            <TabsTrigger value="guide" className="text-lg">🗺️ Karte</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hotels" className="space-y-8">
@@ -523,7 +521,6 @@ function App() {
           </TabsContent>
         </Tabs>
       </div>
-
       {/* Footer */}
       <footer className="bg-muted py-12 mt-16">
         <div className="container mx-auto px-4">
@@ -570,7 +567,7 @@ function App() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default App
