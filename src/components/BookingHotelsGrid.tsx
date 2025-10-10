@@ -127,11 +127,6 @@ export function BookingHotelsGrid({
                 alt={hotel.name}
                 className="w-full h-full object-cover transition-transform group-hover:scale-105"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
-                  target.src = `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(fallbackUrl)}`;
-                }}
               />
               <div className="absolute bottom-4 left-4">
                 <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
@@ -232,11 +227,6 @@ export function BookingHotelsGrid({
                               alt={hotel.name}
                               className="w-full h-full object-cover"
                               loading="lazy"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
-                                target.src = `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(fallbackUrl)}`;
-                              }}
                             />
                             <div className="absolute bottom-4 left-4">
                               <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>

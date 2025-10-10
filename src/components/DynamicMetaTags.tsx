@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookingHotel } from '@/services/hotelService'
+import { BookingHotel, getHotelImageUrl } from '@/services/hotelService'
 
 interface DynamicMetaTagsProps {
   hotels?: BookingHotel[]
@@ -110,7 +110,7 @@ export function DynamicMetaTags({
   // Open Graph image selection
   const generateOGImage = () => {
     if (currentHotel && currentHotel.photos && currentHotel.photos.length > 0) {
-      return currentHotel.photos[0]
+      return getHotelImageUrl(currentHotel)
     }
     
     return 'https://esc-2026-vienna.com/eurovision-2026-vienna-hotels-og.jpg'
