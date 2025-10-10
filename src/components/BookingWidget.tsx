@@ -19,7 +19,7 @@ export function BookingWidget({ searchPerformed, bookingHotelsCount, isSearching
         <div className="space-y-4">
           <div className="bg-gradient-to-r from-pride-blue/10 to-pride-indigo/10 rounded-lg p-4">
             <div className="mb-3">
-              <h3 className="font-semibold">🎯 Eurovision Hotel-Empfehlungen</h3>
+              <h3 className="font-semibold">🎯 Eurovision 2026 Wien Hotel Empfehlungen</h3>
               <p className="text-sm text-muted-foreground">Handverlesene Hotels mit aktuellen Preisen und Verfügbarkeiten • LGBTQ+ freundliche Auswahl</p>
             </div>
             
