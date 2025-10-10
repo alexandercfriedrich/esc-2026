@@ -49,7 +49,7 @@ export function HotelRichSnippet({ hotel, showReviews = true }: HotelRichSnippet
     "@type": "Hotel",
     "name": hotel.name,
     "description": hotel.description,
-    "image": hotel.photos || [],
+    "image": [],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": hotel.address,

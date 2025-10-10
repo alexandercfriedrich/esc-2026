@@ -20,62 +20,7 @@
  */
 
 import { toast } from 'sonner'
-
-// Booking.com image fetching service
-interface BookingImageResponse {
-  images: string[]
-  main_image: string
-}
-
-// Real Booking.com image fetcher using hotel slug
-async function fetchBookingComImages(hotelSlug: string): Promise<string[]> {
-  try {
-    // Simulate API call to Booking.com's image service
-    // In reality, this would fetch from Booking.com's API or scrape images
-    const imageApiUrl = `https://cf.bstatic.com/xdata/images/hotel/max1024x768/`;
-    
-    // Generate realistic image IDs based on hotel slug
-    const imageIds = generateImageIds(hotelSlug);
-    
-    return imageIds.map(id => `${imageApiUrl}${id}.jpg?k=${generateImageKey(id)}&o=&hp=1`);
-  } catch (error) {
-    console.warn(`Failed to fetch images for ${hotelSlug}:`, error);
-    return [];
-  }
-}
-
-// Generate realistic Booking.com image IDs
-function generateImageIds(hotelSlug: string): string[] {
-  const baseId = hashString(hotelSlug);
-  return [
-    baseId,
-    baseId + 1,
-    baseId + 2,
-    baseId + 3,
-    baseId + 4
-  ].map(id => String(id).padStart(9, '0'));
-}
-
-// Generate Booking.com-style image keys
-function generateImageKey(imageId: string): string {
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < 32; i++) {
-    result += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return result;
-}
-
-// Simple hash function for consistent image IDs
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
-  }
-  return Math.abs(hash) % 999999999 + 100000000; // Ensure 9-digit number
-}
+import hotelMottoImage from '@/assets/images/Hotel_Motto_Dachterrasse.png'
 
 export interface BookingHotel {
   id: string
@@ -101,8 +46,9 @@ export interface BookingHotel {
   address?: string
   city?: string
   description?: string
+  // Photos property removed - will be replaced with local assets as they are provided
   amenities?: string[]
-  photos?: string[] // Booking.com images fetched dynamically
+  photos?: string[] // Temporary - to be removed when all photos arrays are cleaned up
   available?: boolean
   rooms_available?: number
 }
@@ -155,12 +101,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Gay-friendly Hotel direkt bei der Stadthalle Wien mit nachhaltiger Ausrichtung und LGBTQ-Community-Support.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Wellness', 'Nachhaltige Ausstattung', 'Rainbow Package'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9100000.jpg?k=updated_image_91&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9500000.jpg?k=updated_image_95&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12500000.jpg?k=updated_image_125&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13600000.jpg?k=updated_image_136&o=&hp=1",
-    ],
     available: true,
     rooms_available: 18
   },
@@ -183,12 +123,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'LGBTQ-freundliches Boutique-Hotel im Herzen der Gay-Szene mit Rooftop-Bar und hauseigener Bäckerei.',
     amenities: ['WiFi kostenlos', 'Rooftop Restaurant & Bar', 'Spa', 'Sauna', 'Dampfbad', 'Fitness', 'Bio-Bäckerei'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9700000.jpg?k=updated_image_97&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10000000.jpg?k=updated_image_100&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13900000.jpg?k=updated_image_139&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-    ],
     available: true,
     rooms_available: 15
   },
@@ -211,12 +145,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Stilvolles Boutique-Hotel mit LGBTQ-Fokus im künstlerischen Spittelberg-Viertel.',
     amenities: ['WiFi kostenlos', 'Bar', 'Klimaanlage', 'Lift', 'Kunstsammlung', 'Concierge'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9200000.jpg?k=updated_image_92&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9400000.jpg?k=updated_image_94&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9600000.jpg?k=updated_image_96&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9800000.jpg?k=updated_image_98&o=&hp=1",
-    ],
     available: true,
     rooms_available: 11
   },
@@ -239,12 +167,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Elegantes Boutique-Hotel mit Pride-Zertifizierung und TravelGay-Empfehlung direkt am MuseumsQuartier.',
     amenities: ['WiFi kostenlos', 'Spa mit 20m Pool', 'Restaurant VERANDA', 'Bar', 'Sauna', 'Dampfbad', 'Fitness'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13400000.jpg?k=updated_image_134&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-    ],
     available: true,
     rooms_available: 8
   },
@@ -267,14 +189,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Zentral gelegenes Pride-zertifiziertes Business-Hotel an der Mariahilfer Straße.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', '24h Rezeption', 'Business Center', 'Walking Tours'],
-    photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567893.jpg?k=p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567894.jpg?k=q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567895.jpg?k=r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3&o='
-    ],
     available: true,
     rooms_available: 13
   },
@@ -827,28 +741,30 @@ export function getAllHotels(): BookingHotel[] {
   return [...hotels]
 }
 
-// Booking.com Image Proxy configuration
-const BOOKING_IMAGE_PROXY_BASE = 'https://booking-image-proxy.vercel.app/api/proxy-image';
-
-// Get hotel image URL - uses proxy to bypass CORS restrictions
+// Get hotel image URL - now using local assets
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
-  if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
-    const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
-    return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(fallbackUrl)}`;
+  // Use local Hotel Motto image for Boutique Hotel MOTTO
+  if (hotel.id === 'boutique-hotel-motto') {
+    return hotelMottoImage;
   }
-  const bookingImageUrl = hotel.photos[0];
-  return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(bookingImageUrl)}`;
+  
+  // For other hotels, use a default fallback for now
+  return hotelMottoImage; // Will be replaced when more images are provided
 };
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
-  if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
-    const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
-    return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(fallbackUrl)}`;
+  // Use the same image for now - will be updated when more images are provided
+  return getHotelImageUrl(hotel);
+};
+
+// Remove photos property from components that still reference it and update photo count display
+export const getPhotoCount = (hotel: BookingHotel): number => {
+  // Return 1 for Hotel Motto since we have its image, 0 for others until more assets are provided
+  if (hotel.id === 'boutique-hotel-motto') {
+    return 1;
   }
-  // Convert max1024x768 to max1280x900 for higher resolution and use proxy
-  const largeImageUrl = hotel.photos[0].replace('max1024x768', 'max1280x900');
-  return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(largeImageUrl)}`;
+  return 0;
 };
 
 // Alias for compatibility with App.tsx

@@ -260,7 +260,7 @@ function generateHotelSchema(hotel: BookingHotel, searchParams?: HotelSearchPara
     "name": hotel.name,
     "description": hotel.description,
     "url": `https://esc-2026-vienna.com/hotel/${hotel.slug}`,
-    "image": hotel.photos || [],
+    "image": [],
     "starRating": {
       "@type": "Rating",
       "ratingValue": hotel.stars,

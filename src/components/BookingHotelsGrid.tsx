@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users } from '@phosphor-icons/react'
-import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge } from '@/services/hotelService'
+import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge, getPhotoCount } from '@/services/hotelService'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
 
@@ -234,7 +234,7 @@ export function BookingHotelsGrid({
                               </Badge>
                             </div>
                             <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
-                              📷 {(hotel.photos && Array.isArray(hotel.photos) ? hotel.photos.length : 0)} Fotos
+                              📷 {getPhotoCount(hotel)} Fotos
                             </div>
                           </div>
                           

@@ -276,7 +276,7 @@ export function generateHotelsSitemap(): string {
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
     <image:image>
-      <image:loc>${hotel.photos?.[0] || `${baseUrl}/default-hotel.jpg`}</image:loc>
+      <image:loc>${baseUrl}/default-hotel.jpg</image:loc>
       <image:caption>${hotel.name} - Eurovision 2026 Wien ${hotel.lgbt_certification === 'certified' ? 'Pride Certified' : 'LGBTQ+ Friendly'} Hotel</image:caption>
       <image:title>${hotel.name}</image:title>
     </image:image>

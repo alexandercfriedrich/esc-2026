@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookingHotel, getHotelImageUrl } from '@/services/hotelService'
+import { BookingHotel, getHotelImageUrl, getPhotoCount } from '@/services/hotelService'
 
 interface DynamicMetaTagsProps {
   hotels?: BookingHotel[]
@@ -109,7 +109,7 @@ export function DynamicMetaTags({
 
   // Open Graph image selection
   const generateOGImage = () => {
-    if (currentHotel && currentHotel.photos && currentHotel.photos.length > 0) {
+    if (currentHotel && getPhotoCount(currentHotel) > 0) {
       return getHotelImageUrl(currentHotel)
     }
     
