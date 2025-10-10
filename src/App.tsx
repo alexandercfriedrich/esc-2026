@@ -53,10 +53,8 @@ export default function App() {
       }}>
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
           <div className="text-center text-white">
-          
-            <p className="text-lg md:text-xl opacity-90 drop-shadow-lg">
-              🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien
-            </p>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">Eurovision 2026 Hotelsuche Wien</h1>
+            <p className="text-lg md:text-xl opacity-90 drop-shadow-lg">🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien</p>
           </div>
         </div>
       </section>
