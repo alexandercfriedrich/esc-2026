@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Eye, Users } from '@phosphor-icons/react'
+import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users } from '@phosphor-icons/react'
 import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl } from '@/services/hotelService'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
@@ -186,109 +186,6 @@ export function BookingHotelsGrid({
                   className={`w-4 h-4 ${favoriteHotels?.includes(hotel.id) ? 'fill-red-500 text-red-500' : ''}`} 
                 />
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="bg-white/90 hover:bg-white"
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2">
-                      {hotel.name}
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-medium">{hotel.rating}</span>
-                        <span className="text-sm text-muted-foreground">
-                          ({hotel.review_score}/10 • {hotel.review_count} Bewertungen)
-                        </span>
-                      </div>
-                    </DialogTitle>
-                    <DialogDescription className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km zur Stadthalle
-                    </DialogDescription>
-                  </DialogHeader>
-                  
-                  <div className="space-y-6">
-                    {/* Hotel Image */}
-                    <div className="h-64 rounded-lg relative overflow-hidden">
-                      <img 
-                        src={getHotelImageUrlLarge(hotel)}
-                        alt={hotel.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
-                        }}
-                      />
-                      <div className="absolute bottom-4 left-4">
-                        <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
-                          {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
-                        </Badge>
-                      </div>
-                      <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
-                        📷 {hotel.photos?.length || 0} Fotos
-                      </div>
-                    </div>
-                    
-                    {/* Description */}
-                    <div>
-                      <h3 className="font-semibold mb-2">Beschreibung</h3>
-                      <p className="text-muted-foreground">{hotel.description}</p>
-                    </div>
-                    
-                    {/* Booking.com Info */}
-                    <div>
-                      <h3 className="font-semibold mb-2 flex items-center gap-2">
-                        ℹ️ Hotel Informationen
-                      </h3>
-                      <div className="bg-muted p-3 rounded-lg text-sm">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>Bewertungsscore: {hotel.review_score}/10</div>
-                          <div>Bewertungen: {hotel.review_count}</div>
-                          <div>Verfügbare Zimmer: {hotel.rooms_available}</div>
-                          <div>Entfernung: {hotel.distance_to_venue}km</div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Amenities */}
-                    <div>
-                      <h3 className="font-semibold mb-2">Ausstattung</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {(hotel.amenities || []).map((amenity, index) => (
-                          <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-sm">
-                            {getAmenityIcon(amenity)}
-                            <span>{amenity}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Pricing & Booking */}
-                    <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
-                      <div>
-                        <div className="text-2xl font-bold text-pride-green">
-                          €{hotel.price.amount}
-                        </div>
-                        <div className="text-sm text-muted-foreground">pro Nacht • {hotel.price.currency}</div>
-                      </div>
-                      <Button 
-                        className="bg-pride-orange hover:bg-pride-red transition-colors px-8"
-                        onClick={() => handleBooking(hotel)}
-                      >
-                        Jetzt buchen
-                      </Button>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
             </div>
             
             {/* Hotel Image */}
@@ -321,7 +218,7 @@ export function BookingHotelsGrid({
                   <CardTitle className="text-lg">{hotel.name}</CardTitle>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
-                    {hotel.address} • {hotel.distance_to_venue}km zur Stadthalle
+                    {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km zur Stadthalle
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -433,7 +330,7 @@ export function BookingHotelsGrid({
                                 <div>Bewertungsscore: {hotel.review_score}/10</div>
                                 <div>Bewertungen: {hotel.review_count}</div>
                                 <div>Verfügbare Zimmer: {hotel.rooms_available}</div>
-                                <div>Entfernung: {hotel.distance_to_venue}km</div>
+                                <div>Entfernung: {hotel.distance_to_venue || hotel.distance_km_to_venue}km</div>
                               </div>
                             </div>
                           </div>

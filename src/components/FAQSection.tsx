@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDown, ChevronUp, HelpCircle } from '@phosphor-icons/react'
+import { CaretDown, CaretUp, Question } from '@phosphor-icons/react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
@@ -193,7 +193,7 @@ export function FAQSection() {
           {/* FAQ Section Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <HelpCircle className="text-primary" size={32} />
+              <Question className="text-primary" size={32} />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                 Häufig gestellte Fragen
               </h2>
@@ -215,12 +215,12 @@ export function FAQSection() {
                 >
                   {isExpanded ? (
                     <>
-                      <ChevronUp className="mr-2" size={20} />
+                      <CaretUp className="mr-2" size={20} />
                       FAQ schließen
                     </>
                   ) : (
                     <>
-                      <ChevronDown className="mr-2" size={20} />
+                      <CaretDown className="mr-2" size={20} />
                       Alle FAQ anzeigen
                     </>
                   )}
@@ -274,9 +274,9 @@ export function FAQSection() {
                                   {item.question}
                                 </h3>
                                 {openItems.has(item.id) ? (
-                                  <ChevronUp className="text-primary flex-shrink-0" size={20} />
+                                  <CaretUp className="text-primary flex-shrink-0" size={20} />
                                 ) : (
-                                  <ChevronDown className="text-muted-foreground flex-shrink-0" size={20} />
+                                  <CaretDown className="text-muted-foreground flex-shrink-0" size={20} />
                                 )}
                               </div>
                             </CollapsibleTrigger>
