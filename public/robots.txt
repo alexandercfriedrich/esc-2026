@@ -1,0 +1,68 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://esc-2026-vienna.com/sitemap.xml
+
+# Eurovision 2026 specific paths
+Allow: /eurovision-2026
+Allow: /hotels/*
+Allow: /lgbtq-hotels
+Allow: /pride-certified-hotels
+Allow: /wiener-stadthalle-hotels
+Allow: /eurovision-packages
+Allow: /search
+
+# Important hotel categories
+Allow: /boutique-hotels
+Allow: /luxury-hotels
+Allow: /budget-hotels
+
+# District-specific hotel pages
+Allow: /hotels/rudolfsheim-funfhaus
+Allow: /hotels/innere-stadt
+Allow: /hotels/mariahilf
+Allow: /hotels/neubau
+
+# Block admin/staging areas
+Disallow: /admin/
+Disallow: /staging/
+Disallow: /test/
+Disallow: /dev/
+
+# Block affiliate tracking parameters from indexing
+Disallow: /*?aid=*
+Disallow: /*?affiliate=*
+Disallow: /*?utm_*
+
+# Crawl delay for different bots
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 2
+
+User-agent: Slurp
+Crawl-delay: 3
+
+# Block AI training crawlers (privacy protection)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /

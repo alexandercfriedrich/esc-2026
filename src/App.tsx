@@ -5,6 +5,8 @@ import { BookingSearchForm } from '@/components/BookingSearchForm'
 import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
 import { BookingWidget } from '@/components/BookingWidget'
 import { AffiliateInfo } from '@/components/AffiliateInfo'
+import { Breadcrumb } from '@/components/Breadcrumb'
+import { DynamicMetaTags } from '@/components/DynamicMetaTags'
 import SEO from '@/components/SEO'
 import { BookingHotel, HotelSearchParams, searchBookingHotels } from '@/services/hotelService'
 import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform_colorful_impressive_mind_blowin_yrsl9hs8ik2077us0ncz_1.png'
@@ -48,6 +50,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Dynamic Meta Tags Component */}
+      <DynamicMetaTags 
+        hotels={hotels}
+        searchQuery=""
+        pageType={searchPerformed ? 'search' : 'home'}
+      />
+      
       {/* SEO Component with comprehensive Schema.org markup */}
       <SEO 
         hotels={hotels}
@@ -69,6 +78,12 @@ export default function App() {
       <div className="rainbow-header"></div>
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumb 
+          pageType={searchPerformed ? 'search' : 'home'}
+          searchType={searchPerformed ? 'Hotel Search Results' : undefined}
+        />
+        
         <div className="text-center mb-8">
           <p className="text-lg md:text-xl text-foreground">🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien</p>
         </div>
