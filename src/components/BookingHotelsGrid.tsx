@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Eye, Users } from '@phosphor-icons/react'
 import { BookingHotel, generateAffiliateUrl, HotelSearchParams } from '@/services/hotelService'
+import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
 
 interface BookingHotelsGridProps {
@@ -140,6 +141,13 @@ export function BookingHotelsGrid({
 
   return (
     <div className="space-y-6">
+      {/* Generate rich snippets for all hotels for SEO */}
+      {hotels.map((hotel) => (
+        <div key={`snippet-${hotel.id}`} className="hidden">
+          <HotelRichSnippet hotel={hotel} showReviews={false} />
+        </div>
+      ))}
+      
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">
           📍 {hotels.length} verfügbare Hotels in Wien
