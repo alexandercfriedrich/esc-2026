@@ -16,7 +16,13 @@ function Card({ className, ...props }: ComponentProps<"div">) {
 }
 
 function CardHeader({ className, ...props }: ComponentProps<"div">) {
-  return null
+  return (
+    <div
+      data-slot="card-header"
+      className={cn("px-6", className)}
+      {...props}
+    />
+  )
 }
 
 function CardTitle({ className, ...props }: ComponentProps<"div">) {
