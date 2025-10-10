@@ -20,9 +20,7 @@ export function BookingWidget({ searchPerformed, bookingHotelsCount, isSearching
           <div className="bg-gradient-to-r from-pride-blue/10 to-pride-indigo/10 rounded-lg p-4">
             <div className="mb-3">
               <h3 className="font-semibold">🎯 Eurovision Hotel-Empfehlungen</h3>
-              <p className="text-sm text-muted-foreground">
-                Handverlesene Hotels mit aktuellen Preisen und Verfügbarkeiten • LGBTQ+ freundliche Auswahl
-              </p>
+              <p className="text-sm text-muted-foreground">Handverlesene Hotels mit aktuellen Preisen und Verfügbarkeiten • LGBTQ+ freundliche Auswahl</p>
             </div>
             
             <div className="flex gap-2 flex-wrap">
@@ -75,5 +73,5 @@ export function BookingWidget({ searchPerformed, bookingHotelsCount, isSearching
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

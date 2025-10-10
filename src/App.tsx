@@ -47,8 +47,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Rainbow Header */}
-      <div className="rainbow-header"></div>
       {/* Hero Section with Eurovision Banner */}
       <section className="relative h-96 bg-cover bg-center bg-no-repeat" style={{ 
         backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${eurovisionBanner}')`
@@ -62,6 +60,8 @@ export default function App() {
           </div>
         </div>
       </section>
+      {/* Rainbow Header */}
+      <div className="rainbow-header"></div>
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <BookingSearchForm onSearch={handleSearch} />
