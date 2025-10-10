@@ -13,10 +13,14 @@ export default function App() {
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
   const [favoriteHotels, setFavoriteHotels] = useKV<string[]>("favorite-hotels", [])
+  // Store current search parameters for affiliate link generation
+  const [currentSearchParams, setCurrentSearchParams] = useState<HotelSearchParams | null>(null)
 
   const handleSearch = async (params: HotelSearchParams) => {
     setIsSearching(true)
     setSearchPerformed(false)
+    // Store the search parameters for affiliate link generation
+    setCurrentSearchParams(params)
     
     try {
       const results = await searchBookingHotels(params)
@@ -72,10 +76,10 @@ export default function App() {
           isSearching={isSearching}
         />
         
-        {(searchPerformed || isSearching) && (
+        {(searchPerformed || isSearching) && currentSearchParams && (
           <BookingHotelsGrid 
             hotels={hotels}
-            searchParams={{ checkIn: '', checkOut: '', adults: 2, children: 0, rooms: 1, priceMin: 0, priceMax: 500 }}
+            searchParams={currentSearchParams}
             favoriteHotels={favoriteHotels || []}
             onToggleFavorite={handleToggleFavorite}
           />

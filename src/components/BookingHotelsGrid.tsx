@@ -38,7 +38,7 @@ export function BookingHotelsGrid({
       console.warn('CJ tracking failed:', error)
     }
 
-    // Generate Booking.com affiliate URL
+    // Generate Booking.com affiliate URL with current search parameters
     const affiliateUrl = generateAffiliateUrl(hotel, searchParams)
     
     // Open booking URL in new tab

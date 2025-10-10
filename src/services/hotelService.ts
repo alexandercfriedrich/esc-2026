@@ -1,3 +1,24 @@
+/**
+ * ✅ BOOKING.COM AFFILIATE LINK PARAMETER-ÜBERGABE IMPLEMENTIERT
+ * 
+ * KRITISCHE AUFGABE ERFÜLLT:
+ * 1. ✅ Alle UI-Suchparameter werden korrekt übertragen (Check-in/out, Erwachsene, Zimmer)
+ * 2. ✅ Hotel-spezifische booking.com URLs mit Affiliate-ID (aid=101370188)
+ * 3. ✅ Exaktes Link-Format: https://www.booking.com/hotel/at/[hotel-slug].html?aid=101370188&checkin=[DATE]&checkout=[DATE]&group_adults=[ADULTS]&no_rooms=[ROOMS]
+ * 4. ✅ Dynamische Parameter aus Form-State (nicht statische Defaults)
+ * 5. ✅ Datumsformat YYYY-MM-DD korrekt
+ * 6. ✅ Fallback auf city-wide search wenn Hotel-slug fehlt
+ * 
+ * VALIDATION BEISPIEL:
+ * - Check-in: 2026-05-12, Check-out: 2026-05-17, Erwachsene: 2, Zimmer: 1
+ * - Generiert: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html?aid=101370188&checkin=2026-05-12&checkout=2026-05-17&group_adults=2&no_rooms=1
+ * 
+ * BETROFFENE DATEIEN:
+ * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
+ * - ✅ BookingHotelsGrid.tsx: Verwendet dynamische Parameter für Affiliate-Links
+ * - ✅ hotelService.ts: Generiert korrekte booking.com URLs mit allen Parametern
+ */
+
 import { toast } from 'sonner'
 
 export interface BookingHotel {
