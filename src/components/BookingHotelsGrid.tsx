@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users } from '@phosphor-icons/react'
-import { BookingHotel, generateAffiliateUrl, HotelSearchParams } from '@/services/hotelService'
+import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge } from '@/services/hotelService'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
 

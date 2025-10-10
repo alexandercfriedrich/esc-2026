@@ -835,6 +835,15 @@ export const getHotelImageUrl = (hotel: BookingHotel): string => {
   return hotel.photos[0];
 };
 
+// Get hotel image URL in large resolution for detailed views
+export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
+  if (!hotel.photos || hotel.photos.length === 0) {
+    return 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
+  }
+  // Convert max1024x768 to max1280x900 for higher resolution
+  return hotel.photos[0].replace('max1024x768', 'max1280x900');
+};
+
 // Alias for compatibility with App.tsx
 export async function searchBookingHotels(params: HotelSearchParams): Promise<BookingHotel[]> {
   // Convert HotelSearchParams to HotelSearchCriteria
