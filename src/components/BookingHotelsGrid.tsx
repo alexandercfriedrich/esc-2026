@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users } from '@phosphor-icons/react'
-import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl } from '@/services/hotelService'
+import { BookingHotel, generateAffiliateUrl, HotelSearchParams } from '@/services/hotelService'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
 
@@ -49,73 +49,23 @@ export function BookingHotelsGrid({
   }
 
   const getHotelImageUrl = (hotel: BookingHotel) => {
-    // First priority: Use dynamically fetched photos from Booking.com
+    // Use photos from hotel data - these are valid Booking.com image URLs
     if (hotel.photos && hotel.photos.length > 0) {
       return hotel.photos[0]
     }
     
-    // Fallback to static mapping if no dynamic images available
-    const realBookingImages: { [key: string]: string } = {
-      'boutiquehotel-stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/9100000.jpg?k=updated_image_91&o=&hp=1',
-      'boutique-hotel-motto': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/9700000.jpg?k=updated_image_97&o=&hp=1',
-      'hotel-altstadt-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/9200000.jpg?k=updated_image_92&o=&hp=1',
-      'sans-souci-wien': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13400000.jpg?k=updated_image_134&o=&hp=1',
-      'hotel-mercure-wien-city': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8&o=',
-      'prize-radisson-vienna-city': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1',
-      'do-co-hotel-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/10100000.jpg?k=updated_image_101&o=&hp=1',
-      'boutique-hotel-donauwalzer': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/10400000.jpg?k=updated_image_104&o=&hp=1',
-      'hotel-henriette-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/10200000.jpg?k=updated_image_102&o=&hp=1',
-      'hotel-zeitgeist-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/10300000.jpg?k=updated_image_103&o=&hp=1',
-      'andaz-vienna-am-belvedere': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/11100000.jpg?k=updated_image_111&o=&hp=1',
-      'leonardo-hotel-vienna-hauptbahnhof': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1',
-      'hilton-vienna-waterfront': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/11700000.jpg?k=updated_image_117&o=&hp=1',
-      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/11200000.jpg?k=updated_image_112&o=&hp=1',
-      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/12300000.jpg?k=updated_image_123&o=&hp=1',
-      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/12400000.jpg?k=updated_image_124&o=&hp=1',
-      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/11900000.jpg?k=updated_image_119&o=&hp=1',
-      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/12700000.jpg?k=updated_image_127&o=&hp=1',
-      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/12100000.jpg?k=updated_image_121&o=&hp=1',
-      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/12200000.jpg?k=updated_image_122&o=&hp=1',
-      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13100000.jpg?k=updated_image_131&o=&hp=1',
-      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13300000.jpg?k=updated_image_133&o=&hp=1'
-    }
-    
-    return realBookingImages[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback'
+    // Fallback to default if no photos available
+    return 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback'
   }
 
   const getHotelImageUrlLarge = (hotel: BookingHotel) => {
-    // First priority: Use dynamically fetched photos from Booking.com (larger version)
+    // Use photos from hotel data - convert to larger version
     if (hotel.photos && hotel.photos.length > 0) {
       return hotel.photos[0].replace('max1024x768', 'max1280x900')
     }
     
-    // Fallback to static mapping if no dynamic images available (larger version)
-    const realBookingImagesLarge: { [key: string]: string } = {
-      'boutiquehotel-stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/9100000.jpg?k=updated_image_91&o=&hp=1',
-      'boutique-hotel-motto': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/9700000.jpg?k=updated_image_97&o=&hp=1',
-      'hotel-altstadt-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/9200000.jpg?k=updated_image_92&o=&hp=1',
-      'sans-souci-wien': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/13400000.jpg?k=updated_image_134&o=&hp=1',
-      'hotel-mercure-wien-city': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/234567890.jpg?k=m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8&o=',
-      'prize-radisson-vienna-city': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/14000000.jpg?k=updated_image_140&o=&hp=1',
-      'do-co-hotel-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/10100000.jpg?k=updated_image_101&o=&hp=1',
-      'boutique-hotel-donauwalzer': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/10400000.jpg?k=updated_image_104&o=&hp=1',
-      'hotel-henriette-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/10200000.jpg?k=updated_image_102&o=&hp=1',
-      'hotel-zeitgeist-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/10300000.jpg?k=updated_image_103&o=&hp=1',
-      'andaz-vienna-am-belvedere': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/11100000.jpg?k=updated_image_111&o=&hp=1',
-      'leonardo-hotel-vienna-hauptbahnhof': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/10700000.jpg?k=updated_image_107&o=&hp=1',
-      'hilton-vienna-waterfront': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/11700000.jpg?k=updated_image_117&o=&hp=1',
-      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/11200000.jpg?k=updated_image_112&o=&hp=1',
-      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/12300000.jpg?k=updated_image_123&o=&hp=1',
-      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/12400000.jpg?k=updated_image_124&o=&hp=1',
-      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/11900000.jpg?k=updated_image_119&o=&hp=1',
-      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/12700000.jpg?k=updated_image_127&o=&hp=1',
-      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/12100000.jpg?k=updated_image_121&o=&hp=1',
-      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/12200000.jpg?k=updated_image_122&o=&hp=1',
-      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/13100000.jpg?k=updated_image_131&o=&hp=1',
-      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/13300000.jpg?k=updated_image_133&o=&hp=1'
-    }
-    
-    return realBookingImagesLarge[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback'
+    // Fallback to default large version
+    return 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback'
   }
 
   const getPrideBadgeColor = (certification: string) => {
