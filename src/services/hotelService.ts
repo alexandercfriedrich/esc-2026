@@ -743,27 +743,49 @@ export function getAllHotels(): BookingHotel[] {
 
 // Get hotel image URL - now using local assets
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
-  // Use local Hotel Motto image for Boutique Hotel MOTTO
+  // Use local Hotel Motto image ONLY for Boutique Hotel MOTTO
   if (hotel.id === 'boutique-hotel-motto') {
     return hotelMottoImage;
   }
   
-  // For other hotels, use a default fallback for now
-  return hotelMottoImage; // Will be replaced when more images are provided
+  // For other hotels, use Booking.com proxy URL if they have photos
+  if (hotel.photos && hotel.photos.length > 0) {
+    return `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(hotel.photos[0])}`;
+  }
+  
+  // If no photos available, return a placeholder or empty string
+  return '';
 };
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
-  // Use the same image for now - will be updated when more images are provided
-  return getHotelImageUrl(hotel);
+  // Use local Hotel Motto image ONLY for Boutique Hotel MOTTO
+  if (hotel.id === 'boutique-hotel-motto') {
+    return hotelMottoImage;
+  }
+  
+  // For other hotels, use Booking.com proxy URL if they have photos
+  if (hotel.photos && hotel.photos.length > 0) {
+    return `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(hotel.photos[0])}`;
+  }
+  
+  // If no photos available, return a placeholder or empty string
+  return '';
 };
 
 // Remove photos property from components that still reference it and update photo count display
 export const getPhotoCount = (hotel: BookingHotel): number => {
-  // Return 1 for Hotel Motto since we have its image, 0 for others until more assets are provided
+  // Return 1 for Hotel Motto since we have its image
   if (hotel.id === 'boutique-hotel-motto') {
     return 1;
   }
+  
+  // For other hotels, return the actual photo count if they have photos
+  if (hotel.photos && hotel.photos.length > 0) {
+    return hotel.photos.length;
+  }
+  
+  // Return 0 if no photos available
   return 0;
 };
 

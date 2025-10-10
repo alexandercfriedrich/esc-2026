@@ -122,12 +122,21 @@ export function BookingHotelsGrid({
             
             {/* Hotel Image */}
             <div className="h-48 relative overflow-hidden">
-              <img 
-                src={getHotelImageUrl(hotel)}
-                alt={hotel.name}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                loading="lazy"
-              />
+              {getHotelImageUrl(hotel) ? (
+                <img 
+                  src={getHotelImageUrl(hotel)}
+                  alt={hotel.name}
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full bg-muted flex items-center justify-center">
+                  <div className="text-center text-muted-foreground">
+                    <div className="text-4xl mb-2">🏨</div>
+                    <div className="text-sm">Kein Bild verfügbar</div>
+                  </div>
+                </div>
+              )}
               <div className="absolute bottom-4 left-4">
                 <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
                   {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
@@ -222,20 +231,31 @@ export function BookingHotelsGrid({
                         <div className="space-y-6">
                           {/* Hotel Image */}
                           <div className="h-64 rounded-lg relative overflow-hidden">
-                            <img 
-                              src={getHotelImageUrlLarge(hotel)}
-                              alt={hotel.name}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
+                            {getHotelImageUrlLarge(hotel) ? (
+                              <img 
+                                src={getHotelImageUrlLarge(hotel)}
+                                alt={hotel.name}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-muted flex items-center justify-center">
+                                <div className="text-center text-muted-foreground">
+                                  <div className="text-6xl mb-4">🏨</div>
+                                  <div className="text-lg">Kein Bild verfügbar</div>
+                                </div>
+                              </div>
+                            )}
                             <div className="absolute bottom-4 left-4">
                               <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
                                 {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                               </Badge>
                             </div>
-                            <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
-                              📷 {getPhotoCount(hotel)} Fotos
-                            </div>
+                            {getPhotoCount(hotel) > 0 && (
+                              <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
+                                📷 {getPhotoCount(hotel)} Fotos
+                              </div>
+                            )}
                           </div>
                           
                           {/* Description */}
