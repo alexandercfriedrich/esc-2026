@@ -49,7 +49,7 @@ export default function App() {
     <div className="min-h-screen bg-background">
       {/* Hero Section with Eurovision Banner */}
       <section className="relative h-96 bg-cover bg-center bg-no-repeat" style={{ 
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${eurovisionBanner}')`
+        backgroundImage: `url('${eurovisionBanner}')`
       }}>
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
           <div className="text-center text-white">
