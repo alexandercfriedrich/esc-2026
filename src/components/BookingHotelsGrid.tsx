@@ -48,25 +48,7 @@ export function BookingHotelsGrid({
     toast.success(`Weiterleitung zu Booking.com für ${hotel.name}...`)
   }
 
-  const getHotelImageUrl = (hotel: BookingHotel) => {
-    // Use photos from hotel data - these are valid Booking.com image URLs
-    if (hotel.photos && hotel.photos.length > 0) {
-      return hotel.photos[0]
-    }
-    
-    // Fallback to default if no photos available
-    return 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback'
-  }
 
-  const getHotelImageUrlLarge = (hotel: BookingHotel) => {
-    // Use photos from hotel data - convert to larger version
-    if (hotel.photos && hotel.photos.length > 0) {
-      return hotel.photos[0].replace('max1024x768', 'max1280x900')
-    }
-    
-    // Fallback to default large version
-    return 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback'
-  }
 
   const getPrideBadgeColor = (certification: string) => {
     switch(certification) {
