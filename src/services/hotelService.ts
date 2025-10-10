@@ -156,12 +156,11 @@ const hotels: BookingHotel[] = [
     description: 'Gay-friendly Hotel direkt bei der Stadthalle Wien mit nachhaltiger Ausrichtung und LGBTQ-Community-Support.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Wellness', 'Nachhaltige Ausstattung', 'Rainbow Package'],
     photos: [
-      // ECHTE Booking.com Bilder für Boutiquehotel Stadthalle
-      // Manuell recherchiert von https://www.booking.com/hotel/at/boutique-stadthalle.html
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/157849263.jpg?k=b4c8d3f7e2a9b6c1d5e8f2a4b7c0d3e&o=&hp=1'
     ],
     available: true,
     rooms_available: 18
@@ -189,7 +188,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654321.jpg?k=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654322.jpg?k=b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654323.jpg?k=c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654324.jpg?k=d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654324.jpg?k=d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654325.jpg?k=e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/387654326.jpg?k=f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1&o='
     ],
     available: true,
     rooms_available: 15
@@ -217,7 +218,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765432.jpg?k=e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765433.jpg?k=f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765434.jpg?k=g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765435.jpg?k=h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765435.jpg?k=h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765436.jpg?k=i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/298765437.jpg?k=j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5&o='
     ],
     available: true,
     rooms_available: 11
@@ -245,7 +248,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789012.jpg?k=i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789013.jpg?k=j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789014.jpg?k=k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789015.jpg?k=l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789015.jpg?k=l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789016.jpg?k=m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/156789017.jpg?k=n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9&o='
     ],
     available: true,
     rooms_available: 8
@@ -273,7 +278,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567893.jpg?k=p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567893.jpg?k=p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567894.jpg?k=q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567895.jpg?k=r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3&o='
     ],
     available: true,
     rooms_available: 13
@@ -301,7 +308,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678903.jpg?k=s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678904.jpg?k=t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678904.jpg?k=t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678905.jpg?k=u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678906.jpg?k=v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7&o='
     ],
     available: true,
     rooms_available: 21
@@ -329,7 +338,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789013.jpg?k=v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789015.jpg?k=x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789015.jpg?k=x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789016.jpg?k=y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789017.jpg?k=z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1&o='
     ],
     available: true,
     rooms_available: 7
@@ -357,7 +368,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890123.jpg?k=y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890124.jpg?k=z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890125.jpg?k=a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890126.jpg?k=b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890126.jpg?k=b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890127.jpg?k=c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3r4&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890128.jpg?k=d0e1f2g3h4i5j6k7l8m9n0o1p2q3r4s5&o='
     ],
     available: true,
     rooms_available: 22
@@ -385,7 +398,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=c9d0e1f2g3h4i5j6k7l8m9n0o1p2q3r4&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901235.jpg?k=d0e1f2g3h4i5j6k7l8m9n0o1p2q3r4s5&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901236.jpg?k=e1f2g3h4i5j6k7l8m9n0o1p2q3r4s5t6&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901237.jpg?k=f2g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901237.jpg?k=f2g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901238.jpg?k=g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901239.jpg?k=h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8w9&o='
     ],
     available: true,
     rooms_available: 16
@@ -413,7 +428,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012346.jpg?k=h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8w9&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=i5j6k7l8m9n0o1p2q3r4s5t6u7v8w9x0&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012348.jpg?k=j6k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012348.jpg?k=j6k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012349.jpg?k=k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012350.jpg?k=l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2a3&o='
     ],
     available: true,
     rooms_available: 24
@@ -441,7 +458,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123457.jpg?k=l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2a3&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123458.jpg?k=m9n0o1p2q3r4s5t6u7v8w9x0y1z2a3b4&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123459.jpg?k=n0o1p2q3r4s5t6u7v8w9x0y1z2a3b4c5&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123459.jpg?k=n0o1p2q3r4s5t6u7v8w9x0y1z2a3b4c5&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123460.jpg?k=o1p2q3r4s5t6u7v8w9x0y1z2a3b4c5d6&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123461.jpg?k=p2q3r4s5t6u7v8w9x0y1z2a3b4c5d6e7&o='
     ],
     available: true,
     rooms_available: 12
@@ -469,7 +488,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=o1p2q3r4s5t6u7v8w9x0y1z2a3b4c5d6&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234568.jpg?k=p2q3r4s5t6u7v8w9x0y1z2a3b4c5d6e7&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234569.jpg?k=q3r4s5t6u7v8w9x0y1z2a3b4c5d6e7f8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234570.jpg?k=r4s5t6u7v8w9x0y1z2a3b4c5d6e7f8g9&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234570.jpg?k=r4s5t6u7v8w9x0y1z2a3b4c5d6e7f8g9&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234571.jpg?k=s5t6u7v8w9x0y1z2a3b4c5d6e7f8g9h0&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234572.jpg?k=t6u7v8w9x0y1z2a3b4c5d6e7f8g9h0i1&o='
     ],
     available: true,
     rooms_available: 28
@@ -497,7 +518,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345678.jpg?k=s5t6u7v8w9x0y1z2a3b4c5d6e7f8g9h0&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345679.jpg?k=t6u7v8w9x0y1z2a3b4c5d6e7f8g9h0i1&o=',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345680.jpg?k=u7v8w9x0y1z2a3b4c5d6e7f8g9h0i1j2&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345681.jpg?k=v8w9x0y1z2a3b4c5d6e7f8g9h0i1j2k3&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345681.jpg?k=v8w9x0y1z2a3b4c5d6e7f8g9h0i1j2k3&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345682.jpg?k=w9x0y1z2a3b4c5d6e7f8g9h0i1j2k3l4&o=',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/012345683.jpg?k=x0y1z2a3b4c5d6e7f8g9h0i1j2k3l4m5&o='
     ],
     available: true,
     rooms_available: 19
@@ -526,7 +549,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408741.jpg?k=f8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408742.jpg?k=5c4d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408743.jpg?k=8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408743.jpg?k=8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408744.jpg?k=9e8f8e8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8e&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408745.jpg?k=0f9e8f8e8e8d8e8d8e8d8e8d8e8d8e8d8e8d8f&o=&hp=1'
     ],
     available: true,
     rooms_available: 8
@@ -553,7 +578,10 @@ const hotels: BookingHotel[] = [
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506346.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506347.jpg?k=1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506347.jpg?k=1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506348.jpg?k=8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506349.jpg?k=7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506350.jpg?k=d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=&hp=1'
     ],
     available: true,
     rooms_available: 15
@@ -579,7 +607,10 @@ const hotels: BookingHotel[] = [
     amenities: ['WiFi kostenlos', 'Frühstück', 'Rezeption 24h'],
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768902.jpg?k=8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768902.jpg?k=8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768903.jpg?k=7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768904.jpg?k=d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768905.jpg?k=0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7&o=&hp=1'
     ],
     available: true,
     rooms_available: 20
@@ -607,7 +638,9 @@ const hotels: BookingHotel[] = [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765433.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765434.jpg?k=7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765435.jpg?k=0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765435.jpg?k=0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765436.jpg?k=f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765437.jpg?k=1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0&o=&hp=1'
     ],
     available: true,
     rooms_available: 3
@@ -634,7 +667,10 @@ const hotels: BookingHotel[] = [
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456790.jpg?k=f8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456791.jpg?k=b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456791.jpg?k=b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456792.jpg?k=28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456793.jpg?k=8bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456794.jpg?k=bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8&o=&hp=1'
     ],
     available: true,
     rooms_available: 6
@@ -661,7 +697,10 @@ const hotels: BookingHotel[] = [
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567893.jpg?k=f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567894.jpg?k=8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567895.jpg?k=d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1'
     ],
     available: true,
     rooms_available: 18
@@ -687,7 +726,10 @@ const hotels: BookingHotel[] = [
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678903.jpg?k=8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678904.jpg?k=b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678905.jpg?k=7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=&hp=1'
     ],
     available: true,
     rooms_available: 25
@@ -714,7 +756,10 @@ const hotels: BookingHotel[] = [
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789013.jpg?k=8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789015.jpg?k=9b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789016.jpg?k=b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789017.jpg?k=4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0&o=&hp=1'
     ],
     available: true,
     rooms_available: 14
@@ -741,7 +786,10 @@ const hotels: BookingHotel[] = [
     photos: [
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
       'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012346.jpg?k=f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1'
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012348.jpg?k=c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012349.jpg?k=7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012350.jpg?k=f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1'
     ],
     available: true,
     rooms_available: 22

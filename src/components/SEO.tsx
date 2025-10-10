@@ -4,7 +4,7 @@ import { BookingHotel, HotelSearchParams } from '@/services/hotelService'
 interface SEOProps {
   hotels?: BookingHotel[]
   searchParams?: HotelSearchParams | null
-  pageType?: 'home' | 'search' | 'hotel'
+  pageType?: 'home' | 'search' | 'hotel' | 'credits'
   currentHotel?: BookingHotel
 }
 

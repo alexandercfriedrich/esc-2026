@@ -6,7 +6,7 @@ interface DynamicMetaTagsProps {
   currentHotel?: BookingHotel
   searchQuery?: string
   location?: string
-  pageType?: 'home' | 'search' | 'hotel' | 'category'
+  pageType?: 'home' | 'search' | 'hotel' | 'category' | 'credits'
 }
 
 export function DynamicMetaTags({ 
@@ -21,6 +21,10 @@ export function DynamicMetaTags({
   const generateTitle = () => {
     if (currentHotel) {
       return `${currentHotel.name} | Eurovision 2026 Wien | LGBTQ+ Hotel ${currentHotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 Gay Friendly'}`
+    }
+    
+    if (pageType === 'credits') {
+      return 'Bildnachweis | Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
@@ -41,6 +45,10 @@ export function DynamicMetaTags({
     if (currentHotel) {
       const certText = currentHotel.lgbt_certification === 'certified' ? 'Pride-zertifiziertes' : 'LGBTQ+ freundliches'
       return `${certText} Hotel ${currentHotel.name} für Eurovision 2026 - ${currentHotel.distance_km_to_venue}km zur Stadthalle, ab €${currentHotel.price.amount}/Nacht. ${currentHotel.description?.slice(0, 100)}...`
+    }
+    
+    if (pageType === 'credits') {
+      return 'Bildnachweis und Quellenangaben für alle verwendeten Bilder, Logos und Medien auf der Eurovision 2026 Vienna Hotels Plattform.'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
