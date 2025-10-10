@@ -129,7 +129,8 @@ export function BookingHotelsGrid({
                 loading="lazy"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
+                  const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
+                  target.src = `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(fallbackUrl)}`;
                 }}
               />
               <div className="absolute bottom-4 left-4">
@@ -233,7 +234,8 @@ export function BookingHotelsGrid({
                               loading="lazy"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
-                                target.src = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
+                                const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
+                                target.src = `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(fallbackUrl)}`;
                               }}
                             />
                             <div className="absolute bottom-4 left-4">

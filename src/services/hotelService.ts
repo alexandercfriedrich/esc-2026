@@ -827,21 +827,28 @@ export function getAllHotels(): BookingHotel[] {
   return [...hotels]
 }
 
-// Get hotel image URL - checks photos array first, then fallback
+// Booking.com Image Proxy configuration
+const BOOKING_IMAGE_PROXY_BASE = 'https://booking-image-proxy.vercel.app/api/proxy-image';
+
+// Get hotel image URL - uses proxy to bypass CORS restrictions
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
   if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
-    return 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
+    const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
+    return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(fallbackUrl)}`;
   }
-  return hotel.photos[0];
+  const bookingImageUrl = hotel.photos[0];
+  return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(bookingImageUrl)}`;
 };
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
   if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
-    return 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
+    const fallbackUrl = 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
+    return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(fallbackUrl)}`;
   }
-  // Convert max1024x768 to max1280x900 for higher resolution
-  return hotel.photos[0].replace('max1024x768', 'max1280x900');
+  // Convert max1024x768 to max1280x900 for higher resolution and use proxy
+  const largeImageUrl = hotel.photos[0].replace('max1024x768', 'max1280x900');
+  return `${BOOKING_IMAGE_PROXY_BASE}?url=${encodeURIComponent(largeImageUrl)}`;
 };
 
 // Alias for compatibility with App.tsx
