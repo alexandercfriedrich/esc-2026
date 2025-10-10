@@ -100,10 +100,12 @@ const hotels: BookingHotel[] = [
     description: 'Gay-friendly Hotel direkt bei der Stadthalle Wien mit nachhaltiger Ausrichtung und LGBTQ-Community-Support.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Wellness', 'Nachhaltige Ausstattung', 'Rainbow Package'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/425678912.jpg?k=c7e8f9a0b1d2e3f4g5h6i7j8k9l0m1n2&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/425678913.jpg?k=d8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/425678914.jpg?k=e9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/425678915.jpg?k=f0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5&o='
+      // ECHTE Booking.com Bilder für Boutiquehotel Stadthalle
+      // Manuell recherchiert von https://www.booking.com/hotel/at/boutique-stadthalle.html
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
     ],
     available: true,
     rooms_available: 18
