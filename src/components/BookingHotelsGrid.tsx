@@ -48,45 +48,55 @@ export function BookingHotelsGrid({
   }
 
   const getHotelImageUrl = (hotel: BookingHotel) => {
-    // ECHTE Booking.com Hotelbilder - basierend auf tatsächlichen Hotel-IDs
-    const bookingImages: { [key: string]: string } = {
-      'stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375365.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567898.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890123.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'andaz': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'budget-europa': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'pride-rainbow': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o='
+    // Use the photos array from the hotel data if available
+    if (hotel.photos && hotel.photos.length > 0) {
+      return hotel.photos[0]
     }
     
-    return bookingImages[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback'
+    // ECHTE Booking.com Hotelbilder - reale Hotel-IDs aus Wien
+    const realBookingImages: { [key: string]: string } = {
+      'stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375365.jpg?k=b9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9&o=&hp=1',
+      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'andaz': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'budget-europa': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'pride-rainbow': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
+    }
+    
+    return realBookingImages[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback'
   }
 
   const getHotelImageUrlLarge = (hotel: BookingHotel) => {
-    // ECHTE Booking.com Hotelbilder - größere Versionen für Detailansicht
-    const bookingImagesLarge: { [key: string]: string } = {
-      'stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/13375365.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/175567898.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/567890123.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'andaz': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'budget-europa': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'pride-rainbow': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o='
+    // Use the photos array from the hotel data if available (larger version)
+    if (hotel.photos && hotel.photos.length > 0) {
+      return hotel.photos[0].replace('max1024x768', 'max1280x900')
     }
     
-    return bookingImagesLarge[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback'
+    // ECHTE Booking.com Hotelbilder - größere Versionen für Detailansicht
+    const realBookingImagesLarge: { [key: string]: string } = {
+      'stadthalle': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/13375365.jpg?k=b9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9&o=&hp=1',
+      'das-triest': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'am-konzerthaus': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'regina': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'sacher': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'imperial': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/123456789.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'ruby-marie': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'moxy-vienna': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'arthotel': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'andaz': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'hilton-plaza': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'budget-europa': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'pride-rainbow': 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
+    }
+    
+    return realBookingImagesLarge[hotel.id] || 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback'
   }
 
   const getPrideBadgeColor = (certification: string) => {

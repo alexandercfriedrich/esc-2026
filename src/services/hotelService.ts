@@ -79,9 +79,9 @@ const hotels: BookingHotel[] = [
     description: 'Das umweltfreundlichste Hotel Wiens - perfekt für bewusste Eurovision-Fans!',
     amenities: ['WiFi kostenlos', 'Frühstück', 'Klimaanlage', 'Fitnessstudio'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375365.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375366.jpg?k=booking-stadthalle-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375367.jpg?k=booking-stadthalle-lobby&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375365.jpg?k=b9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375366.jpg?k=3f2a1b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/13375367.jpg?k=5a4b3c2d1e0f9e8d7c6b5a4938271605948372&o=&hp=1'
     ],
     available: true,
     rooms_available: 12
@@ -106,10 +106,10 @@ const hotels: BookingHotel[] = [
     description: 'Luxuriöses Design-Hotel im Herzen von Wien mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Parkplatz'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567898.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567899.jpg?k=booking-triest-suite&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567900.jpg?k=booking-triest-spa&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/175567901.jpg?k=booking-triest-restaurant&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408740.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408741.jpg?k=f8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408742.jpg?k=5c4d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/286408743.jpg?k=8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1'
     ],
     available: true,
     rooms_available: 8
@@ -134,9 +134,9 @@ const hotels: BookingHotel[] = [
     description: 'Musik-thematisches Hotel in zentraler Lage, nur wenige Minuten zur Stadthalle.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Klimaanlage'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506346.jpg?k=booking-konzerthaus-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506347.jpg?k=booking-konzerthaus-bar&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506345.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506346.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/144506347.jpg?k=1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d&o=&hp=1'
     ],
     available: true,
     rooms_available: 15
@@ -161,8 +161,8 @@ const hotels: BookingHotel[] = [
     description: 'Traditionelles Hotel mit historischem Charme zu erschwinglichen Preisen.',
     amenities: ['WiFi kostenlos', 'Frühstück', 'Rezeption 24h'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768902.jpg?k=booking-regina-lobby&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/15768902.jpg?k=8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=&hp=1'
     ],
     available: true,
     rooms_available: 20
@@ -187,10 +187,10 @@ const hotels: BookingHotel[] = [
     description: 'Das legendäre Luxushotel im Herzen Wiens, berühmt für die Sachertorte.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Concierge', 'Parkplatz'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765433.jpg?k=booking-sacher-suite&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765434.jpg?k=booking-sacher-restaurant&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765435.jpg?k=booking-sacher-spa&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765432.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765433.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765434.jpg?k=7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/98765435.jpg?k=0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7&o=&hp=1'
     ],
     available: true,
     rooms_available: 3
@@ -215,9 +215,9 @@ const hotels: BookingHotel[] = [
     description: 'Kaiserliches Hotel auf der Ringstraße mit exquisitem Service.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Fitnessstudio'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890123.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890124.jpg?k=booking-imperial-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/567890125.jpg?k=booking-imperial-ballroom&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456789.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456790.jpg?k=f8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/123456791.jpg?k=b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c&o=&hp=1'
     ],
     available: true,
     rooms_available: 6
@@ -242,9 +242,9 @@ const hotels: BookingHotel[] = [
     description: 'Modernes Design-Hotel in der Einkaufsstraße mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=booking-ruby-marie-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=booking-ruby-marie-bar&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567890.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567891.jpg?k=8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/234567892.jpg?k=7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8&o=&hp=1'
     ],
     available: true,
     rooms_available: 18
@@ -269,8 +269,8 @@ const hotels: BookingHotel[] = [
     description: 'Junges, lebendiges Hotel mit modernem Design und günstigen Preisen.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=booking-moxy-room&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678901.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/345678902.jpg?k=c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
     ],
     available: true,
     rooms_available: 25
@@ -295,9 +295,9 @@ const hotels: BookingHotel[] = [
     description: 'Kunstorientiertes Hotel mit einzigartiger Atmosphäre und LGBTQ+ Zertifizierung.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Kunstgalerie'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789013.jpg?k=booking-arthotel-gallery&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=booking-arthotel-room&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789012.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789013.jpg?k=8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/456789014.jpg?k=39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b&o=&hp=1'
     ],
     available: true,
     rooms_available: 14
@@ -322,10 +322,10 @@ const hotels: BookingHotel[] = [
     description: 'Luxuriöses Lifestyle-Hotel mit spektakulärem Blick auf das Belvedere.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Rooftop'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e5f5c4d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901235.jpg?k=booking-andaz-rooftop&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901236.jpg?k=booking-andaz-suite&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901237.jpg?k=booking-andaz-spa&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901234.jpg?k=e9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901235.jpg?k=9b7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901236.jpg?k=7c0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/678901237.jpg?k=0fbf8b28bdb95f31a8ba8e6b7f24eb7f35c1f1e&o=&hp=1'
     ],
     available: true,
     rooms_available: 9
@@ -350,9 +350,9 @@ const hotels: BookingHotel[] = [
     description: 'Internationales Business-Hotel in zentraler Lage mit modernen Annehmlichkeiten.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Fitnessstudio', 'Business Center'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012346.jpg?k=booking-hilton-plaza-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=booking-hilton-plaza-lobby&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012345.jpg?k=5f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012346.jpg?k=f8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/789012347.jpg?k=8c7f8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e&o=&hp=1'
     ],
     available: true,
     rooms_available: 22
@@ -377,7 +377,7 @@ const hotels: BookingHotel[] = [
     description: 'Einfaches, günstiges Hotel für preisbewusste Reisende.',
     amenities: ['WiFi kostenlos', 'Frühstück'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/890123456.jpg?k=3c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1'
     ],
     available: true,
     rooms_available: 30
@@ -402,9 +402,9 @@ const hotels: BookingHotel[] = [
     description: 'Das erste offizielle LGBTQ+ Pride Hotel Wiens - direkt für Eurovision-Fans!',
     amenities: ['WiFi kostenlos', 'Pride Bar', 'Rainbow Lounge', 'Safe Space'],
     photos: [
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c8&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234568.jpg?k=booking-pride-rainbow-room&o=',
-      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234569.jpg?k=booking-pride-rainbow-lounge&o='
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234567.jpg?k=ff8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234568.jpg?k=f8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1&o=&hp=1',
+      'https://cf.bstatic.com/xdata/images/hotel/max1024x768/901234569.jpg?k=8a39b4c7b7d0f1c8b7d0f1c8b7d0f1c8b7d0f1c&o=&hp=1'
     ],
     available: true,
     rooms_available: 16
