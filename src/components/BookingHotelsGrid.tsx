@@ -132,8 +132,7 @@ export function BookingHotelsGrid({
               ) : (
                 <div className="w-full h-full bg-muted flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
-                    <div className="text-4xl mb-2">🏨</div>
-                    <div className="text-sm">Kein Bild verfügbar</div>
+                    <div className="text-sm">No image available</div>
                   </div>
                 </div>
               )}
@@ -241,8 +240,7 @@ export function BookingHotelsGrid({
                             ) : (
                               <div className="w-full h-full bg-muted flex items-center justify-center">
                                 <div className="text-center text-muted-foreground">
-                                  <div className="text-6xl mb-4">🏨</div>
-                                  <div className="text-lg">Kein Bild verfügbar</div>
+                                  <div className="text-lg">No image available</div>
                                 </div>
                               </div>
                             )}

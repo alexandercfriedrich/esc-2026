@@ -48,7 +48,6 @@ export interface BookingHotel {
   description?: string
   // Photos property removed - will be replaced with local assets as they are provided
   amenities?: string[]
-  photos?: string[] // Temporary - to be removed when all photos arrays are cleaned up
   available?: boolean
   rooms_available?: number
 }
@@ -211,12 +210,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Modernes Pride-zertifiziertes Budget-Hotel mit guter Anbindung zur Gay-Szene und Prater-Nähe.',
     amenities: ['WiFi kostenlos', '24h Rezeption', 'Bar', 'Fitness', 'Verschiedene Frühstücksoptionen'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-    ],
     available: true,
     rooms_available: 21
   },
@@ -239,12 +232,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Luxuriöses Pride-zertifiziertes Hotel direkt am Stephansplatz im Herzen Wiens.',
     amenities: ['WiFi kostenlos', 'Restaurant DO & CO', 'Concierge', 'Fahrradverleih', 'Premium Location'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10100000.jpg?k=updated_image_101&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10600000.jpg?k=updated_image_106&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-    ],
     available: true,
     rooms_available: 7
   },
@@ -267,12 +254,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Traditionelles familiengeführtes Boutique-Hotel mit Queer-Fokus und privatem Spa seit 1901.',
     amenities: ['WiFi kostenlos', 'Private Spa', 'Sauna', 'Whirlpool', '24h Bar', 'Walzerkurse', 'Leihfahrräder'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10400000.jpg?k=updated_image_104&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12500000.jpg?k=updated_image_125&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13600000.jpg?k=updated_image_136&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13900000.jpg?k=updated_image_139&o=&hp=1",
-    ],
     available: true,
     rooms_available: 22
   },
@@ -295,12 +276,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Nachhaltiges Gay-friendly Stadthotel nach Gemeinwohl-Ökonomie mit Bio-Bettwaren und zentraler Lage.',
     amenities: ['WiFi kostenlos', 'Bio-Restaurant', 'Nachhaltige Ausstattung', 'Pool', 'Bio-Bettwaren'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10200000.jpg?k=updated_image_102&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10800000.jpg?k=updated_image_108&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-    ],
     available: true,
     rooms_available: 16
   },
@@ -323,12 +298,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Modernes LGBTQ-freundliches Hotel beim Hauptbahnhof mit urbanem Design und Nachhaltigkeitsfokus.',
     amenities: ['WiFi kostenlos', 'TechnoGym', 'Sauna', 'Infrarotkabine', 'Restaurant Frannys', 'Bar Pergola', 'Green Rate'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10300000.jpg?k=updated_image_103&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10500000.jpg?k=updated_image_105&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10900000.jpg?k=updated_image_109&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11000000.jpg?k=updated_image_110&o=&hp=1",
-    ],
     available: true,
     rooms_available: 24
   },
@@ -351,12 +320,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Luxuriöses Lifestyle-Hotel mit spektakulärem Blick auf das Belvedere und Pride Partner-Zertifizierung.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Rooftop', 'Fitness', 'Sauna'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11100000.jpg?k=updated_image_111&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11600000.jpg?k=updated_image_116&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11800000.jpg?k=updated_image_118&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12000000.jpg?k=updated_image_120&o=&hp=1",
-    ],
     available: true,
     rooms_available: 12
   },
@@ -379,12 +342,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Modernes LGBTQ-freundliches Business-Hotel direkt am Hauptbahnhof mit guter Verkehrsanbindung.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', '24h Rezeption', 'Klimaanlage', 'Parkgarage', 'Haustierfreundlich'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-    ],
     available: true,
     rooms_available: 28
   },
@@ -407,12 +364,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'LGBTQ-freundliches Business-Hotel an der Donau mit Spa, Pool und Konferenzeinrichtungen.',
     amenities: ['WiFi kostenlos', 'Spa & Wellness', 'Outdoor Pool', 'Sauna', 'Fitness', 'Restaurant', '24h Rezeption'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11700000.jpg?k=updated_image_117&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-    ],
     available: true,
     rooms_available: 19
   },
@@ -436,12 +387,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Luxuriöses Design-Hotel im Herzen von Wien mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Parkplatz'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11200000.jpg?k=updated_image_112&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11300000.jpg?k=updated_image_113&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11500000.jpg?k=updated_image_115&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-    ],
     available: true,
     rooms_available: 8
   },
@@ -464,12 +409,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Musik-thematisches Hotel in zentraler Lage, nur wenige Minuten zur Stadthalle.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Klimaanlage'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12300000.jpg?k=updated_image_123&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-    ],
     available: true,
     rooms_available: 15
   },
@@ -492,12 +431,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Traditionelles Hotel mit historischem Charme zu erschwinglichen Preisen.',
     amenities: ['WiFi kostenlos', 'Frühstück', 'Rezeption 24h'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12400000.jpg?k=updated_image_124&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13600000.jpg?k=updated_image_136&o=&hp=1",
-    ],
     available: true,
     rooms_available: 20
   },
@@ -520,12 +453,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Das legendäre Luxushotel im Herzen Wiens, berühmt für die Sachertorte.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Concierge', 'Parkplatz'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/11900000.jpg?k=updated_image_119&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13500000.jpg?k=updated_image_135&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-    ],
     available: true,
     rooms_available: 3
   },
@@ -548,12 +475,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Kaiserliches Hotel auf der Ringstraße mit exquisitem Service.',
     amenities: ['WiFi kostenlos', 'Spa', 'Restaurant', 'Bar', 'Fitnessstudio'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12700000.jpg?k=updated_image_127&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12900000.jpg?k=updated_image_129&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-    ],
     available: true,
     rooms_available: 6
   },
@@ -576,12 +497,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Modernes Design-Hotel in der Einkaufsstraße mit LGBTQ+ freundlicher Atmosphäre.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12100000.jpg?k=updated_image_121&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12800000.jpg?k=updated_image_128&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13900000.jpg?k=updated_image_139&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-    ],
     available: true,
     rooms_available: 18
   },
@@ -604,12 +519,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Junges, lebendiges Hotel mit modernem Design und günstigen Preisen.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12200000.jpg?k=updated_image_122&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/12600000.jpg?k=updated_image_126&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/10700000.jpg?k=updated_image_107&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13000000.jpg?k=updated_image_130&o=&hp=1",
-    ],
     available: true,
     rooms_available: 25
   },
@@ -632,12 +541,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Kunstorientiertes Hotel mit einzigartiger Atmosphäre und LGBTQ+ Zertifizierung.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Kunstgalerie'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13100000.jpg?k=updated_image_131&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13700000.jpg?k=updated_image_137&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13800000.jpg?k=updated_image_138&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13600000.jpg?k=updated_image_136&o=&hp=1",
-    ],
     available: true,
     rooms_available: 14
   },
@@ -660,12 +563,6 @@ const hotels: BookingHotel[] = [
     city: 'Wien',
     description: 'Internationales Business-Hotel in zentraler Lage mit modernen Annehmlichkeiten.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Fitnessstudio', 'Business Center'],
-    photos: [
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13300000.jpg?k=updated_image_133&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/9900000.jpg?k=updated_image_99&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/13200000.jpg?k=updated_image_132&o=&hp=1",
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/14000000.jpg?k=updated_image_140&o=&hp=1",
-    ],
     available: true,
     rooms_available: 22
   },
@@ -741,19 +638,14 @@ export function getAllHotels(): BookingHotel[] {
   return [...hotels]
 }
 
-// Get hotel image URL - now using local assets
+// Get hotel image URL - only using local assets
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
   // Use local Hotel Motto image ONLY for Boutique Hotel MOTTO
   if (hotel.id === 'boutique-hotel-motto') {
     return hotelMottoImage;
   }
   
-  // For other hotels, use Booking.com proxy URL if they have photos
-  if (hotel.photos && hotel.photos.length > 0) {
-    return `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(hotel.photos[0])}`;
-  }
-  
-  // If no photos available, return a placeholder or empty string
+  // For all other hotels, return empty string (no image available)
   return '';
 };
 
@@ -764,12 +656,7 @@ export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
     return hotelMottoImage;
   }
   
-  // For other hotels, use Booking.com proxy URL if they have photos
-  if (hotel.photos && hotel.photos.length > 0) {
-    return `https://booking-image-proxy.vercel.app/api/proxy-image?url=${encodeURIComponent(hotel.photos[0])}`;
-  }
-  
-  // If no photos available, return a placeholder or empty string
+  // For all other hotels, return empty string (no image available)
   return '';
 };
 
@@ -780,12 +667,7 @@ export const getPhotoCount = (hotel: BookingHotel): number => {
     return 1;
   }
   
-  // For other hotels, return the actual photo count if they have photos
-  if (hotel.photos && hotel.photos.length > 0) {
-    return hotel.photos.length;
-  }
-  
-  // Return 0 if no photos available
+  // For all other hotels, return 0 (no images available)
   return 0;
 };
 
@@ -807,12 +689,12 @@ export async function searchBookingHotels(params: HotelSearchParams): Promise<Bo
     lgbtqOnly: params.lgbtFilter === 'friendly' || params.lgbtFilter === 'certified'
   }
   
-  // Get filtered hotels - they already have photos arrays with proper URLs
+  // Get filtered hotels - photos have been removed except for Hotel Motto local image
   const filteredHotels = searchHotels(criteria);
   
   // Simulate async delay for realistic feel
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Return hotels with their existing photos arrays intact
+  // Return hotels (only Hotel Motto has an image, others show "No image available")
   return filteredHotels;
 }
