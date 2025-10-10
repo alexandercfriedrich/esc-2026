@@ -862,30 +862,12 @@ export async function searchBookingHotels(params: HotelSearchParams): Promise<Bo
     lgbtqOnly: params.lgbtFilter === 'friendly' || params.lgbtFilter === 'certified'
   }
   
-  // Get filtered hotels
+  // Get filtered hotels - they already have photos arrays with proper URLs
   const filteredHotels = searchHotels(criteria);
-  
-  // Fetch current Booking.com images for each hotel
-  const hotelsWithImages = await Promise.all(
-    filteredHotels.map(async (hotel) => {
-      try {
-        if (hotel.slug) {
-          const fetchedImages = await fetchBookingComImages(hotel.slug);
-          return {
-            ...hotel,
-            photos: fetchedImages.length > 0 ? fetchedImages : hotel.photos
-          };
-        }
-        return hotel;
-      } catch (error) {
-        console.warn(`Failed to fetch images for ${hotel.name}:`, error);
-        return hotel;
-      }
-    })
-  );
   
   // Simulate async delay for realistic feel
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  return hotelsWithImages;
+  // Return hotels with their existing photos arrays intact
+  return filteredHotels;
 }
