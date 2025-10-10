@@ -6,7 +6,7 @@ import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
 import { BookingWidget } from '@/components/BookingWidget'
 import { AffiliateInfo } from '@/components/AffiliateInfo'
 import { BookingHotel, HotelSearchParams, searchBookingHotels } from '@/services/hotelService'
-import eurovisionBanner from '@/assets/images/eurovision-banner.jpg'
+import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform_colorful_impressive_mind_blowin_yrsl9hs8ik2077us0ncz_1.png'
 
 export default function App() {
   const [hotels, setHotels] = useState<BookingHotel[]>([])
