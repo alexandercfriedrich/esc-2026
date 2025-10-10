@@ -4,7 +4,6 @@ import { useKV } from '@github/spark/hooks'
 import { BookingSearchForm } from '@/components/BookingSearchForm'
 import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
 import { BookingWidget } from '@/components/BookingWidget'
-import { AffiliateInfo } from '@/components/AffiliateInfo'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { DynamicMetaTags } from '@/components/DynamicMetaTags'
 import SEO from '@/components/SEO'
@@ -104,10 +103,7 @@ export default function App() {
           />
         )}
         
-        {/* Affiliate Information */}
-        <div className="mt-12">
-          <AffiliateInfo />
-        </div>
+
       </div>
       <Toaster />
     </div>
