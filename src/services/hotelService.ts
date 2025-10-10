@@ -829,7 +829,7 @@ export function getAllHotels(): BookingHotel[] {
 
 // Get hotel image URL - checks photos array first, then fallback
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
-  if (!hotel.photos || hotel.photos.length === 0) {
+  if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
     return 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
   }
   return hotel.photos[0];
@@ -837,7 +837,7 @@ export const getHotelImageUrl = (hotel: BookingHotel): string => {
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
-  if (!hotel.photos || hotel.photos.length === 0) {
+  if (!hotel.photos || !Array.isArray(hotel.photos) || hotel.photos.length === 0) {
     return 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/default.jpg?k=fallback';
   }
   // Convert max1024x768 to max1280x900 for higher resolution

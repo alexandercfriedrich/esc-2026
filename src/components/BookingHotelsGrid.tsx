@@ -242,7 +242,7 @@ export function BookingHotelsGrid({
                               </Badge>
                             </div>
                             <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
-                              📷 {hotel.photos?.length || 0} Fotos
+                              📷 {(hotel.photos && Array.isArray(hotel.photos) ? hotel.photos.length : 0)} Fotos
                             </div>
                           </div>
                           
