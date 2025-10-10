@@ -866,6 +866,14 @@ export function getAllHotels(): BookingHotel[] {
   return [...hotels]
 }
 
+// Get hotel image URL - checks photos array first, then fallback
+export const getHotelImageUrl = (hotel: BookingHotel): string => {
+  if (!hotel.photos || hotel.photos.length === 0) {
+    return 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/default.jpg?k=fallback';
+  }
+  return hotel.photos[0];
+};
+
 // Alias for compatibility with App.tsx
 export async function searchBookingHotels(params: HotelSearchParams): Promise<BookingHotel[]> {
   // Convert HotelSearchParams to HotelSearchCriteria
