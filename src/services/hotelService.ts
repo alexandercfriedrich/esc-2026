@@ -84,6 +84,11 @@ import hiltonPlaza2 from '@/assets/images/hilton-plaza_2.webp'
 import hiltonPlaza3 from '@/assets/images/hilton-plaza_3.webp'
 import hiltonPlaza4 from '@/assets/images/hilton-plaza_4.webp'
 import hiltonPlaza5 from '@/assets/images/hilton-plaza_5.webp'
+import sacher1 from '@/assets/images/sacher_01.webp'
+import sacher2 from '@/assets/images/sacher_2.webp'
+import sacher3 from '@/assets/images/sacher_3.webp'
+import sacher4 from '@/assets/images/sacher_4.webp'
+import sacher5 from '@/assets/images/sacher_5.webp'
 
 // Hotel image mapping based on hotel ID
 const hotelImages: Record<string, string[]> = {
@@ -105,6 +110,7 @@ const hotelImages: Record<string, string[]> = {
   'leonardo-hotel-vienna-hauptbahnhof': [leonardoHotelViennaHauptbahnhof1],
   'hilton-vienna-waterfront': [hiltonViennaWaterfront1, hiltonViennaWaterfront2, hiltonViennaWaterfront3],
   'hilton-plaza': [hiltonPlaza1, hiltonPlaza2, hiltonPlaza3, hiltonPlaza4, hiltonPlaza5],
+  'sacher': [sacher1, sacher2, sacher3, sacher4, sacher5],
 };
 
 export interface BookingHotel {
@@ -199,7 +205,7 @@ const hotels: BookingHotel[] = [
     distance_km_to_venue: 2.1,
     distance_to_venue: 2.1,
     lgbtq_friendly: true,
-    lgbt_certification: 'lgbtq_friendly',
+    lgbt_certification: 'friendly',
     categories: ['Boutique', 'Design', 'LGBTQ Friendly', 'Gay Scene'],
     slug: 'hotelmotto',
     district: 'Mariahilf',

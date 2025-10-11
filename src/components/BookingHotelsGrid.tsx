@@ -106,13 +106,9 @@ export function BookingHotelsGrid({
           <HotelRichSnippet hotel={hotel} showReviews={false} />
         </div>
       ))}
-      
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">
-          Hand-picked hotels (by Viennese resident) for your perfect stay during the ESC 2026 in Vienna
-        </h2>
+        <h2 className="font-bold text-xl font-sans text-gray-300">Echte handverlesene Hotels für Ihren perfekten Aufenthalt während des ESC 2026 in Wien</h2>
       </div>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {hotels.map((hotel) => (
           <Card key={hotel.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
@@ -358,7 +354,6 @@ export function BookingHotelsGrid({
           </Card>
         ))}
       </div>
-
       {/* Fullscreen Image Dialog */}
       {fullscreenImage && (
         <div className="fixed inset-0 z-50 bg-black">
@@ -371,5 +366,5 @@ export function BookingHotelsGrid({
         </div>
       )}
     </div>
-  )
+  );
 }

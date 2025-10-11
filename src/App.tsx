@@ -103,24 +103,21 @@ export default function App() {
     <div className="min-h-screen bg-background">
       {/* Dynamic Title Component */}
       <DynamicTitle />
-      
       {/* Dynamic Meta Tags Component */}
       <DynamicMetaTags 
         hotels={hotels}
         searchQuery=""
         pageType={currentPage === 'bildnachweis' ? 'credits' : (searchPerformed ? 'search' : 'home')}
       />
-      
       {/* SEO Component with comprehensive Schema.org markup */}
       <SEO 
         hotels={hotels}
         searchParams={currentSearchParams}
         pageType={currentPage === 'bildnachweis' ? 'credits' : (searchPerformed ? 'search' : 'home')}
       />
-      
       {currentPage === 'bildnachweis' ? (
         /* Bildnachweis Page */
-        <>
+        (<>
           <header className="bg-primary text-primary-foreground py-6">
             <div className="container mx-auto px-4">
               <div className="flex justify-between items-center">
@@ -144,10 +141,10 @@ export default function App() {
             </div>
           </header>
           <ImageCredits />
-        </>
+        </>)
       ) : (
         /* Home Page */
-        <>
+        (<>
           {/* Hero Section with Eurovision Banner */}
           <section className="relative h-96 bg-cover bg-center bg-no-repeat" style={{ 
             backgroundImage: `url('${eurovisionBanner}')`
@@ -174,7 +171,6 @@ export default function App() {
             <div className="text-center mb-8">
               <p className="text-lg md:text-xl text-foreground">{t('subtitle')}</p>
             </div>
-            <BookingSearchForm onSearch={handleSearch} />
             
             <BookingWidget 
               searchPerformed={searchPerformed}
@@ -195,9 +191,7 @@ export default function App() {
                 ) : (
                   <>
                     <div className="mb-6">
-                      <h2 className="text-2xl font-bold text-center mb-4">
-                        🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien
-                      </h2>
+                      <h2 className="text-2xl font-bold text-center mb-4">🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien</h2>
                     </div>
                     <BookingHotelsGrid 
                       hotels={allHotels}
@@ -210,14 +204,18 @@ export default function App() {
               </>
             )}
             
+            {/* Search Form - moved below hotel cards but above FAQ */}
+            <div className="mt-12 mb-8">
+              <BookingSearchForm onSearch={handleSearch} />
+            </div>
+            
             {/* FAQ Section - only show on home page when no search is performed */}
             {!searchPerformed && !isSearching && (
               <FAQSection />
             )}
           </div>
-        </>
+        </>)
       )}
-      
       {/* Footer */}
       <footer className="bg-muted py-6 mt-16">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
@@ -234,7 +232,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-      
       <Toaster />
     </div>
   );
