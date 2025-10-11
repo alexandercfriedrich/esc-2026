@@ -26,7 +26,7 @@
 
 import { toast } from 'sonner'
 
-// Import existing hotel images - these should be added as more images are uploaded
+// Import all available hotel images
 import boutiqueHotelStadthalle1 from '@/assets/images/boutiquehotel-stadthalle_1.webp'
 import boutiqueHotelStadthalle2 from '@/assets/images/boutiquehotel-stadthalle_2.webp'
 import boutiqueHotelStadthalle3 from '@/assets/images/boutiquehotel-stadthalle_3.webp'
@@ -40,17 +40,59 @@ import sansSouciWien1 from '@/assets/images/sans-souci-wien_1.jpg'
 import sansSouciWien2 from '@/assets/images/sans-souci-wien_2.jpg'
 import sansSouciWien3 from '@/assets/images/sans-souci-wien_3.jpg'
 import sansSouciWien4 from '@/assets/images/sans-souci-wien_4.jpg'
+import hotelMercureWienCity1 from '@/assets/images/hotel-mercure-wien-city_1.jpg'
+import hotelMercureWienCity2 from '@/assets/images/hotel-mercure-wien-city_2.jpg'
+import hotelMercureWienCity3 from '@/assets/images/hotel-mercure-wien-city_3.jpg'
+import doCoHotelVienna1 from '@/assets/images/do-co-hotel-vienna_1.jpg'
+import doCoHotelVienna2 from '@/assets/images/do-co-hotel-vienna_2.jpg'
+import doCoHotelVienna3 from '@/assets/images/do-co-hotel-vienna_3.jpg'
+import boutiqueHotelDonauwalzer1 from '@/assets/images/boutique-hotel-donauwalzer_1.webp'
+import boutiqueHotelDonauwalzer2 from '@/assets/images/boutique-hotel-donauwalzer_2.webp'
+import boutiqueHotelDonauwalzer3 from '@/assets/images/boutique-hotel-donauwalzer_3.webp'
+import boutiqueHotelDonauwalzer4 from '@/assets/images/boutique-hotel-donauwalzer_4.webp'
+import hotelZeitgeistVienna1 from '@/assets/images/hotel-zeitgeist-vienna_1.jpg'
+import hotelZeitgeistVienna2 from '@/assets/images/hotel-zeitgeist-vienna_2.jpeg'
+import hotelZeitgeistVienna3 from '@/assets/images/hotel-zeitgeist-vienna_3.webp'
+import andazViennaAmBelvedere2 from '@/assets/images/andaz-vienna-am-belvedere_2.webp'
+import andazViennaAmBelvedere3 from '@/assets/images/andaz-vienna-am-belvedere_3.webp'
+import andazViennaAmBelvedere4 from '@/assets/images/andaz-vienna-am-belvedere_4.webp'
+import andazViennaAmBelvedere5 from '@/assets/images/andaz-vienna-am-belvedere_5.webp'
+import andazViennaAmBelvedere6 from '@/assets/images/andaz-vienna-am-belvedere_6.webp'
+import amKonzerthaus1 from '@/assets/images/am-konzerthaus_1.jpg'
+import amKonzerthaus2 from '@/assets/images/am-konzerthaus_2.jpg'
+import amKonzerthaus3 from '@/assets/images/am-konzerthaus_3.jpg'
+import amKonzerthaus4 from '@/assets/images/am-konzerthaus_4.jpg'
+import amKonzerthaus5 from '@/assets/images/am-konzerthaus_5.jpg'
+import regina1 from '@/assets/images/regina_1.jpg'
+import imperial1 from '@/assets/images/imperial_1.jpeg'
+import imperial2 from '@/assets/images/imperial_2.jpeg'
+import imperial6 from '@/assets/images/imperial_6.jpeg'
+import imperial7 from '@/assets/images/imperial_7.jpeg'
+import imperial8 from '@/assets/images/imperial_8.jpeg'
+import imperial10 from '@/assets/images/imperial_10.jpeg'
+import rubyMarie3 from '@/assets/images/ruby-marie_3.jpg'
+import rubyMarie4 from '@/assets/images/ruby-marie_4.jpg'
+import rubyMarie5 from '@/assets/images/ruby-marie_5.jpg'
+import moxyVienna1 from '@/assets/images/moxy-vienna_1.jpeg'
+import moxyVienna2 from '@/assets/images/moxy-vienna_2.jpeg'
+import moxyVienna3 from '@/assets/images/moxy-vienna_3.jpeg'
 
-// Hotel image mapping based on hotel ID/filename convention
-// When new images are uploaded with pattern: {hotel-id}_{description}.{ext}
-// they should be imported and added to this mapping
+// Hotel image mapping based on hotel ID
 const hotelImages: Record<string, string[]> = {
   'boutiquehotel-stadthalle': [boutiqueHotelStadthalle1, boutiqueHotelStadthalle2, boutiqueHotelStadthalle3],
   'boutique-hotel-motto': [boutiqueHotelMotto, hotelMottoDachterrasse, hotelMottoZimmer],
   'hotel-altstadt-vienna': [hotelAltstadtVienna1, hotelAltstadtVienna2, hotelAltstadtVienna3],
   'sans-souci-wien': [sansSouciWien1, sansSouciWien2, sansSouciWien3, sansSouciWien4],
-  // Future images will be added here as they are uploaded
-  // Pattern: 'hotel-id': [image1, image2, image3, image4]
+  'hotel-mercure-wien-city': [hotelMercureWienCity1, hotelMercureWienCity2, hotelMercureWienCity3],
+  'do-co-hotel-vienna': [doCoHotelVienna1, doCoHotelVienna2, doCoHotelVienna3],
+  'boutique-hotel-donauwalzer': [boutiqueHotelDonauwalzer1, boutiqueHotelDonauwalzer2, boutiqueHotelDonauwalzer3, boutiqueHotelDonauwalzer4],
+  'hotel-zeitgeist-vienna': [hotelZeitgeistVienna1, hotelZeitgeistVienna2, hotelZeitgeistVienna3],
+  'andaz-vienna-am-belvedere': [andazViennaAmBelvedere2, andazViennaAmBelvedere3, andazViennaAmBelvedere4, andazViennaAmBelvedere5, andazViennaAmBelvedere6],
+  'am-konzerthaus': [amKonzerthaus1, amKonzerthaus2, amKonzerthaus3, amKonzerthaus4, amKonzerthaus5],
+  'regina': [regina1],
+  'imperial': [imperial1, imperial2, imperial6, imperial7, imperial8, imperial10],
+  'ruby-marie': [rubyMarie3, rubyMarie4, rubyMarie5],
+  'moxy-vienna': [moxyVienna1, moxyVienna2, moxyVienna3],
 };
 
 export interface BookingHotel {
@@ -116,10 +158,10 @@ const hotels: BookingHotel[] = [
     id: 'boutiquehotel-stadthalle',
     name: 'Boutiquehotel Stadthalle',
     rating: 4.4,
-    review_score: 8.7,
-    review_count: 2141,
+    review_score: 9.1,
+    review_count: 2576,
     price: { amount: 150, currency: 'EUR', min: 130, max: 220 },
-    stars: 4,
+    stars: 3,
     distance_km_to_venue: 0.4,
     distance_to_venue: 0.4,
     lgbtq_friendly: true,
@@ -127,12 +169,12 @@ const hotels: BookingHotel[] = [
     categories: ['Boutique', 'Gay Friendly', 'Sustainable', 'Central'],
     slug: 'boutique-stadthalle',
     district: 'Rudolfsheim-Fünfhaus',
-    address: 'Hackengasse 20',
+    address: 'Hackengasse 20, 1150 Wien',
     city: 'Wien',
     description: 'Gay-friendly Hotel direkt bei der Stadthalle Wien mit nachhaltiger Ausrichtung und LGBTQ-Community-Support.',
     amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Wellness', 'Nachhaltige Ausstattung', 'Rainbow Package'],
     available: true,
-    rooms_available: 18
+    rooms_available: 80
   },
   {
     id: 'boutique-hotel-motto',
@@ -281,7 +323,7 @@ const hotels: BookingHotel[] = [
     categories: ['Urban', 'Modern', 'LGBTQ Friendly', 'Hauptbahnhof'],
     slug: 'zeitgeist-vienna',
     district: 'Favoriten',
-    address: 'Sonnwendgasse 15',
+    address: 'Gerhard-Bronner-Straße 5',
     city: 'Wien',
     description: 'Modernes LGBTQ-freundliches Hotel beim Hauptbahnhof mit urbanem Design und Nachhaltigkeitsfokus.',
     amenities: ['WiFi kostenlos', 'TechnoGym', 'Sauna', 'Infrarotkabine', 'Restaurant Frannys', 'Bar Pergola', 'Green Rate'],
@@ -402,8 +444,8 @@ const hotels: BookingHotel[] = [
   {
     id: 'regina',
     name: 'Hotel Regina',
-    rating: 4.0,
-    review_score: 8.3,
+    rating: 4.5,
+    review_score: 9.0,
     review_count: 432,
     price: { amount: 90, currency: 'EUR', min: 90, max: 140 },
     stars: 3,
@@ -502,7 +544,7 @@ const hotels: BookingHotel[] = [
     categories: ['Modern', 'Budget', 'Young'],
     slug: 'moxy-vienna-city-east',
     district: 'Landstraße',
-    address: 'Aspernbrückengasse 2',
+    address: 'Im Erdberger Mais 1, 1030 Wien',
     city: 'Wien',
     description: 'Junges, lebendiges Hotel mit modernem Design und günstigen Preisen.',
     amenities: ['WiFi kostenlos', 'Bar', 'Fitnessstudio', 'Klimaanlage'],
