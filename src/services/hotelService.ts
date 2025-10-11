@@ -223,28 +223,6 @@ const hotels: BookingHotel[] = [
     rooms_available: 13
   },
   {
-    id: 'prize-radisson-vienna-city',
-    name: 'Prize by Radisson, Vienna City',
-    rating: 4.1,
-    review_score: 8.5,
-    review_count: 1789,
-    price: { amount: 125, currency: 'EUR', min: 100, max: 180 },
-    stars: 4,
-    distance_km_to_venue: 3.7,
-    distance_to_venue: 3.7,
-    lgbtq_friendly: true,
-    lgbt_certification: 'proud_certified',
-    categories: ['Modern', 'Budget-Friendly', 'Pride Certified', 'Prater'],
-    slug: 'prizeotel-vienna-city',
-    district: 'Leopoldstadt',
-    address: 'Rennweg 99',
-    city: 'Wien',
-    description: 'Modernes Pride-zertifiziertes Budget-Hotel mit guter Anbindung zur Gay-Szene und Prater-Nähe.',
-    amenities: ['WiFi kostenlos', '24h Rezeption', 'Bar', 'Fitness', 'Verschiedene Frühstücksoptionen'],
-    available: true,
-    rooms_available: 21
-  },
-  {
     id: 'do-co-hotel-vienna',
     name: 'DO&CO Hotel Vienna',
     rating: 4.7,
