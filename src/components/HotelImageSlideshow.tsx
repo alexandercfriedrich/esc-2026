@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { CaretLeft, CaretRight, X } from '@phosphor-icons/react'
 import { BookingHotel } from '@/services/hotelService'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface HotelImageSlideshowProps {
   hotel: BookingHotel
@@ -17,6 +18,7 @@ export function HotelImageSlideshow({
   showFullscreen = false 
 }: HotelImageSlideshowProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const { t } = useTranslation()
 
   const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) => 
@@ -75,7 +77,7 @@ export function HotelImageSlideshow({
       <div className="relative">
         <img 
           src={images[currentImageIndex]}
-          alt={`${hotel.name} - Bild ${currentImageIndex + 1}`}
+          alt={`${hotel.name} - ${t('imageOf')} ${currentImageIndex + 1}`}
           className={`w-full ${showFullscreen ? 'h-screen' : 'h-48'} object-cover transition-opacity duration-300`}
           loading="lazy"
         />
@@ -138,7 +140,7 @@ export function HotelImageSlideshow({
             >
               <img 
                 src={image}
-                alt={`${hotel.name} - Thumbnail ${index + 1}`}
+                alt={`${hotel.name} - ${t('language') === 'de' ? 'Thumbnail' : 'Thumbnail'} ${index + 1}`}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -162,7 +164,7 @@ export function HotelImageSlideshow({
             >
               <img 
                 src={image}
-                alt={`${hotel.name} - Thumbnail ${index + 1}`}
+                alt={`${hotel.name} - ${t('language') === 'de' ? 'Thumbnail' : 'Thumbnail'} ${index + 1}`}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />

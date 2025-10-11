@@ -1,5 +1,6 @@
 import React from 'react'
 import { BookingHotel, getHotelImageUrl, getPhotoCount } from '@/services/hotelService'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface DynamicMetaTagsProps {
   hotels?: BookingHotel[]
@@ -16,56 +17,85 @@ export function DynamicMetaTags({
   location = 'Wien',
   pageType = 'home' 
 }: DynamicMetaTagsProps) {
+  const { t } = useTranslation()
   
   // Dynamic title generation based on context
   const generateTitle = () => {
     if (currentHotel) {
-      return `${currentHotel.name} | Eurovision 2026 Wien | LGBTQ+ Hotel ${currentHotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 Gay Friendly'}`
+      const certText = currentHotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 Gay Friendly'
+      return t('language') === 'de' 
+        ? `${currentHotel.name} | Eurovision 2026 Wien | LGBTQ+ Hotel ${certText}`
+        : `${currentHotel.name} | Eurovision 2026 Vienna | LGBTQ+ Hotel ${certText}`
     }
     
     if (pageType === 'credits') {
-      return 'Bildnachweis | Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
+      return t('language') === 'de'
+        ? 'Bildnachweis | Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
+        : 'Image Credits | Eurovision 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
       const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
       const prideCount = hotels.filter(h => h.lgbt_certification === 'certified').length
-      return `${hotels.length} Eurovision 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | ${prideCount} Pride Certified`
+      return t('language') === 'de'
+        ? `${hotels.length} Eurovision 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | ${prideCount} Pride Certified`
+        : `${hotels.length} Eurovision 2026 Hotels Vienna | ${lgbtqCount} LGBTQ+ friendly | ${prideCount} Pride Certified`
     }
     
     if (searchQuery) {
-      return `${searchQuery} | Eurovision 2026 Wien Hotels | LGBTQ+ Unterkünfte ESC`
+      const location = t('language') === 'de' ? 'Wien' : 'Vienna'
+      return t('language') === 'de'
+        ? `${searchQuery} | Eurovision 2026 ${location} Hotels | LGBTQ+ Unterkünfte ESC`
+        : `${searchQuery} | Eurovision 2026 ${location} Hotels | LGBTQ+ Accommodations ESC`
     }
     
-    return 'Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte | Pride Certified'
+    return t('metaTitle')
   }
 
   // Dynamic description generation
   const generateDescription = () => {
     if (currentHotel) {
-      const certText = currentHotel.lgbt_certification === 'certified' ? 'Pride-zertifiziertes' : 'LGBTQ+ freundliches'
-      return `${certText} Hotel ${currentHotel.name} für Eurovision 2026 - ${currentHotel.distance_km_to_venue}km zur Stadthalle, ab €${currentHotel.price.amount}/Nacht. ${currentHotel.description?.slice(0, 100)}...`
+      const certText = t('language') === 'de' 
+        ? (currentHotel.lgbt_certification === 'certified' ? 'Pride-zertifiziertes' : 'LGBTQ+ freundliches')
+        : (currentHotel.lgbt_certification === 'certified' ? 'Pride-certified' : 'LGBTQ+ friendly')
+      const location = t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'
+      const perNight = t('language') === 'de' ? '/Nacht' : '/night'
+      return t('language') === 'de'
+        ? `${certText} Hotel ${currentHotel.name} für Eurovision 2026 - ${currentHotel.distance_km_to_venue}km ${location}, ab €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
+        : `${certText} Hotel ${currentHotel.name} for Eurovision 2026 - ${currentHotel.distance_km_to_venue}km ${location}, from €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
     }
     
     if (pageType === 'credits') {
-      return 'Bildnachweis und Quellenangaben für alle verwendeten Bilder, Logos und Medien auf der Eurovision 2026 Vienna Hotels Plattform.'
+      return t('language') === 'de'
+        ? 'Bildnachweis und Quellenangaben für alle verwendeten Bilder, Logos und Medien auf der Eurovision 2026 Vienna Hotels Plattform.'
+        : 'Image credits and sources for all images, logos and media used on the Eurovision 2026 Vienna Hotels platform.'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
       const avgPrice = Math.round(hotels.reduce((sum, h) => sum + h.price.amount, 0) / hotels.length)
       const minDistance = Math.min(...hotels.map(h => h.distance_km_to_venue))
-      return `${hotels.length} verfügbare Hotels für Eurovision 2026 in Wien. LGBTQ+ freundlich ab €${Math.min(...hotels.map(h => h.price.amount))}/Nacht. Nächstes Hotel ${minDistance}km zur Stadthalle.`
+      const location = t('language') === 'de' ? 'Wien' : 'Vienna'
+      const available = t('language') === 'de' ? 'verfügbare Hotels' : 'available hotels'
+      const friendly = t('language') === 'de' ? 'LGBTQ+ freundlich' : 'LGBTQ+ friendly'
+      const night = t('language') === 'de' ? '/Nacht' : '/night'
+      const nearest = t('language') === 'de' ? 'Nächstes Hotel' : 'Nearest hotel'
+      const toStadthalle = t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'
+      return `${hotels.length} ${available} für Eurovision 2026 in ${location}. ${friendly} ab €${Math.min(...hotels.map(h => h.price.amount))}${night}. ${nearest} ${minDistance}km ${toStadthalle}.`
     }
     
-    return '🏳️‍🌈 Buche jetzt die perfekten Hotels für Eurovision 2026 in Wien! LGBTQ+ freundliche Unterkünfte, Pride-zertifizierte Hotels und die besten Locations für ESC-Fans mit Community-Features.'
+    return t('metaDescription')
   }
 
   // Dynamic keywords generation
   const generateKeywords = () => {
+    const location = t('language') === 'de' ? 'Wien Hotels' : 'Vienna Hotels'
+    const friendly = t('language') === 'de' ? 'LGBTQ freundlich' : 'LGBTQ friendly'
+    const gay = t('language') === 'de' ? 'Gay Friendly Vienna' : 'Gay Friendly Vienna'
+    
     const baseKeywords = [
-      'Eurovision 2026', 'Wien Hotels', 'LGBTQ freundlich', 'ESC Vienna', 
-      'Eurovision Hotels', 'Pride Hotels Wien', 'Wiener Stadthalle',
-      'Gay Friendly Vienna', 'Eurovision Song Contest 2026'
+      'Eurovision 2026', location, friendly, 'ESC Vienna', 
+      'Eurovision Hotels', 'Pride Hotels Vienna', 'Wiener Stadthalle',
+      gay, 'Eurovision Song Contest 2026'
     ]
     
     if (currentHotel) {

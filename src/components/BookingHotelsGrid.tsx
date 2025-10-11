@@ -7,6 +7,7 @@ import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users, Camera } fr
 import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge, getPhotoCount, getHotelImages } from '@/services/hotelService'
 import { HotelImageSlideshow } from '@/components/HotelImageSlideshow'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
+import { useTranslation } from '@/hooks/useTranslation'
 import { toast } from 'sonner'
 import { useState } from 'react'
 
@@ -24,6 +25,7 @@ export function BookingHotelsGrid({
   onToggleFavorite 
 }: BookingHotelsGridProps) {
   const [fullscreenImage, setFullscreenImage] = useState<{ hotel: BookingHotel; images: string[] } | null>(null)
+  const { t } = useTranslation()
   
   const handleBooking = (hotel: BookingHotel) => {
     try {
@@ -48,7 +50,10 @@ export function BookingHotelsGrid({
     // Open booking URL in new tab
     window.open(affiliateUrl, '_blank', 'noopener,noreferrer')
     
-    toast.success(`Weiterleitung zu Booking.com für ${hotel.name}...`)
+    toast.success(t('language') === 'de' 
+      ? `Weiterleitung zu Booking.com für ${hotel.name}...`
+      : `Redirecting to Booking.com for ${hotel.name}...`
+    )
   }
 
 
@@ -63,9 +68,9 @@ export function BookingHotelsGrid({
 
   const getPrideBadgeText = (certification: string) => {
     switch(certification) {
-      case 'certified': return '🏳️‍🌈 Pride Certified'
-      case 'friendly': return '🤝 LGBTQ+ Friendly'
-      default: return 'Standard'
+      case 'certified': return `🏳️‍🌈 ${t('prideCertified')}`
+      case 'friendly': return `🤝 ${t('lgbtqFriendly')}`
+      default: return t('standard')
     }
   }
 
@@ -83,9 +88,9 @@ export function BookingHotelsGrid({
       <div className="text-center py-12">
         <div className="text-muted-foreground mb-4">
           <div className="text-6xl mb-4">🏨</div>
-          <h3 className="text-xl font-semibold mb-2">Keine Hotels gefunden</h3>
+          <h3 className="text-xl font-semibold mb-2">{t('noResults')}</h3>
           <p className="text-sm">
-            Versuchen Sie andere Suchkriterien oder erweitern Sie Ihre Filter.
+            {t('tryDifferentDates')}
           </p>
         </div>
       </div>
@@ -103,7 +108,7 @@ export function BookingHotelsGrid({
       
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">
-          📍 {hotels.length} verfügbare Hotels in Wien
+          📍 {hotels.length} {t('language') === 'de' ? 'verfügbare Hotels in Wien' : 'available hotels in Vienna'}
         </h2>
       </div>
       
@@ -145,7 +150,7 @@ export function BookingHotelsGrid({
                       className="bg-white/90 hover:bg-white text-xs px-2 py-1 h-auto"
                       onClick={() => setFullscreenImage({ hotel, images: getHotelImages(hotel) })}
                     >
-                      Vollbild
+                      {t('language') === 'de' ? 'Vollbild' : 'Fullscreen'}
                     </Button>
                   </div>
                 </div>
@@ -159,7 +164,7 @@ export function BookingHotelsGrid({
               ) : (
                 <div className="w-full h-full bg-muted flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
-                    <div className="text-sm">Keine Bilder verfügbar</div>
+                    <div className="text-sm">{t('language') === 'de' ? 'Keine Bilder verfügbar' : 'No images available'}</div>
                   </div>
                 </div>
               )}
@@ -170,7 +175,7 @@ export function BookingHotelsGrid({
               </div>
               {!hotel.available && (
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <Badge variant="destructive">Ausgebucht</Badge>
+                  <Badge variant="destructive">{t('language') === 'de' ? 'Ausgebucht' : 'Sold out'}</Badge>
                 </div>
               )}
             </div>
@@ -181,7 +186,7 @@ export function BookingHotelsGrid({
                   <CardTitle className="text-lg">{hotel.name}</CardTitle>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
-                    {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km zur Stadthalle
+                    {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km {t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'}
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -213,7 +218,7 @@ export function BookingHotelsGrid({
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
-                    {hotel.review_count} Bewertungen
+                    {hotel.review_count} {t('language') === 'de' ? 'Bewertungen' : 'Reviews'}
                   </div>
                   <div className="flex items-center gap-1">
                     Score: {hotel.review_score}/10
@@ -227,13 +232,13 @@ export function BookingHotelsGrid({
                     <div className="text-2xl font-bold text-pride-green">
                       €{hotel.price.amount}
                     </div>
-                    <div className="text-sm text-muted-foreground">pro Nacht</div>
+                    <div className="text-sm text-muted-foreground">{t('pricePerNight')}</div>
                   </div>
                   <div className="flex gap-2">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button variant="outline" size="sm">
-                          Details
+                          {t('language') === 'de' ? 'Details' : 'Details'}
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -244,13 +249,13 @@ export function BookingHotelsGrid({
                               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                               <span className="font-medium">{hotel.rating}</span>
                               <span className="text-sm text-muted-foreground">
-                                ({hotel.review_score}/10 • {hotel.review_count} Bewertungen)
+                                ({hotel.review_score}/10 • {hotel.review_count} {t('language') === 'de' ? 'Bewertungen' : 'Reviews'})
                               </span>
                             </div>
                           </DialogTitle>
                           <DialogDescription className="flex items-center gap-1">
                             <MapPin className="w-4 h-4" />
-                            {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km zur Stadthalle
+                            {hotel.address && hotel.city ? `${hotel.address}, ${hotel.city}` : hotel.district} • {hotel.distance_to_venue || hotel.distance_km_to_venue}km {t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'}
                           </DialogDescription>
                         </DialogHeader>
                         
@@ -274,7 +279,7 @@ export function BookingHotelsGrid({
                             ) : (
                               <div className="w-full h-64 bg-muted flex items-center justify-center">
                                 <div className="text-center text-muted-foreground">
-                                  <div className="text-lg">Keine Bilder verfügbar</div>
+                                  <div className="text-lg">{t('language') === 'de' ? 'Keine Bilder verfügbar' : 'No images available'}</div>
                                 </div>
                               </div>
                             )}
@@ -287,28 +292,28 @@ export function BookingHotelsGrid({
                           
                           {/* Description */}
                           <div>
-                            <h3 className="font-semibold mb-2">Beschreibung</h3>
+                            <h3 className="font-semibold mb-2">{t('language') === 'de' ? 'Beschreibung' : 'Description'}</h3>
                             <p className="text-muted-foreground">{hotel.description}</p>
                           </div>
                           
                           {/* Booking.com Info */}
                           <div>
                             <h3 className="font-semibold mb-2 flex items-center gap-2">
-                              ℹ️ Hotel Informationen
+                              ℹ️ {t('language') === 'de' ? 'Hotel Informationen' : 'Hotel Information'}
                             </h3>
                             <div className="bg-muted p-3 rounded-lg text-sm">
                               <div className="grid grid-cols-2 gap-2">
-                                <div>Bewertungsscore: {hotel.review_score}/10</div>
-                                <div>Bewertungen: {hotel.review_count}</div>
-                                <div>Verfügbare Zimmer: {hotel.rooms_available}</div>
-                                <div>Entfernung: {hotel.distance_to_venue || hotel.distance_km_to_venue}km</div>
+                                <div>{t('language') === 'de' ? 'Bewertungsscore' : 'Review Score'}: {hotel.review_score}/10</div>
+                                <div>{t('language') === 'de' ? 'Bewertungen' : 'Reviews'}: {hotel.review_count}</div>
+                                <div>{t('language') === 'de' ? 'Verfügbare Zimmer' : 'Available Rooms'}: {hotel.rooms_available}</div>
+                                <div>{t('language') === 'de' ? 'Entfernung' : 'Distance'}: {hotel.distance_to_venue || hotel.distance_km_to_venue}km</div>
                               </div>
                             </div>
                           </div>
                           
                           {/* Amenities */}
                           <div>
-                            <h3 className="font-semibold mb-2">Ausstattung</h3>
+                            <h3 className="font-semibold mb-2">{t('language') === 'de' ? 'Ausstattung' : 'Amenities'}</h3>
                             <div className="flex flex-wrap gap-2">
                               {(hotel.amenities || []).map((amenity, index) => (
                                 <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-sm">
@@ -325,14 +330,14 @@ export function BookingHotelsGrid({
                               <div className="text-2xl font-bold text-pride-green">
                                 €{hotel.price.amount}
                               </div>
-                              <div className="text-sm text-muted-foreground">pro Nacht • {hotel.price.currency}</div>
+                              <div className="text-sm text-muted-foreground">{t('pricePerNight')} • {hotel.price.currency}</div>
                             </div>
                             <Button 
                               className="bg-pride-orange hover:bg-pride-red transition-colors px-8"
                               onClick={() => handleBooking(hotel)}
                               disabled={!hotel.available}
                             >
-                              {hotel.available ? 'Jetzt buchen' : 'Ausgebucht'}
+                              {hotel.available ? t('viewOnBooking') : (t('language') === 'de' ? 'Ausgebucht' : 'Sold out')}
                             </Button>
                           </div>
                         </div>
@@ -343,7 +348,7 @@ export function BookingHotelsGrid({
                       onClick={() => handleBooking(hotel)}
                       disabled={!hotel.available}
                     >
-                      {hotel.available ? 'Buchen' : 'Ausgebucht'}
+                      {hotel.available ? t('viewOnBooking') : (t('language') === 'de' ? 'Ausgebucht' : 'Sold out')}
                     </Button>
                   </div>
                 </div>

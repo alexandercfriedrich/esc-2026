@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { Calendar, Users, MapPin, Star, Heart } from '@phosphor-icons/react'
 import { HotelSearchParams } from '@/services/hotelService'
+import { useTranslation } from '@/hooks/useTranslation'
 import { toast } from 'sonner'
 
 interface BookingSearchFormProps {
@@ -24,15 +25,16 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
   const [stars, setStars] = useState('all')
   const [distanceFilter, setDistanceFilter] = useState('all')
   const [lgbtFilter, setLgbtFilter] = useState('all')
+  const { t } = useTranslation()
 
   const handleSearch = () => {
     if (!checkIn || !checkOut) {
-      toast.error('Bitte wählen Sie Check-in und Check-out Daten')
+      toast.error(t('language') === 'de' ? 'Bitte wählen Sie Check-in und Check-out Daten' : 'Please select check-in and check-out dates')
       return
     }
 
     if (new Date(checkIn) >= new Date(checkOut)) {
-      toast.error('Check-out Datum muss nach Check-in Datum liegen')
+      toast.error(t('language') === 'de' ? 'Check-out Datum muss nach Check-in Datum liegen' : 'Check-out date must be after check-in date')
       return
     }
 
@@ -50,18 +52,18 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
     }
 
     onSearch(searchParams)
-    toast.success('Suche Hotels von Booking.com...')
+    toast.success(t('language') === 'de' ? 'Suche Hotels von Booking.com...' : 'Searching hotels from Booking.com...')
   }
 
   return (
     <Card className="mb-8 border-pride-blue/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl">
-          🔍 Eurovision 2026 Hotelsuche Wien
+          🔍 {t('searchTitle')}
         </CardTitle>
         <div className="flex gap-2 flex-wrap">
-          <Badge className="bg-pride-red text-white">🏳️‍🌈 LGBTQ+ Friendly</Badge>
-          <Badge className="bg-pride-green text-white">📍 Nahe Stadthalle</Badge>
+          <Badge className="bg-pride-red text-white">🏳️‍🌈 {t('lgbtqFriendly')}</Badge>
+          <Badge className="bg-pride-green text-white">📍 {t('language') === 'de' ? 'Nahe Stadthalle' : 'Near Stadthalle'}</Badge>
           <Badge variant="outline">🎵 Eurovision 2026</Badge>
         </div>
       </CardHeader>
@@ -72,7 +74,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label htmlFor="checkin" className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              Check-in
+              {t('checkIn')}
             </Label>
             <Input
               id="checkin"
@@ -87,7 +89,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label htmlFor="checkout" className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              Check-out
+              {t('checkOut')}
             </Label>
             <Input
               id="checkout"
@@ -102,7 +104,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label htmlFor="adults" className="flex items-center gap-1">
               <Users className="w-4 h-4" />
-              Erwachsene
+              {t('language') === 'de' ? 'Erwachsene' : 'Adults'}
             </Label>
             <Select value={adults.toString()} onValueChange={(value) => setAdults(parseInt(value))}>
               <SelectTrigger>
@@ -110,21 +112,25 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
               </SelectTrigger>
               <SelectContent>
                 {[1,2,3,4,5,6].map(num => (
-                  <SelectItem key={num} value={num.toString()}>{num} Erwachsene</SelectItem>
+                  <SelectItem key={num} value={num.toString()}>
+                    {num} {t('language') === 'de' ? 'Erwachsene' : 'Adults'}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="rooms">Zimmer</Label>
+            <Label htmlFor="rooms">{t('language') === 'de' ? 'Zimmer' : 'Rooms'}</Label>
             <Select value={rooms.toString()} onValueChange={(value) => setRooms(parseInt(value))}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 {[1,2,3,4,5].map(num => (
-                  <SelectItem key={num} value={num.toString()}>{num} Zimmer</SelectItem>
+                  <SelectItem key={num} value={num.toString()}>
+                    {num} {t('language') === 'de' ? 'Zimmer' : 'Rooms'}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -133,7 +139,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
 
         {/* Price Range */}
         <div className="space-y-2">
-          <Label>Preisspanne pro Nacht</Label>
+          <Label>{t('language') === 'de' ? 'Preisspanne pro Nacht' : 'Price range per night'}</Label>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="priceMin" className="text-sm text-muted-foreground">Min. €</Label>
@@ -165,17 +171,17 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <Star className="w-4 h-4" />
-              Sterne-Kategorie
+              {t('language') === 'de' ? 'Sterne-Kategorie' : 'Star Category'}
             </Label>
             <Select value={stars} onValueChange={setStars}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Alle Kategorien</SelectItem>
-                <SelectItem value="3">3+ Sterne</SelectItem>
-                <SelectItem value="4">4+ Sterne</SelectItem>
-                <SelectItem value="5">5 Sterne</SelectItem>
+                <SelectItem value="all">{t('language') === 'de' ? 'Alle Kategorien' : 'All Categories'}</SelectItem>
+                <SelectItem value="3">{t('language') === 'de' ? '3+ Sterne' : '3+ Stars'}</SelectItem>
+                <SelectItem value="4">{t('language') === 'de' ? '4+ Sterne' : '4+ Stars'}</SelectItem>
+                <SelectItem value="5">{t('language') === 'de' ? '5 Sterne' : '5 Stars'}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -183,15 +189,15 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              Entfernung zur Stadthalle
+              {t('language') === 'de' ? 'Entfernung zur Stadthalle' : 'Distance to Stadthalle'}
             </Label>
             <Select value={distanceFilter} onValueChange={setDistanceFilter}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Alle Entfernungen</SelectItem>
-                <SelectItem value="walking">Zu Fuß erreichbar (max. 1km)</SelectItem>
+                <SelectItem value="all">{t('language') === 'de' ? 'Alle Entfernungen' : 'All distances'}</SelectItem>
+                <SelectItem value="walking">{t('language') === 'de' ? 'Zu Fuß erreichbar (max. 1km)' : 'Walking distance (max. 1km)'}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -199,16 +205,16 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <Heart className="w-4 h-4" />
-              LGBTQ+ Freundlichkeit
+              {t('language') === 'de' ? 'LGBTQ+ Freundlichkeit' : 'LGBTQ+ Friendliness'}
             </Label>
             <Select value={lgbtFilter} onValueChange={setLgbtFilter}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Alle Hotels</SelectItem>
-                <SelectItem value="friendly">LGBTQ+ Friendly</SelectItem>
-                <SelectItem value="certified">Pride Certified</SelectItem>
+                <SelectItem value="all">{t('language') === 'de' ? 'Alle Hotels' : 'All hotels'}</SelectItem>
+                <SelectItem value="friendly">{t('lgbtqFriendly')}</SelectItem>
+                <SelectItem value="certified">{t('prideCertified')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -220,30 +226,30 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
             onClick={handleSearch}
             className="w-full bg-pride-orange hover:bg-pride-red transition-colors h-12 text-lg font-semibold"
           >
-            🔍 Hotels suchen
+            🔍 {t('searchButton')}
           </Button>
         </div>
 
         {/* ESC 2026 Info */}
         <div className="bg-gradient-to-r from-pride-blue/10 to-pride-indigo/10 rounded-lg p-4">
           <h3 className="font-semibold mb-2 flex items-center gap-2">
-            🎵 Eurovision Song Contest 2026 in Wien
+            🎵 {t('language') === 'de' ? 'Eurovision Song Contest 2026 in Wien' : 'Eurovision Song Contest 2026 in Vienna'}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <strong>📅 Termine:</strong><br />
-              Semifinale: 13.+15. Mai 2026<br />
-              Finale: 17. Mai 2026
+              <strong>📅 {t('language') === 'de' ? 'Termine' : 'Dates'}:</strong><br />
+              {t('language') === 'de' ? 'Semifinale: 13.+15. Mai 2026' : 'Semi-finals: May 13 & 15, 2026'}<br />
+              {t('language') === 'de' ? 'Finale: 17. Mai 2026' : 'Final: May 17, 2026'}
             </div>
             <div>
-              <strong>📍 Austragungsort:</strong><br />
+              <strong>📍 {t('language') === 'de' ? 'Austragungsort' : 'Venue'}:</strong><br />
               Wiener Stadthalle<br />
               Roland-Rainer-Platz 1, 1150 Wien
             </div>
             <div>
-              <strong>🚇 Öffentliche Verkehrsmittel:</strong><br />
+              <strong>🚇 {t('language') === 'de' ? 'Öffentliche Verkehrsmittel' : 'Public Transport'}:</strong><br />
               U6 Station Burggasse-Stadthalle<br />
-              3 Minuten Gehweg
+              {t('language') === 'de' ? '3 Minuten Gehweg' : '3 minutes walk'}
             </div>
           </div>
         </div>

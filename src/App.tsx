@@ -6,9 +6,13 @@ import { BookingHotelsGrid } from '@/components/BookingHotelsGrid'
 import { BookingWidget } from '@/components/BookingWidget'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { DynamicMetaTags } from '@/components/DynamicMetaTags'
+import { DynamicTitle } from '@/components/DynamicTitle'
 import { ImageCredits } from '@/components/ImageCredits'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { FAQSection } from '@/components/FAQSection'
 import SEO from '@/components/SEO'
 import { BookingHotel, HotelSearchParams, searchBookingHotels } from '@/services/hotelService'
+import { useTranslation } from '@/hooks/useTranslation'
 import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform_colorful_impressive_mind_blowin_yrsl9hs8ik2077us0ncz_1.png'
 
 export default function App() {
@@ -19,6 +23,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'bildnachweis'>('home')
   // Store current search parameters for affiliate link generation
   const [currentSearchParams, setCurrentSearchParams] = useState<HotelSearchParams | null>(null)
+  const { t } = useTranslation()
 
   // Simple routing based on URL hash
   useEffect(() => {
@@ -73,6 +78,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Dynamic Title Component */}
+      <DynamicTitle />
+      
       {/* Dynamic Meta Tags Component */}
       <DynamicMetaTags 
         hotels={hotels}
@@ -92,19 +100,24 @@ export default function App() {
         <>
           <header className="bg-primary text-primary-foreground py-6">
             <div className="container mx-auto px-4">
-              <h1 className="text-2xl font-bold">Eurovision 2026 Wien Hotels</h1>
-              <nav className="mt-2">
-                <a 
-                  href="#" 
-                  onClick={(e) => {
-                    e.preventDefault()
-                    window.location.hash = ''
-                  }}
-                  className="text-primary-foreground hover:underline"
-                >
-                  ← Zurück zur Startseite
-                </a>
-              </nav>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-2xl font-bold">{t('title')}</h1>
+                  <nav className="mt-2">
+                    <a 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault()
+                        window.location.hash = ''
+                      }}
+                      className="text-primary-foreground hover:underline"
+                    >
+                      {t('backToHome')}
+                    </a>
+                  </nav>
+                </div>
+                <LanguageSwitcher />
+              </div>
             </div>
           </header>
           <ImageCredits />
@@ -116,9 +129,12 @@ export default function App() {
           <section className="relative h-96 bg-cover bg-center bg-no-repeat" style={{ 
             backgroundImage: `url('${eurovisionBanner}')`
           }}>
+            <div className="absolute top-4 right-4 z-20">
+              <LanguageSwitcher />
+            </div>
             <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
               <div className="text-center text-white">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">Eurovision 2026 Hotelsuche Wien</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">{t('title')}</h1>
               </div>
             </div>
           </section>
@@ -133,7 +149,7 @@ export default function App() {
             />
             
             <div className="text-center mb-8">
-              <p className="text-lg md:text-xl text-foreground">🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien</p>
+              <p className="text-lg md:text-xl text-foreground">{t('subtitle')}</p>
             </div>
             <BookingSearchForm onSearch={handleSearch} />
             
@@ -151,6 +167,11 @@ export default function App() {
                 onToggleFavorite={handleToggleFavorite}
               />
             )}
+            
+            {/* FAQ Section - only show on home page when no search is performed */}
+            {!searchPerformed && !isSearching && (
+              <FAQSection />
+            )}
           </div>
         </>
       )}
@@ -159,13 +180,13 @@ export default function App() {
       <footer className="bg-muted py-6 mt-16">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <div className="space-y-2">
-            <p>© 2024 Eurovision Rainbow City Vienna 2026</p>
+            <p>{t('footerCopyright')}</p>
             <nav className="flex justify-center space-x-4">
               <a 
                 href="#bildnachweis" 
                 className="hover:text-foreground transition-colors"
               >
-                Bildnachweis
+                {t('imageCredits')}
               </a>
             </nav>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BookingHotel } from '@/services/hotelService'
+import { useTranslation } from '@/hooks/useTranslation'
 import { CaretRight, House } from '@phosphor-icons/react'
 
 interface BreadcrumbItem {
@@ -29,6 +30,7 @@ export function Breadcrumb({
   pageType = 'home',
   customPath 
 }: BreadcrumbProps) {
+  const { t } = useTranslation()
   
   const generateBreadcrumbSchema = () => {
     const items: BreadcrumbItem[] = []
@@ -37,7 +39,7 @@ export function Breadcrumb({
     items.push({
       "@type": "ListItem",
       "position": 1,
-      "name": "Eurovision 2026 Wien",
+      "name": t('language') === 'de' ? "Eurovision 2026 Wien" : "Eurovision 2026 Vienna",
       "item": "https://esc-2026-vienna.com"
     })
     
@@ -46,7 +48,7 @@ export function Breadcrumb({
       items.push({
         "@type": "ListItem",
         "position": 2,
-        "name": "Hotels",
+        "name": t('hotels'),
         "item": "https://esc-2026-vienna.com/hotels"
       })
     }
@@ -95,7 +97,7 @@ export function Breadcrumb({
     
     // Home
     crumbs.push({
-      name: "Eurovision 2026",
+      name: t('language') === 'de' ? "Eurovision 2026" : "Eurovision 2026",
       href: "/",
       icon: <House className="w-4 h-4" />
     })
@@ -103,7 +105,7 @@ export function Breadcrumb({
     // Hotels
     if (pageType !== 'home') {
       crumbs.push({
-        name: "Hotels",
+        name: t('hotels'),
         href: "/hotels"
       })
     }

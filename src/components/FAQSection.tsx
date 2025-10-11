@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface FAQItem {
   id: string
@@ -147,6 +148,7 @@ const categories = Array.from(new Set(faqData.map(item => item.category)))
 export function FAQSection() {
   const [isExpanded, setIsExpanded] = useState(false)
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
+  const { t } = useTranslation()
 
   const toggleItem = (itemId: string) => {
     const newOpenItems = new Set(openItems)
