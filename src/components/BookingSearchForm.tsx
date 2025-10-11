@@ -15,8 +15,8 @@ interface BookingSearchFormProps {
 }
 
 export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
-  const [checkIn, setCheckIn] = useState('2026-05-10')
-  const [checkOut, setCheckOut] = useState('2026-05-18')
+  const [checkIn, setCheckIn] = useState('2025-05-10')
+  const [checkOut, setCheckOut] = useState('2025-05-18')
   const [adults, setAdults] = useState(2)
   const [children, setChildren] = useState(0)
   const [rooms, setRooms] = useState(1)

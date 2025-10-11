@@ -1,6 +1,6 @@
-# Eurovision Rainbow City - Vienna 2026 Hotel Affiliate Website
+# ESC 2026 Vienna Hotel Affiliate Website
 
-This website serves as the ultimate Eurovision 2026 Vienna hotel booking platform, specifically designed for the LGBTQ+ community and Eurovision fans worldwide.
+This website serves as the ultimate ESC 2026 Vienna hotel booking platform, specifically designed for the LGBTQ+ community and Eurovision fans worldwide.
 
 **Experience Qualities**:
 1. **Vibrant and Inclusive**: Bold pride colors and Eurovision energy that celebrates diversity and creates an instantly welcoming atmosphere

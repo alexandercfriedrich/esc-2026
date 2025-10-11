@@ -1,13 +1,13 @@
 export const translations = {
   de: {
     // Header and Navigation
-    title: 'Eurovision 2026 Hotelsuche Wien',
+    title: 'ESC 2026 Hotelsuche Wien',
     subtitle: '🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien',
     backToHome: '← Zurück zur Startseite',
     imageCredits: 'Bildnachweis',
     
     // Search Form
-    searchTitle: 'Hotelsuche für Eurovision 2026',
+    searchTitle: 'Hotelsuche für ESC 2026',
     searchLocation: 'Wien, Österreich',
     checkIn: 'Anreise',
     checkOut: 'Abreise',
@@ -44,12 +44,12 @@ export const translations = {
     faqQuestion1: 'Was bedeutet "Pride Zertifiziert"?',
     faqAnswer1: 'Pride Zertifizierte Hotels haben spezielle LGBTQ+ Schulungen absolviert und bieten ein besonders inklusives Umfeld.',
     faqQuestion2: 'Wie nah sind die Hotels zur Wiener Stadthalle?',
-    faqAnswer2: 'Alle gelisteten Hotels sind maximal 30 Minuten von der Wiener Stadthalle entfernt, dem Austragungsort des Eurovision 2026.',
+    faqAnswer2: 'Alle gelisteten Hotels sind maximal 30 Minuten von der Wiener Stadthalle entfernt, dem Austragungsort des ESC 2026.',
     faqQuestion3: 'Sind die Preise final?',
     faqAnswer3: 'Die angezeigten Preise sind Richtwerte. Der finale Preis wird bei Booking.com angezeigt.',
     
     // Footer
-    footerCopyright: '© 2024 Eurovision Rainbow City Vienna 2026',
+    footerCopyright: '© 2025 ESC 2026 Vienna',
     
     // Breadcrumb
     home: 'Startseite',
@@ -57,9 +57,9 @@ export const translations = {
     search: 'Suche',
     
     // Meta and SEO
-    metaTitle: 'Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte',
-    metaDescription: '🏳️‍🌈 Buche jetzt die perfekten Hotels für Eurovision 2026 in Wien! LGBTQ+ freundliche Unterkünfte, Community-Features und die besten Locations für ESC-Fans.',
-    metaKeywords: 'Eurovision 2026, Wien Hotels, LGBTQ freundlich, ESC Vienna, Eurovision Hotels, Pride Hotels Wien, Eurovision Song Contest 2026',
+    metaTitle: 'ESC 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte',
+    metaDescription: '🏳️‍🌈 Buche jetzt die perfekten Hotels für ESC 2026 in Wien! LGBTQ+ freundliche Unterkünfte, Community-Features und die besten Locations für ESC-Fans.',
+    metaKeywords: 'ESC 2026, Wien Hotels, LGBTQ freundlich, ESC Vienna, Eurovision Hotels, Pride Hotels Wien, Eurovision Song Contest 2026',
     
     // Error Messages
     searchError: 'Fehler bei der Hotelsuche',
@@ -76,13 +76,13 @@ export const translations = {
   
   en: {
     // Header and Navigation
-    title: 'Eurovision 2026 Hotel Search Vienna',
+    title: 'ESC 2026 Hotel Search Vienna',
     subtitle: '🏳️‍🌈 LGBTQ+ friendly accommodations for ESC in Vienna',
     backToHome: '← Back to Homepage',
     imageCredits: 'Image Credits',
     
     // Search Form
-    searchTitle: 'Hotel Search for Eurovision 2026',
+    searchTitle: 'Hotel Search for ESC 2026',
     searchLocation: 'Vienna, Austria',
     checkIn: 'Check-in',
     checkOut: 'Check-out',
@@ -119,12 +119,12 @@ export const translations = {
     faqQuestion1: 'What does "Pride Certified" mean?',
     faqAnswer1: 'Pride Certified hotels have completed special LGBTQ+ training and offer a particularly inclusive environment.',
     faqQuestion2: 'How close are the hotels to Wiener Stadthalle?',
-    faqAnswer2: 'All listed hotels are maximum 30 minutes from Wiener Stadthalle, the venue for Eurovision 2026.',
+    faqAnswer2: 'All listed hotels are maximum 30 minutes from Wiener Stadthalle, the venue for ESC 2026.',
     faqQuestion3: 'Are the prices final?',
     faqAnswer3: 'The displayed prices are estimates. The final price will be shown on Booking.com.',
     
     // Footer
-    footerCopyright: '© 2024 Eurovision Rainbow City Vienna 2026',
+    footerCopyright: '© 2025 ESC 2026 Vienna',
     
     // Breadcrumb
     home: 'Home',
@@ -132,9 +132,9 @@ export const translations = {
     search: 'Search',
     
     // Meta and SEO
-    metaTitle: 'Eurovision 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations',
-    metaDescription: '🏳️‍🌈 Book the perfect hotels for Eurovision 2026 in Vienna now! LGBTQ+ friendly accommodations, community features and the best locations for ESC fans.',
-    metaKeywords: 'Eurovision 2026, Vienna Hotels, LGBTQ friendly, ESC Vienna, Eurovision Hotels, Pride Hotels Vienna, Eurovision Song Contest 2026',
+    metaTitle: 'ESC 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations',
+    metaDescription: '🏳️‍🌈 Book the perfect hotels for ESC 2026 in Vienna now! LGBTQ+ friendly accommodations, community features and the best locations for ESC fans.',
+    metaKeywords: 'ESC 2026, Vienna Hotels, LGBTQ friendly, ESC Vienna, Eurovision Hotels, Pride Hotels Vienna, Eurovision Song Contest 2026',
     
     // Error Messages
     searchError: 'Error in hotel search',

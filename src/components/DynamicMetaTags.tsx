@@ -24,29 +24,29 @@ export function DynamicMetaTags({
     if (currentHotel) {
       const certText = currentHotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 Gay Friendly'
       return t('language') === 'de' 
-        ? `${currentHotel.name} | Eurovision 2026 Wien | LGBTQ+ Hotel ${certText}`
-        : `${currentHotel.name} | Eurovision 2026 Vienna | LGBTQ+ Hotel ${certText}`
+        ? `${currentHotel.name} | ESC 2026 Wien | LGBTQ+ Hotel ${certText}`
+        : `${currentHotel.name} | ESC 2026 Vienna | LGBTQ+ Hotel ${certText}`
     }
     
     if (pageType === 'credits') {
       return t('language') === 'de'
-        ? 'Bildnachweis | Eurovision 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
-        : 'Image Credits | Eurovision 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations'
+        ? 'Bildnachweis | ESC 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
+        : 'Image Credits | ESC 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
       const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
       const prideCount = hotels.filter(h => h.lgbt_certification === 'certified').length
       return t('language') === 'de'
-        ? `${hotels.length} Eurovision 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | ${prideCount} Pride Certified`
-        : `${hotels.length} Eurovision 2026 Hotels Vienna | ${lgbtqCount} LGBTQ+ friendly | ${prideCount} Pride Certified`
+        ? `${hotels.length} ESC 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | ${prideCount} Pride Certified`
+        : `${hotels.length} ESC 2026 Hotels Vienna | ${lgbtqCount} LGBTQ+ friendly | ${prideCount} Pride Certified`
     }
     
     if (searchQuery) {
       const location = t('language') === 'de' ? 'Wien' : 'Vienna'
       return t('language') === 'de'
-        ? `${searchQuery} | Eurovision 2026 ${location} Hotels | LGBTQ+ Unterkünfte ESC`
-        : `${searchQuery} | Eurovision 2026 ${location} Hotels | LGBTQ+ Accommodations ESC`
+        ? `${searchQuery} | ESC 2026 ${location} Hotels | LGBTQ+ Unterkünfte ESC`
+        : `${searchQuery} | ESC 2026 ${location} Hotels | LGBTQ+ Accommodations ESC`
     }
     
     return t('metaTitle')
@@ -61,14 +61,14 @@ export function DynamicMetaTags({
       const location = t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'
       const perNight = t('language') === 'de' ? '/Nacht' : '/night'
       return t('language') === 'de'
-        ? `${certText} Hotel ${currentHotel.name} für Eurovision 2026 - ${currentHotel.distance_km_to_venue}km ${location}, ab €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
-        : `${certText} Hotel ${currentHotel.name} for Eurovision 2026 - ${currentHotel.distance_km_to_venue}km ${location}, from €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
+        ? `${certText} Hotel ${currentHotel.name} für ESC 2026 - ${currentHotel.distance_km_to_venue}km ${location}, ab €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
+        : `${certText} Hotel ${currentHotel.name} for ESC 2026 - ${currentHotel.distance_km_to_venue}km ${location}, from €${currentHotel.price.amount}${perNight}. ${currentHotel.description?.slice(0, 100)}...`
     }
     
     if (pageType === 'credits') {
       return t('language') === 'de'
-        ? 'Bildnachweis und Quellenangaben für alle verwendeten Bilder, Logos und Medien auf der Eurovision 2026 Vienna Hotels Plattform.'
-        : 'Image credits and sources for all images, logos and media used on the Eurovision 2026 Vienna Hotels platform.'
+        ? 'Bildnachweis und Quellenangaben für alle verwendeten Bilder, Logos und Medien auf der ESC 2026 Vienna Hotels Plattform.'
+        : 'Image credits and sources for all images, logos and media used on the ESC 2026 Vienna Hotels platform.'
     }
     
     if (pageType === 'search' && hotels.length > 0) {
@@ -80,7 +80,7 @@ export function DynamicMetaTags({
       const night = t('language') === 'de' ? '/Nacht' : '/night'
       const nearest = t('language') === 'de' ? 'Nächstes Hotel' : 'Nearest hotel'
       const toStadthalle = t('language') === 'de' ? 'zur Stadthalle' : 'to Stadthalle'
-      return `${hotels.length} ${available} für Eurovision 2026 in ${location}. ${friendly} ab €${Math.min(...hotels.map(h => h.price.amount))}${night}. ${nearest} ${minDistance}km ${toStadthalle}.`
+      return `${hotels.length} ${available} für ESC 2026 in ${location}. ${friendly} ab €${Math.min(...hotels.map(h => h.price.amount))}${night}. ${nearest} ${minDistance}km ${toStadthalle}.`
     }
     
     return t('metaDescription')

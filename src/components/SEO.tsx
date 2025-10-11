@@ -17,8 +17,8 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
     "name": "Eurovision Song Contest 2026",
     "alternateName": "ESC 2026 Wien",
     "description": "Der Eurovision Song Contest 2026 findet in Wien statt. Buchen Sie jetzt LGBTQ+ freundliche Hotels für das größte Musikevent Europas.",
-    "startDate": "2026-05-12T21:00:00+02:00",
-    "endDate": "2026-05-16T23:30:00+02:00",
+    "startDate": "2025-05-12T21:00:00+02:00",
+    "endDate": "2025-05-16T23:30:00+02:00",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
@@ -64,8 +64,8 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
       "lowPrice": "65",
       "highPrice": "800",
       "availability": "https://schema.org/InStock",
-      "validFrom": "2024-01-01",
-      "validThrough": "2026-05-16"
+      "validFrom": "2025-01-01",
+      "validThrough": "2025-05-16"
     },
     "image": [
       "https://esc-2026-vienna.com/eurovision-2026-vienna-hotels.jpg",
@@ -133,7 +133,7 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
   const hotelListSchema = hotels.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Eurovision 2026 Hotels Wien - LGBTQ+ Freundliche Unterkünfte",
+    "name": "ESC 2026 Vienna Hotels Wien - LGBTQ+ Freundliche Unterkünfte",
     "description": `${hotels.length} verfügbare Hotels für Eurovision 2026 in Wien mit LGBTQ+ Zertifizierung und Pride-Support.`,
     "numberOfItems": hotels.length,
     "itemListElement": hotels.map((hotel, index) => ({
@@ -150,7 +150,7 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Eurovision Rainbow City Vienna 2026",
+    "name": "ESC 2026 Vienna",
     "alternateName": "ESC 2026 Wien Hotels",
     "description": "Die offizielle Buchungsplattform für LGBTQ+ freundliche Hotels zum Eurovision Song Contest 2026 in Wien.",
     "url": "https://esc-2026-vienna.com",
@@ -164,7 +164,7 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Eurovision Rainbow City Vienna 2026",
+      "name": "ESC 2026 Vienna",
       "url": "https://esc-2026-vienna.com",
       "logo": {
         "@type": "ImageObject",
@@ -186,7 +186,7 @@ export function SEO({ hotels = [], searchParams, pageType = 'home', currentHotel
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Eurovision 2026 Wien",
+        "name": "ESC 2026 Wien",
         "item": "https://esc-2026-vienna.com"
       },
       {

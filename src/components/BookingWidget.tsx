@@ -24,7 +24,7 @@ export function BookingWidget({ searchPerformed, bookingHotelsCount, isSearching
           <div className="bg-gradient-to-r from-pride-blue/10 to-pride-indigo/10 rounded-lg p-4">
             <div className="mb-3">
               <h3 className="font-semibold">
-                🎯 {t('language') === 'de' ? 'Eurovision 2026 Wien Hotel Empfehlungen' : 'Eurovision 2026 Vienna Hotel Recommendations'}
+                🎯 {t('language') === 'de' ? 'ESC 2026 Wien Hotel Empfehlungen' : 'ESC 2026 Vienna Hotel Recommendations'}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {t('language') === 'de' 

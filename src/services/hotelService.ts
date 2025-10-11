@@ -10,8 +10,8 @@
  * 6. ✅ Fallback auf city-wide search wenn Hotel-slug fehlt
  * 
  * VALIDATION BEISPIEL:
- * - Check-in: 2026-05-12, Check-out: 2026-05-17, Erwachsene: 2, Zimmer: 1
- * - Generiert: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html?aid=101370188&checkin=2026-05-12&checkout=2026-05-17&group_adults=2&no_rooms=1
+ * - Check-in: 2025-05-12, Check-out: 2025-05-17, Erwachsene: 2, Zimmer: 1
+ * - Generiert: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html?aid=101370188&checkin=2025-05-12&checkout=2025-05-17&group_adults=2&no_rooms=1
  * 
  * BETROFFENE DATEIEN:
  * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
