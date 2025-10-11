@@ -20,7 +20,19 @@
  */
 
 import { toast } from 'sonner'
-import hotelMottoImage from '@/assets/images/Hotel_Motto_Dachterrasse.png'
+
+// Import existing hotel images - these should be added as more images are uploaded
+import hotelMottoDachterrasse from '@/assets/images/hotelmotto_Dachterrasse.png'
+import hotelMottoZimmer from '@/assets/images/hotelmotto_zimmer.png'
+
+// Hotel image mapping based on slug/filename convention
+// When new images are uploaded with pattern: {hotelslug}_{description}.{ext}
+// they should be imported and added to this mapping
+const hotelImages: Record<string, string[]> = {
+  'hotelmotto': [hotelMottoDachterrasse, hotelMottoZimmer],
+  // Future images will be added here as they are uploaded
+  // Pattern: 'hotelslug': [image1, image2, image3, image4]
+};
 
 export interface BookingHotel {
   id: string
@@ -640,9 +652,12 @@ export function getAllHotels(): BookingHotel[] {
 
 // Get hotel image URL - only using local assets
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
-  // Use local Hotel Motto image ONLY for Boutique Hotel MOTTO
-  if (hotel.id === 'boutique-hotel-motto') {
-    return hotelMottoImage;
+  // Use hotel slug to find images
+  const slug = hotel.slug;
+  const images = hotelImages[slug || ''];
+  
+  if (images && images.length > 0) {
+    return images[0]; // Return first image
   }
   
   // For all other hotels, return empty string (no image available)
@@ -651,9 +666,12 @@ export const getHotelImageUrl = (hotel: BookingHotel): string => {
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
-  // Use local Hotel Motto image ONLY for Boutique Hotel MOTTO
-  if (hotel.id === 'boutique-hotel-motto') {
-    return hotelMottoImage;
+  // Use hotel slug to find images
+  const slug = hotel.slug;
+  const images = hotelImages[slug || ''];
+  
+  if (images && images.length > 0) {
+    return images[0]; // Return first image (could be larger resolution version)
   }
   
   // For all other hotels, return empty string (no image available)
@@ -662,13 +680,11 @@ export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
 
 // Remove photos property from components that still reference it and update photo count display
 export const getPhotoCount = (hotel: BookingHotel): number => {
-  // Return 1 for Hotel Motto since we have its image
-  if (hotel.id === 'boutique-hotel-motto') {
-    return 1;
-  }
+  // Use hotel slug to find images
+  const slug = hotel.slug;
+  const images = hotelImages[slug || ''];
   
-  // For all other hotels, return 0 (no images available)
-  return 0;
+  return images ? images.length : 0;
 };
 
 // Alias for compatibility with App.tsx
