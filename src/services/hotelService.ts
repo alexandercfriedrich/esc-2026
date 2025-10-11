@@ -9,6 +9,11 @@
  * 5. ✅ Datumsformat YYYY-MM-DD korrekt
  * 6. ✅ Fallback auf city-wide search wenn Hotel-slug fehlt
  * 
+ * ✅ BILDERZUORDNUNG AUF HOTEL-ID UMGESTELLT:
+ * - Bildnamen enthalten hotel ID statt hotel slug zur Zuordnung
+ * - Bilder werden nach hotel.id gemappt (z.B. 'boutiquehotel-stadthalle_1.webp')
+ * - Pattern: {hotel-id}_{description}.{ext}
+ * 
  * VALIDATION BEISPIEL:
  * - Check-in: 2025-05-12, Check-out: 2025-05-17, Erwachsene: 2, Zimmer: 1
  * - Generiert: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html?aid=101370188&checkin=2025-05-12&checkout=2025-05-17&group_adults=2&no_rooms=1
@@ -16,22 +21,36 @@
  * BETROFFENE DATEIEN:
  * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
  * - ✅ BookingHotelsGrid.tsx: Verwendet dynamische Parameter für Affiliate-Links
- * - ✅ hotelService.ts: Generiert korrekte booking.com URLs mit allen Parametern
+ * - ✅ hotelService.ts: Generiert korrekte booking.com URLs mit allen Parametern + ID-basierte Bilderzuordnung
  */
 
 import { toast } from 'sonner'
 
 // Import existing hotel images - these should be added as more images are uploaded
+import boutiqueHotelStadthalle1 from '@/assets/images/boutiquehotel-stadthalle_1.webp'
+import boutiqueHotelStadthalle2 from '@/assets/images/boutiquehotel-stadthalle_2.webp'
+import boutiqueHotelStadthalle3 from '@/assets/images/boutiquehotel-stadthalle_3.webp'
+import boutiqueHotelMotto from '@/assets/images/boutique-hotel-motto-c-Oliver-Jiszda.webp'
 import hotelMottoDachterrasse from '@/assets/images/hotelmotto_Dachterrasse.png'
 import hotelMottoZimmer from '@/assets/images/hotelmotto_zimmer.png'
+import hotelAltstadtVienna1 from '@/assets/images/hotel-altstadt-vienna_1.webp'
+import hotelAltstadtVienna2 from '@/assets/images/hotel-altstadt-vienna_2.webp'
+import hotelAltstadtVienna3 from '@/assets/images/hotel-altstadt-vienna_3.webp'
+import sansSouciWien1 from '@/assets/images/sans-souci-wien_1.jpg'
+import sansSouciWien2 from '@/assets/images/sans-souci-wien_2.jpg'
+import sansSouciWien3 from '@/assets/images/sans-souci-wien_3.jpg'
+import sansSouciWien4 from '@/assets/images/sans-souci-wien_4.jpg'
 
-// Hotel image mapping based on slug/filename convention
-// When new images are uploaded with pattern: {hotelslug}_{description}.{ext}
+// Hotel image mapping based on hotel ID/filename convention
+// When new images are uploaded with pattern: {hotel-id}_{description}.{ext}
 // they should be imported and added to this mapping
 const hotelImages: Record<string, string[]> = {
-  'hotelmotto': [hotelMottoDachterrasse, hotelMottoZimmer],
+  'boutiquehotel-stadthalle': [boutiqueHotelStadthalle1, boutiqueHotelStadthalle2, boutiqueHotelStadthalle3],
+  'boutique-hotel-motto': [boutiqueHotelMotto, hotelMottoDachterrasse, hotelMottoZimmer],
+  'hotel-altstadt-vienna': [hotelAltstadtVienna1, hotelAltstadtVienna2, hotelAltstadtVienna3],
+  'sans-souci-wien': [sansSouciWien1, sansSouciWien2, sansSouciWien3, sansSouciWien4],
   // Future images will be added here as they are uploaded
-  // Pattern: 'hotelslug': [image1, image2, image3, image4]
+  // Pattern: 'hotel-id': [image1, image2, image3, image4]
 };
 
 export interface BookingHotel {
@@ -652,9 +671,9 @@ export function getAllHotels(): BookingHotel[] {
 
 // Get hotel image URL - only using local assets
 export const getHotelImageUrl = (hotel: BookingHotel): string => {
-  // Use hotel slug to find images
-  const slug = hotel.slug;
-  const images = hotelImages[slug || ''];
+  // Use hotel ID to find images
+  const hotelId = hotel.id;
+  const images = hotelImages[hotelId || ''];
   
   if (images && images.length > 0) {
     return images[0]; // Return first image
@@ -666,9 +685,9 @@ export const getHotelImageUrl = (hotel: BookingHotel): string => {
 
 // Get hotel image URL in large resolution for detailed views
 export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
-  // Use hotel slug to find images
-  const slug = hotel.slug;
-  const images = hotelImages[slug || ''];
+  // Use hotel ID to find images
+  const hotelId = hotel.id;
+  const images = hotelImages[hotelId || ''];
   
   if (images && images.length > 0) {
     return images[0]; // Return first image (could be larger resolution version)
@@ -680,16 +699,16 @@ export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
 
 // Get all hotel images for slideshow
 export const getHotelImages = (hotel: BookingHotel): string[] => {
-  // Use hotel slug to find images
-  const slug = hotel.slug;
-  const images = hotelImages[slug || ''];
+  // Use hotel ID to find images
+  const hotelId = hotel.id;
+  const images = hotelImages[hotelId || ''];
   
   return images || [];
 };
 export const getPhotoCount = (hotel: BookingHotel): number => {
-  // Use hotel slug to find images
-  const slug = hotel.slug;
-  const images = hotelImages[slug || ''];
+  // Use hotel ID to find images
+  const hotelId = hotel.id;
+  const images = hotelImages[hotelId || ''];
   
   return images ? images.length : 0;
 };
@@ -712,12 +731,12 @@ export async function searchBookingHotels(params: HotelSearchParams): Promise<Bo
     lgbtqOnly: params.lgbtFilter === 'friendly' || params.lgbtFilter === 'certified'
   }
   
-  // Get filtered hotels - photos have been removed except for Hotel Motto local image
+  // Get filtered hotels - images now mapped by hotel ID instead of slug
   const filteredHotels = searchHotels(criteria);
   
   // Simulate async delay for realistic feel
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Return hotels (only Hotel Motto has an image, others show "No image available")
+  // Return hotels with ID-based image mapping
   return filteredHotels;
 }
