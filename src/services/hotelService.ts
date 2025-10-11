@@ -31,8 +31,6 @@ import boutiqueHotelStadthalle1 from '@/assets/images/boutiquehotel-stadthalle_1
 import boutiqueHotelStadthalle2 from '@/assets/images/boutiquehotel-stadthalle_2.webp'
 import boutiqueHotelStadthalle3 from '@/assets/images/boutiquehotel-stadthalle_3.webp'
 import boutiqueHotelMotto from '@/assets/images/boutique-hotel-motto-c-Oliver-Jiszda.webp'
-import hotelMottoDachterrasse from '@/assets/images/hotelmotto_Dachterrasse.png'
-import hotelMottoZimmer from '@/assets/images/hotelmotto_zimmer.png'
 import hotelAltstadtVienna1 from '@/assets/images/hotel-altstadt-vienna_1.webp'
 import hotelAltstadtVienna2 from '@/assets/images/hotel-altstadt-vienna_2.webp'
 import hotelAltstadtVienna3 from '@/assets/images/hotel-altstadt-vienna_3.webp'
@@ -57,12 +55,10 @@ import andazViennaAmBelvedere2 from '@/assets/images/andaz-vienna-am-belvedere_2
 import andazViennaAmBelvedere3 from '@/assets/images/andaz-vienna-am-belvedere_3.webp'
 import andazViennaAmBelvedere4 from '@/assets/images/andaz-vienna-am-belvedere_4.webp'
 import andazViennaAmBelvedere5 from '@/assets/images/andaz-vienna-am-belvedere_5.webp'
-import andazViennaAmBelvedere6 from '@/assets/images/andaz-vienna-am-belvedere_6.webp'
 import amKonzerthaus1 from '@/assets/images/am-konzerthaus_1.jpg'
 import amKonzerthaus2 from '@/assets/images/am-konzerthaus_2.jpg'
 import amKonzerthaus3 from '@/assets/images/am-konzerthaus_3.jpg'
 import amKonzerthaus4 from '@/assets/images/am-konzerthaus_4.jpg'
-import amKonzerthaus5 from '@/assets/images/am-konzerthaus_5.jpg'
 import regina1 from '@/assets/images/regina_1.jpg'
 import imperial1 from '@/assets/images/imperial_1.jpeg'
 import imperial2 from '@/assets/images/imperial_2.jpeg'
@@ -80,15 +76,15 @@ import moxyVienna3 from '@/assets/images/moxy-vienna_3.jpeg'
 // Hotel image mapping based on hotel ID
 const hotelImages: Record<string, string[]> = {
   'boutiquehotel-stadthalle': [boutiqueHotelStadthalle1, boutiqueHotelStadthalle2, boutiqueHotelStadthalle3],
-  'boutique-hotel-motto': [boutiqueHotelMotto, hotelMottoDachterrasse, hotelMottoZimmer],
+  'boutique-hotel-motto': [boutiqueHotelMotto],
   'hotel-altstadt-vienna': [hotelAltstadtVienna1, hotelAltstadtVienna2, hotelAltstadtVienna3],
   'sans-souci-wien': [sansSouciWien1, sansSouciWien2, sansSouciWien3, sansSouciWien4],
   'hotel-mercure-wien-city': [hotelMercureWienCity1, hotelMercureWienCity2, hotelMercureWienCity3],
   'do-co-hotel-vienna': [doCoHotelVienna1, doCoHotelVienna2, doCoHotelVienna3],
   'boutique-hotel-donauwalzer': [boutiqueHotelDonauwalzer1, boutiqueHotelDonauwalzer2, boutiqueHotelDonauwalzer3, boutiqueHotelDonauwalzer4],
   'hotel-zeitgeist-vienna': [hotelZeitgeistVienna1, hotelZeitgeistVienna2, hotelZeitgeistVienna3],
-  'andaz-vienna-am-belvedere': [andazViennaAmBelvedere2, andazViennaAmBelvedere3, andazViennaAmBelvedere4, andazViennaAmBelvedere5, andazViennaAmBelvedere6],
-  'am-konzerthaus': [amKonzerthaus1, amKonzerthaus2, amKonzerthaus3, amKonzerthaus4, amKonzerthaus5],
+  'andaz-vienna-am-belvedere': [andazViennaAmBelvedere2, andazViennaAmBelvedere3, andazViennaAmBelvedere4, andazViennaAmBelvedere5],
+  'am-konzerthaus': [amKonzerthaus1, amKonzerthaus2, amKonzerthaus3, amKonzerthaus4],
   'regina': [regina1],
   'imperial': [imperial1, imperial2, imperial6, imperial7, imperial8, imperial10],
   'ruby-marie': [rubyMarie3, rubyMarie4, rubyMarie5],
