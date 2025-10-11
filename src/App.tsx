@@ -11,12 +11,13 @@ import { ImageCredits } from '@/components/ImageCredits'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { FAQSection } from '@/components/FAQSection'
 import SEO from '@/components/SEO'
-import { BookingHotel, HotelSearchParams, searchBookingHotels } from '@/services/hotelService'
+import { BookingHotel, HotelSearchParams, searchBookingHotels, getAllHotels } from '@/services/hotelService'
 import { useTranslation } from '@/hooks/useTranslation'
 import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform_colorful_impressive_mind_blowin_yrsl9hs8ik2077us0ncz_1.png'
 
 export default function App() {
   const [hotels, setHotels] = useState<BookingHotel[]>([])
+  const [allHotels, setAllHotels] = useState<BookingHotel[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
   const [favoriteHotels, setFavoriteHotels] = useKV<string[]>("favorite-hotels", [])
@@ -24,6 +25,28 @@ export default function App() {
   // Store current search parameters for affiliate link generation
   const [currentSearchParams, setCurrentSearchParams] = useState<HotelSearchParams | null>(null)
   const { t } = useTranslation()
+
+  // Load all hotels on initial page load
+  useEffect(() => {
+    const loadAllHotels = async () => {
+      const allHotelsData = getAllHotels()
+      setAllHotels(allHotelsData)
+      // Set default search params for affiliate links
+      setCurrentSearchParams({
+        checkIn: '2026-05-12',
+        checkOut: '2026-05-17',
+        adults: 2,
+        children: 0,
+        rooms: 1,
+        priceMin: 0,
+        priceMax: 1000,
+        stars: '',
+        distanceFilter: '',
+        lgbtFilter: ''
+      })
+    }
+    loadAllHotels()
+  }, [])
 
   // Simple routing based on URL hash
   useEffect(() => {
@@ -155,17 +178,36 @@ export default function App() {
             
             <BookingWidget 
               searchPerformed={searchPerformed}
-              bookingHotelsCount={hotels.length}
+              bookingHotelsCount={searchPerformed ? hotels.length : allHotels.length}
               isSearching={isSearching}
             />
             
-            {(searchPerformed || isSearching) && currentSearchParams && (
-              <BookingHotelsGrid 
-                hotels={hotels}
-                searchParams={currentSearchParams}
-                favoriteHotels={favoriteHotels || []}
-                onToggleFavorite={handleToggleFavorite}
-              />
+            {/* Show all hotels by default or search results if search was performed */}
+            {currentSearchParams && (
+              <>
+                {searchPerformed ? (
+                  <BookingHotelsGrid 
+                    hotels={hotels}
+                    searchParams={currentSearchParams}
+                    favoriteHotels={favoriteHotels || []}
+                    onToggleFavorite={handleToggleFavorite}
+                  />
+                ) : (
+                  <>
+                    <div className="mb-6">
+                      <h2 className="text-2xl font-bold text-center mb-4">
+                        🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien
+                      </h2>
+                    </div>
+                    <BookingHotelsGrid 
+                      hotels={allHotels}
+                      searchParams={currentSearchParams}
+                      favoriteHotels={favoriteHotels || []}
+                      onToggleFavorite={handleToggleFavorite}
+                    />
+                  </>
+                )}
+              </>
             )}
             
             {/* FAQ Section - only show on home page when no search is performed */}
