@@ -109,7 +109,7 @@ export function BookingHotelsGrid({
       
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">
-          📍 {hotels.length} {t('language') === 'de' ? 'verfügbare Hotels in Wien' : 'available hotels in Vienna'}
+          Hand-picked hotels (by Viennese resident) for your perfect stay during the ESC 2026 in Vienna
         </h2>
       </div>
       
