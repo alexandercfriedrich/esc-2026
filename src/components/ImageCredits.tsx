@@ -312,6 +312,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Ruby Marie Hotel Wien</h3>
+              <p className="text-sm text-muted-foreground">
+                Hotel Information - 
+                <a 
+                  href="https://www.ruby-hotels.com/de/destinationen/wien/ruby-marie" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.ruby-hotels.com/de/destinationen/wien/ruby-marie
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
