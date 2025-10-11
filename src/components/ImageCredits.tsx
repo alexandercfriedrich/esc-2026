@@ -168,6 +168,16 @@ export function ImageCredits() {
                 >
                   https://www.zeitgeist-vienna.com/
                 </a>
+                <br />
+                DayUse Booking - 
+                <a 
+                  href="https://de.dayuse.ch/hotels/austria/hotel-zeitgeist-vienna-hauptbahnhof" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://de.dayuse.ch/hotels/austria/hotel-zeitgeist-vienna-hauptbahnhof
+                </a>
               </p>
             </div>
             
