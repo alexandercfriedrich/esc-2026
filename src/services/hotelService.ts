@@ -678,7 +678,14 @@ export const getHotelImageUrlLarge = (hotel: BookingHotel): string => {
   return '';
 };
 
-// Remove photos property from components that still reference it and update photo count display
+// Get all hotel images for slideshow
+export const getHotelImages = (hotel: BookingHotel): string[] => {
+  // Use hotel slug to find images
+  const slug = hotel.slug;
+  const images = hotelImages[slug || ''];
+  
+  return images || [];
+};
 export const getPhotoCount = (hotel: BookingHotel): number => {
   // Use hotel slug to find images
   const slug = hotel.slug;

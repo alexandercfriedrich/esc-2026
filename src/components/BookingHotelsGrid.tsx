@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users } from '@phosphor-icons/react'
-import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge, getPhotoCount } from '@/services/hotelService'
+import { Heart, MapPin, Star, WifiHigh, Car, Coffee, Barbell, Users, Camera } from '@phosphor-icons/react'
+import { BookingHotel, generateAffiliateUrl, HotelSearchParams, getHotelImageUrl, getHotelImageUrlLarge, getPhotoCount, getHotelImages } from '@/services/hotelService'
+import { HotelImageSlideshow } from '@/components/HotelImageSlideshow'
 import HotelRichSnippet from '@/components/HotelRichSnippet'
 import { toast } from 'sonner'
+import { useState } from 'react'
 
 interface BookingHotelsGridProps {
   hotels: BookingHotel[]
@@ -21,6 +23,7 @@ export function BookingHotelsGrid({
   favoriteHotels,
   onToggleFavorite 
 }: BookingHotelsGridProps) {
+  const [fullscreenImage, setFullscreenImage] = useState<{ hotel: BookingHotel; images: string[] } | null>(null)
   
   const handleBooking = (hotel: BookingHotel) => {
     try {
@@ -120,9 +123,33 @@ export function BookingHotelsGrid({
               </Button>
             </div>
             
-            {/* Hotel Image */}
+            {/* Hotel Image with Slideshow */}
             <div className="h-48 relative overflow-hidden">
-              {getHotelImageUrl(hotel) ? (
+              {getHotelImages(hotel).length > 0 ? (
+                <div className="relative">
+                  <HotelImageSlideshow 
+                    hotel={hotel}
+                    images={getHotelImages(hotel)}
+                  />
+                  {/* Photo count and fullscreen button overlay */}
+                  <div className="absolute bottom-2 right-2 flex gap-2">
+                    {getHotelImages(hotel).length > 1 && (
+                      <Badge className="bg-black/70 text-white text-xs">
+                        <Camera className="w-3 h-3 mr-1" />
+                        {getHotelImages(hotel).length}
+                      </Badge>
+                    )}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="bg-white/90 hover:bg-white text-xs px-2 py-1 h-auto"
+                      onClick={() => setFullscreenImage({ hotel, images: getHotelImages(hotel) })}
+                    >
+                      Vollbild
+                    </Button>
+                  </div>
+                </div>
+              ) : getHotelImageUrl(hotel) ? (
                 <img 
                   src={getHotelImageUrl(hotel)}
                   alt={hotel.name}
@@ -132,11 +159,11 @@ export function BookingHotelsGrid({
               ) : (
                 <div className="w-full h-full bg-muted flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
-                    <div className="text-sm">No image available</div>
+                    <div className="text-sm">Keine Bilder verfügbar</div>
                   </div>
                 </div>
               )}
-              <div className="absolute bottom-4 left-4">
+              <div className="absolute top-2 left-2">
                 <Badge className={getPrideBadgeColor(hotel.lgbt_certification || 'standard')}>
                   {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                 </Badge>
@@ -228,19 +255,26 @@ export function BookingHotelsGrid({
                         </DialogHeader>
                         
                         <div className="space-y-6">
-                          {/* Hotel Image */}
-                          <div className="h-64 rounded-lg relative overflow-hidden">
-                            {getHotelImageUrlLarge(hotel) ? (
-                              <img 
-                                src={getHotelImageUrlLarge(hotel)}
-                                alt={hotel.name}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
+                          {/* Hotel Image Slideshow */}
+                          <div className="rounded-lg relative overflow-hidden">
+                            {getHotelImages(hotel).length > 0 ? (
+                              <HotelImageSlideshow 
+                                hotel={hotel}
+                                images={getHotelImages(hotel)}
                               />
+                            ) : getHotelImageUrlLarge(hotel) ? (
+                              <div className="h-64">
+                                <img 
+                                  src={getHotelImageUrlLarge(hotel)}
+                                  alt={hotel.name}
+                                  className="w-full h-full object-cover"
+                                  loading="lazy"
+                                />
+                              </div>
                             ) : (
-                              <div className="w-full h-full bg-muted flex items-center justify-center">
+                              <div className="w-full h-64 bg-muted flex items-center justify-center">
                                 <div className="text-center text-muted-foreground">
-                                  <div className="text-lg">No image available</div>
+                                  <div className="text-lg">Keine Bilder verfügbar</div>
                                 </div>
                               </div>
                             )}
@@ -249,11 +283,6 @@ export function BookingHotelsGrid({
                                 {getPrideBadgeText(hotel.lgbt_certification || 'standard')}
                               </Badge>
                             </div>
-                            {getPhotoCount(hotel) > 0 && (
-                              <div className="absolute bottom-4 right-4 text-white text-sm bg-black/50 px-2 py-1 rounded">
-                                📷 {getPhotoCount(hotel)} Fotos
-                              </div>
-                            )}
                           </div>
                           
                           {/* Description */}
@@ -323,6 +352,18 @@ export function BookingHotelsGrid({
           </Card>
         ))}
       </div>
+
+      {/* Fullscreen Image Dialog */}
+      {fullscreenImage && (
+        <div className="fixed inset-0 z-50 bg-black">
+          <HotelImageSlideshow 
+            hotel={fullscreenImage.hotel}
+            images={fullscreenImage.images}
+            onClose={() => setFullscreenImage(null)}
+            showFullscreen={true}
+          />
+        </div>
+      )}
     </div>
   )
 }
