@@ -329,6 +329,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Moxy Vienna City East</h3>
+              <p className="text-sm text-muted-foreground">
+                Photo Gallery - 
+                <a 
+                  href="https://www.marriott.com/en-us/hotels/vieoe-moxy-vienna-city-east/photos/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.marriott.com/en-us/hotels/vieoe-moxy-vienna-city-east/photos/
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
