@@ -37,6 +37,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Hotel Motto Vienna</h3>
+              <p className="text-sm text-muted-foreground">
+                Von French'Ic Touch - 
+                <a 
+                  href="https://www.frenchictouch.com/hotel-motto-a-vienne-quand-lelegance-parisienne-rencontre-le-chic-viennois/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.frenchictouch.com/hotel-motto-a-vienne-quand-lelegance-parisienne-rencontre-le-chic-viennois/
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
