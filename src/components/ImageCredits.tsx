@@ -245,6 +245,23 @@ export function ImageCredits() {
             <Separator />
             
             <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Hilton Vienna Plaza</h3>
+              <p className="text-sm text-muted-foreground">
+                Hotel Gallery - 
+                <a 
+                  href="https://www.hilton.com/de/hotels/viepwtw-hilton-vienna-plaza/gallery/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.hilton.com/de/hotels/viepwtw-hilton-vienna-plaza/gallery/
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
+            <div className="space-y-2">
               <h3 className="font-semibold text-lg">Radisson Blu Das Triest Wien</h3>
               <p className="text-sm text-muted-foreground">
                 Hotel Information - 

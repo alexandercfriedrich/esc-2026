@@ -510,28 +510,6 @@ const hotels: BookingHotel[] = [
     rooms_available: 25
   },
   {
-    id: 'arthotel',
-    name: 'ART HOTEL Vienna',
-    rating: 4.3,
-    review_score: 8.7,
-    review_count: 1342,
-    price: { amount: 125, currency: 'EUR', min: 125, max: 180 },
-    stars: 4,
-    distance_km_to_venue: 2.2,
-    distance_to_venue: 2.2,
-    lgbtq_friendly: true,
-    lgbt_certification: 'certified',
-    categories: ['Art', 'Modern', 'Pride Certified'],
-    slug: 'gtarthotelvienna',
-    district: 'Wieden',
-    address: 'Brandmayergasse 7-9',
-    city: 'Wien',
-    description: 'Kunstorientiertes Hotel mit einzigartiger Atmosphäre und LGBTQ+ Zertifizierung.',
-    amenities: ['WiFi kostenlos', 'Restaurant', 'Bar', 'Kunstgalerie'],
-    available: true,
-    rooms_available: 14
-  },
-  {
     id: 'hilton-plaza',
     name: 'Hilton Vienna Plaza',
     rating: 4.1,
