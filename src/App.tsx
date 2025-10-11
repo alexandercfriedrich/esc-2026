@@ -189,17 +189,12 @@ export default function App() {
                     onToggleFavorite={handleToggleFavorite}
                   />
                 ) : (
-                  <>
-                    <div className="mb-6">
-                      <h2 className="text-2xl font-bold text-center mb-4">🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien</h2>
-                    </div>
-                    <BookingHotelsGrid 
-                      hotels={allHotels}
-                      searchParams={currentSearchParams}
-                      favoriteHotels={favoriteHotels || []}
-                      onToggleFavorite={handleToggleFavorite}
-                    />
-                  </>
+                  <BookingHotelsGrid 
+                    hotels={allHotels}
+                    searchParams={currentSearchParams}
+                    favoriteHotels={favoriteHotels || []}
+                    onToggleFavorite={handleToggleFavorite}
+                  />
                 )}
               </>
             )}

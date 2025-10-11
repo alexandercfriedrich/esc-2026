@@ -2,7 +2,7 @@ export const translations = {
   de: {
     // Header and Navigation
     title: 'ESC 2026 Hotelsuche Wien',
-    subtitle: '🏳️‍🌈 LGBTQ+ freundliche Unterkünfte für den ESC in Wien',
+    subtitle: 'Unterkünfte für den ESC in Wien',
     backToHome: '← Zurück zur Startseite',
     imageCredits: 'Bildnachweis',
     
@@ -77,7 +77,7 @@ export const translations = {
   en: {
     // Header and Navigation
     title: 'ESC 2026 Hotel Search Vienna',
-    subtitle: '🏳️‍🌈 LGBTQ+ friendly accommodations for ESC in Vienna',
+    subtitle: 'Accommodations for ESC in Vienna',
     backToHome: '← Back to Homepage',
     imageCredits: 'Image Credits',
     
