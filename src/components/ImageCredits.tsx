@@ -183,6 +183,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Andaz Vienna am Belvedere</h3>
+              <p className="text-sm text-muted-foreground">
+                Hyatt Hotels - 
+                <a 
+                  href="https://www.hyatt.com/andaz/de-DE/vieaz-andaz-vienna-am-belvedere" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.hyatt.com/andaz/de-DE/vieaz-andaz-vienna-am-belvedere
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
