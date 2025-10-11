@@ -117,6 +117,16 @@ export function ImageCredits() {
                 >
                   https://all.accor.com/hotel/0781/index.de.shtml
                 </a>
+                <br />
+                Hotel Information - 
+                <a 
+                  href="https://all.accor.com/hotel/1276/index.de.shtml" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://all.accor.com/hotel/1276/index.de.shtml
+                </a>
               </p>
             </div>
             
