@@ -1,3 +1,4 @@
+import React from 'react'
 import { useKV } from '@github/spark/hooks'
 
 export type Language = 'de' | 'en'

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from '@/hooks/useTranslation'
 
 export function DynamicTitle() {
