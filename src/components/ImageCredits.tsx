@@ -105,6 +105,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Accor Hotels</h3>
+              <p className="text-sm text-muted-foreground">
+                Hotel Information - 
+                <a 
+                  href="https://all.accor.com/hotel/0781/index.de.shtml" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://all.accor.com/hotel/0781/index.de.shtml
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
