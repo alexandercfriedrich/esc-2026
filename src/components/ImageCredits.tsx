@@ -234,6 +234,23 @@ export function ImageCredits() {
             
             <Separator />
             
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">Radisson Blu Das Triest Wien</h3>
+              <p className="text-sm text-muted-foreground">
+                Hotel Information - 
+                <a 
+                  href="https://www.radissonhotels.com/de-de/hotels/radisson-blu-das-triest-wien" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://www.radissonhotels.com/de-de/hotels/radisson-blu-das-triest-wien
+                </a>
+              </p>
+            </div>
+            
+            <Separator />
+            
             <div className="text-xs text-muted-foreground">
               <p>
                 Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
