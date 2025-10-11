@@ -56,7 +56,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
   }
 
   return (
-    <Card className="mb-8 border-pride-blue/20">
+    <Card className="mb-8 border-pride-blue/20" data-search-form>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl">
           🔍 {t('searchTitle')}

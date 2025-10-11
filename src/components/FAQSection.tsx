@@ -317,6 +317,20 @@ export function FAQSection() {
                   <p className="text-sm text-muted-foreground">
                     Für die aktuellsten Updates besuchen Sie die offiziellen Eurovision- und ORF-Kanäle.
                   </p>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    Eine handverlesene Auswahl an Hotels, die speziell an die Community des ESC gerichtet sind und als LGBT freundlich geratet sind findest du ganz oben auf dieser Seite - also{' '}
+                    <button 
+                      onClick={() => {
+                        const searchForm = document.querySelector('[data-search-form]');
+                        if (searchForm) {
+                          searchForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                      className="text-primary hover:text-primary/80 underline font-medium cursor-pointer bg-transparent border-none p-0"
+                    >
+                      hier
+                    </button>.
+                  </p>
                 </CardContent>
               </Card>
             </CollapsibleContent>
