@@ -267,28 +267,6 @@ const hotels: BookingHotel[] = [
     rooms_available: 22
   },
   {
-    id: 'hotel-henriette-vienna',
-    name: 'Henriette Stadthotel Vienna',
-    rating: 4.2,
-    review_score: 8.4,
-    review_count: 987,
-    price: { amount: 140, currency: 'EUR', min: 125, max: 200 },
-    stars: 4,
-    distance_km_to_venue: 5.2,
-    distance_to_venue: 5.2,
-    lgbtq_friendly: true,
-    lgbt_certification: 'gay_friendly',
-    categories: ['Stadthotel', 'Sustainable', 'Gay Friendly', 'Gemeinwohl-Ökonomie'],
-    slug: 'capri',
-    district: 'Leopoldstadt',
-    address: 'Große Stadtgutgasse 49',
-    city: 'Wien',
-    description: 'Nachhaltiges Gay-friendly Stadthotel nach Gemeinwohl-Ökonomie mit Bio-Bettwaren und zentraler Lage.',
-    amenities: ['WiFi kostenlos', 'Bio-Restaurant', 'Nachhaltige Ausstattung', 'Pool', 'Bio-Bettwaren'],
-    available: true,
-    rooms_available: 16
-  },
-  {
     id: 'hotel-zeitgeist-vienna',
     name: 'Hotel Zeitgeist Vienna',
     rating: 4.3,
