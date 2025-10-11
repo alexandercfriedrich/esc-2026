@@ -72,6 +72,18 @@ import rubyMarie5 from '@/assets/images/ruby-marie_5.jpg'
 import moxyVienna1 from '@/assets/images/moxy-vienna_1.jpeg'
 import moxyVienna2 from '@/assets/images/moxy-vienna_2.jpeg'
 import moxyVienna3 from '@/assets/images/moxy-vienna_3.jpeg'
+import dasTriest1 from '@/assets/images/das-triest_1.webp'
+import dasTriest2 from '@/assets/images/das-triest_2.webp'
+import dasTriest3 from '@/assets/images/das-triest_3.webp'
+import leonardoHotelViennaHauptbahnhof1 from '@/assets/images/leonardo-hotel-vienna-hauptbahnhof_1.webp'
+import hiltonViennaWaterfront1 from '@/assets/images/hilton-vienna-waterfront_1.webp'
+import hiltonViennaWaterfront2 from '@/assets/images/hilton-vienna-waterfront_2.webp'
+import hiltonViennaWaterfront3 from '@/assets/images/hilton-vienna-waterfront_3.webp'
+import hiltonPlaza1 from '@/assets/images/hilton-plaza_1.webp'
+import hiltonPlaza2 from '@/assets/images/hilton-plaza_2.webp'
+import hiltonPlaza3 from '@/assets/images/hilton-plaza_3.webp'
+import hiltonPlaza4 from '@/assets/images/hilton-plaza_4.webp'
+import hiltonPlaza5 from '@/assets/images/hilton-plaza_5.webp'
 
 // Hotel image mapping based on hotel ID
 const hotelImages: Record<string, string[]> = {
@@ -89,6 +101,10 @@ const hotelImages: Record<string, string[]> = {
   'imperial': [imperial1, imperial2, imperial6, imperial7, imperial8, imperial10],
   'ruby-marie': [rubyMarie3, rubyMarie4, rubyMarie5],
   'moxy-vienna': [moxyVienna1, moxyVienna2, moxyVienna3],
+  'das-triest': [dasTriest1, dasTriest2, dasTriest3],
+  'leonardo-hotel-vienna-hauptbahnhof': [leonardoHotelViennaHauptbahnhof1],
+  'hilton-vienna-waterfront': [hiltonViennaWaterfront1, hiltonViennaWaterfront2, hiltonViennaWaterfront3],
+  'hilton-plaza': [hiltonPlaza1, hiltonPlaza2, hiltonPlaza3, hiltonPlaza4, hiltonPlaza5],
 };
 
 export interface BookingHotel {
