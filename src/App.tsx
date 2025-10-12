@@ -168,10 +168,6 @@ export default function App() {
               searchType={searchPerformed ? 'Hotel Search Results' : undefined}
             />
             
-            <div className="text-center mb-8">
-              <p className="text-lg md:text-xl text-foreground">{t('subtitle')}</p>
-            </div>
-            
             <BookingWidget 
               searchPerformed={searchPerformed}
               bookingHotelsCount={searchPerformed ? hotels.length : allHotels.length}
