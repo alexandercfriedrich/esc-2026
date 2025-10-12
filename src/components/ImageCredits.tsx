@@ -17,7 +17,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Eurovision Logo</h3>
               <p className="text-sm text-muted-foreground">
-                Von Europäische Rundfunkunion (EBU) - 
+                {t('sourceEBU')} - 
                 <a 
                   href="https://logos.fandom.com" 
                   target="_blank" 
@@ -43,7 +43,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Motto Vienna</h3>
               <p className="text-sm text-muted-foreground">
-                Von French'Ic Touch - 
+                {t('sourceFrenchicTouch')} - 
                 <a 
                   href="https://www.frenchictouch.com/hotel-motto-a-vienne-quand-lelegance-parisienne-rencontre-le-chic-viennois/" 
                   target="_blank" 
@@ -60,7 +60,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Stadthalle</h3>
               <p className="text-sm text-muted-foreground">
-                Offizielle Website - 
+                {t('sourceOfficialWebsite')} - 
                 <a 
                   href="https://www.hotelstadthalle.at" 
                   target="_blank" 
@@ -77,7 +77,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Altstadt Vienna</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Gallery - 
+                {t('sourceHotelGallery')} - 
                 <a 
                   href="https://www.altstadt.at/en/gallery/" 
                   target="_blank" 
@@ -94,7 +94,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Sans Souci Vienna</h3>
               <p className="text-sm text-muted-foreground">
-                Press Gallery - 
+                {t('sourcePressGallery')} - 
                 <a 
                   href="https://www.sanssouci-wien.com/en/press/" 
                   target="_blank" 
@@ -111,7 +111,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Accor Hotels</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Information - 
+                {t('sourceHotelInformation')} - 
                 <a 
                   href="https://all.accor.com/hotel/0781/index.de.shtml" 
                   target="_blank" 
@@ -121,7 +121,7 @@ export function ImageCredits() {
                   https://all.accor.com/hotel/0781/index.de.shtml
                 </a>
                 <br />
-                Hotel Information - 
+                {t('sourceHotelInformation')} - 
                 <a 
                   href="https://all.accor.com/hotel/1276/index.de.shtml" 
                   target="_blank" 
@@ -138,7 +138,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">DOCO Hotel</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Information - 
+                {t('sourceHotelInformation')} - 
                 <a 
                   href="https://www.docohotel.com/vienna/de/rooms/" 
                   target="_blank" 
@@ -155,7 +155,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Donauwalzer</h3>
               <p className="text-sm text-muted-foreground">
-                Bildergalerie - 
+                {t('sourceBildergalerie')} - 
                 <a 
                   href="https://www.donauwalzer.at/services/bildergalerie/" 
                   target="_blank" 
@@ -172,7 +172,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Zeitgeist Vienna</h3>
               <p className="text-sm text-muted-foreground">
-                Website - 
+                {t('sourceWebsite')} - 
                 <a 
                   href="https://www.zeitgeist-vienna.com/" 
                   target="_blank" 
@@ -182,7 +182,7 @@ export function ImageCredits() {
                   https://www.zeitgeist-vienna.com/
                 </a>
                 <br />
-                DayUse Booking - 
+                {t('sourceDayUseBooking')} - 
                 <a 
                   href="https://de.dayuse.ch/hotels/austria/hotel-zeitgeist-vienna-hauptbahnhof" 
                   target="_blank" 
@@ -199,7 +199,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Andaz Vienna am Belvedere</h3>
               <p className="text-sm text-muted-foreground">
-                Hyatt Hotels - 
+                {t('sourceHyattHotels')} - 
                 <a 
                   href="https://www.hyatt.com/andaz/de-DE/vieaz-andaz-vienna-am-belvedere" 
                   target="_blank" 
@@ -216,7 +216,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Leonardo Hotel Vienna Hauptbahnhof</h3>
               <p className="text-sm text-muted-foreground">
-                Leonardo Hotels - 
+                {t('sourceLeonardoHotels')} - 
                 <a 
                   href="https://www.leonardo-hotels.de/vienna/leonardo-hotel-vienna-hauptbahnhof" 
                   target="_blank" 
@@ -233,7 +233,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hilton Vienna Waterfront</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Gallery - 
+                {t('sourceHotelGallery')} - 
                 <a 
                   href="https://www.hilton.com/de/hotels/viehahi-hilton-vienna-waterfront/gallery/" 
                   target="_blank" 
@@ -250,7 +250,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hilton Vienna Plaza</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Gallery - 
+                {t('sourceHotelGallery')} - 
                 <a 
                   href="https://www.hilton.com/de/hotels/viepwtw-hilton-vienna-plaza/gallery/" 
                   target="_blank" 
@@ -267,7 +267,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Radisson Blu Das Triest Wien</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Information - 
+                {t('sourceHotelInformation')} - 
                 <a 
                   href="https://www.radissonhotels.com/de-de/hotels/radisson-blu-das-triest-wien" 
                   target="_blank" 
@@ -284,7 +284,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Regina Wien</h3>
               <p className="text-sm text-muted-foreground">
-                Offizielle Website - 
+                {t('sourceOfficialWebsite')} - 
                 <a 
                   href="https://www.hotelregina.at/" 
                   target="_blank" 
@@ -301,7 +301,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Sacher Wien</h3>
               <p className="text-sm text-muted-foreground">
-                Press Photos - 
+                {t('sourcePressPhotos')} - 
                 <a 
                   href="https://www.sacher.com/en/press/press-photos-vienna/" 
                   target="_blank" 
@@ -318,7 +318,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Hotel Imperial, A Luxury Collection Hotel, Vienna</h3>
               <p className="text-sm text-muted-foreground">
-                Photo Gallery - 
+                {t('sourcePhotoGallery')} - 
                 <a 
                   href="https://www.marriott.com/de/hotels/vieil-hotel-imperial-a-luxury-collection-hotel-vienna/photos/" 
                   target="_blank" 
@@ -335,7 +335,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Ruby Marie Hotel Wien</h3>
               <p className="text-sm text-muted-foreground">
-                Hotel Information - 
+                {t('sourceHotelInformation')} - 
                 <a 
                   href="https://www.ruby-hotels.com/de/destinationen/wien/ruby-marie" 
                   target="_blank" 
@@ -352,7 +352,7 @@ export function ImageCredits() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Moxy Vienna City East</h3>
               <p className="text-sm text-muted-foreground">
-                Photo Gallery - 
+                {t('sourcePhotoGallery')} - 
                 <a 
                   href="https://www.marriott.com/en-us/hotels/vieoe-moxy-vienna-city-east/photos/" 
                   target="_blank" 
@@ -368,8 +368,7 @@ export function ImageCredits() {
             
             <div className="text-xs text-muted-foreground">
               <p>
-                Alle Bilder und Logos werden gemäß den jeweiligen Urheberrechtsbestimmungen verwendet. 
-                Bei Fragen oder Beanstandungen bezüglich der Bildrechte wenden Sie sich bitte an uns.
+                {t('imageCreditsFooter')}
               </p>
             </div>
           </div>
