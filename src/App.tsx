@@ -10,6 +10,7 @@ import { DynamicTitle } from '@/components/DynamicTitle'
 import { ImageCredits } from '@/components/ImageCredits'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { FAQSection } from '@/components/FAQSection'
+import { LegalNotice } from '@/pages/LegalNotice'
 import SEO from '@/components/SEO'
 import { BookingHotel, HotelSearchParams, searchBookingHotels, getAllHotels } from '@/services/hotelService'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -21,7 +22,7 @@ export default function App() {
   const [isSearching, setIsSearching] = useState(false)
   const [searchPerformed, setSearchPerformed] = useState(false)
   const [favoriteHotels, setFavoriteHotels] = useKV<string[]>("favorite-hotels", [])
-  const [currentPage, setCurrentPage] = useState<'home' | 'bildnachweis'>('home')
+  const [currentPage, setCurrentPage] = useState<'home' | 'bildnachweis' | 'legal-notice'>('home')
   // Store current search parameters for affiliate link generation
   const [currentSearchParams, setCurrentSearchParams] = useState<HotelSearchParams | null>(null)
   const { t } = useTranslation()
@@ -54,6 +55,8 @@ export default function App() {
       const hash = window.location.hash.slice(1)
       if (hash === 'bildnachweis') {
         setCurrentPage('bildnachweis')
+      } else if (hash === 'legal-notice') {
+        setCurrentPage('legal-notice')
       } else {
         setCurrentPage('home')
       }
@@ -107,15 +110,42 @@ export default function App() {
       <DynamicMetaTags 
         hotels={hotels}
         searchQuery=""
-        pageType={currentPage === 'bildnachweis' ? 'credits' : (searchPerformed ? 'search' : 'home')}
+        pageType={currentPage === 'bildnachweis' ? 'credits' : currentPage === 'legal-notice' ? 'home' : (searchPerformed ? 'search' : 'home')}
       />
       {/* SEO Component with comprehensive Schema.org markup */}
       <SEO 
         hotels={hotels}
         searchParams={currentSearchParams}
-        pageType={currentPage === 'bildnachweis' ? 'credits' : (searchPerformed ? 'search' : 'home')}
+        pageType={currentPage === 'bildnachweis' ? 'credits' : currentPage === 'legal-notice' ? 'home' : (searchPerformed ? 'search' : 'home')}
       />
-      {currentPage === 'bildnachweis' ? (
+      {currentPage === 'legal-notice' ? (
+        /* Legal Notice Page */
+        (<>
+          <header className="bg-primary text-primary-foreground py-6">
+            <div className="container mx-auto px-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-2xl font-bold">{t('title')}</h1>
+                  <nav className="mt-2">
+                    <a 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault()
+                        window.location.hash = ''
+                      }}
+                      className="text-primary-foreground hover:underline"
+                    >
+                      {t('backToHome')}
+                    </a>
+                  </nav>
+                </div>
+                <LanguageSwitcher />
+              </div>
+            </div>
+          </header>
+          <LegalNotice />
+        </>)
+      ) : currentPage === 'bildnachweis' ? (
         /* Bildnachweis Page */
         (<>
           <header className="bg-primary text-primary-foreground py-6">
@@ -218,6 +248,12 @@ export default function App() {
                 className="hover:text-foreground transition-colors"
               >
                 {t('imageCredits')}
+              </a>
+              <a 
+                href="#legal-notice" 
+                className="hover:text-foreground transition-colors"
+              >
+                {t('legalNotice')}
               </a>
             </nav>
           </div>
