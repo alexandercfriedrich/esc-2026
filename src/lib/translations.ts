@@ -69,7 +69,6 @@ export const translations = {
     searchingHotels: 'Suche nach Hotels...',
     noResults: 'Keine Hotels gefunden',
     tryDifferentDates: 'Versuchen Sie andere Daten oder Filter',
-    viennaEurovisionHotels: 'Wien Eurovision Hotels',
     
     // FAQ Section
     faqTitle: 'Häufig gestellte Fragen',
@@ -190,7 +189,6 @@ export const translations = {
     searchingHotels: 'Searching for hotels...',
     noResults: 'No hotels found',
     tryDifferentDates: 'Try different dates or filters',
-    viennaEurovisionHotels: 'Vienna Eurovision Hotels',
     
     // FAQ Section
     faqTitle: 'Frequently Asked Questions',
