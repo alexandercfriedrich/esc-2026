@@ -1,309 +1,29 @@
 import { BookingHotel, getAllHotels } from '@/services/hotelService'
 
-interface SitemapEntry {
-  url: string
-  lastmod: string
-  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
-  priority: string
-}
-
-export function generateSitemap(): string {
-  const baseUrl = 'https://esc-2026-vienna.com'
-  const currentDate = new Date().toISOString().split('T')[0]
-  const hotels = getAllHotels()
-  
-  const sitemapEntries: SitemapEntry[] = [
-    // Main pages
-    {
-      url: baseUrl,
-      lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '1.0'
-    },
-    {
-      url: `${baseUrl}/hotels`,
-      lastmod: currentDate,
-      changefreq: 'hourly',
-      priority: '0.9'
-    },
-    {
-      url: `${baseUrl}/search`,
-      lastmod: currentDate,
-      changefreq: 'hourly',
-      priority: '0.8'
-    },
-    
-    // Hotel detail pages
-    ...hotels.map(hotel => ({
-      url: `${baseUrl}/hotel/${hotel.slug}`,
-      lastmod: currentDate,
-      changefreq: 'weekly' as const,
-      priority: '0.7'
-    })),
-    
-    // Category pages
-    {
-      url: `${baseUrl}/lgbtq-hotels`,
-      lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.8'
-    },
-    {
-      url: `${baseUrl}/pride-certified-hotels`,
-      lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.8'
-    },
-    {
-      url: `${baseUrl}/boutique-hotels`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    {
-      url: `${baseUrl}/luxury-hotels`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    {
-      url: `${baseUrl}/budget-hotels`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    
-    // District pages
-    {
-      url: `${baseUrl}/hotels/rudolfsheim-funfhaus`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    {
-      url: `${baseUrl}/hotels/innere-stadt`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    {
-      url: `${baseUrl}/hotels/mariahilf`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    {
-      url: `${baseUrl}/hotels/neubau`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.6'
-    },
-    
-    // Eurovision specific pages
-    {
-      url: `${baseUrl}/eurovision-2026`,
-      lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.9'
-    },
-    {
-      url: `${baseUrl}/wiener-stadthalle-hotels`,
-      lastmod: currentDate,
-      changefreq: 'daily',
-      priority: '0.8'
-    },
-    {
-      url: `${baseUrl}/eurovision-packages`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: '0.7'
-    },
-    
-    // Information pages
-    {
-      url: `${baseUrl}/about`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: '0.3'
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: '0.3'
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.2'
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastmod: currentDate,
-      changefreq: 'yearly',
-      priority: '0.2'
-    }
-  ]
-
-  const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>'
-  const urlsetOpen = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-  const urlsetClose = '</urlset>'
-  
-  const urlEntries = sitemapEntries.map(entry => `
-  <url>
-    <loc>${entry.url}</loc>
-    <lastmod>${entry.lastmod}</lastmod>
-    <changefreq>${entry.changefreq}</changefreq>
-    <priority>${entry.priority}</priority>
-  </url>`).join('')
-
-  return `${xmlHeader}\n${urlsetOpen}${urlEntries}\n${urlsetClose}`
-}
-
-export function generateSitemapIndex(): string {
-  const baseUrl = 'https://esc-2026-vienna.com'
-  const currentDate = new Date().toISOString().split('T')[0]
-  
-  const sitemaps = [
-    {
-      url: `${baseUrl}/sitemap-main.xml`,
-      lastmod: currentDate
-    },
-    {
-      url: `${baseUrl}/sitemap-hotels.xml`,
-      lastmod: currentDate
-    },
-    {
-      url: `${baseUrl}/sitemap-categories.xml`,
-      lastmod: currentDate
-    },
-    {
-      url: `${baseUrl}/sitemap-districts.xml`,
-      lastmod: currentDate
-    }
-  ]
-
-  const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>'
-  const sitemapIndexOpen = '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-  const sitemapIndexClose = '</sitemapindex>'
-  
-  const sitemapEntries = sitemaps.map(sitemap => `
-  <sitemap>
-    <loc>${sitemap.url}</loc>
-    <lastmod>${sitemap.lastmod}</lastmod>
-  </sitemap>`).join('')
-
-  return `${xmlHeader}\n${sitemapIndexOpen}${sitemapEntries}\n${sitemapIndexClose}`
-}
-
-// Generate robots.txt content
-export function generateRobotsTxt(): string {
-  const baseUrl = 'https://esc-2026-vienna.com'
-  
-  return `User-agent: *
-Allow: /
-
-# Sitemaps
-Sitemap: ${baseUrl}/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-index.xml
-
-# Eurovision 2026 specific
-Allow: /eurovision-2026
-Allow: /hotels/*
-Allow: /lgbtq-hotels
-Allow: /pride-certified-hotels
-
-# Block admin/staging areas (if any)
-Disallow: /admin/
-Disallow: /staging/
-Disallow: /test/
-
-# Block affiliate tracking parameters
-Disallow: /*?aid=*
-Disallow: /*?affiliate=*
-
-# Allow important Eurovision pages
-Allow: /wiener-stadthalle-hotels
-Allow: /eurovision-packages
-Allow: /search
-
-# Crawl delay for different bots
-User-agent: Googlebot
-Crawl-delay: 1
-
-User-agent: Bingbot
-Crawl-delay: 2
-
-User-agent: Slurp
-Crawl-delay: 3
-
-# Block AI training crawlers (optional)
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /`
-}
-
-// Generate specific sitemap for hotels
-export function generateHotelsSitemap(): string {
-  const baseUrl = 'https://esc-2026-vienna.com'
-  const currentDate = new Date().toISOString().split('T')[0]
-  const hotels = getAllHotels()
-  
-  const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>'
-  const urlsetOpen = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-  const urlsetClose = '</urlset>'
-  
-  const hotelEntries = hotels.map(hotel => {
-    const priority = hotel.lgbtq_friendly ? '0.8' : '0.6'
-    const changefreq = hotel.lgbt_certification === 'certified' ? 'weekly' : 'monthly'
-    
-    return `
-  <url>
-    <loc>${baseUrl}/hotel/${hotel.slug}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-    <image:image>
-      <image:loc>${baseUrl}/default-hotel.jpg</image:loc>
-      <image:caption>${hotel.name} - Eurovision 2026 Wien ${hotel.lgbt_certification === 'certified' ? 'Pride Certified' : 'LGBTQ+ Friendly'} Hotel</image:caption>
-      <image:title>${hotel.name}</image:title>
-    </image:image>
-  </url>`
-  }).join('')
-
-  return `${xmlHeader}\n${urlsetOpen}${hotelEntries}\n${urlsetClose}`
-}
-
-// SEO Utils for meta tag optimization
-export class SEOUtils {
-  static generateHotelTitle(hotel: BookingHotel): string {
-    const certText = hotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 LGBTQ+ Friendly'
-    return `${hotel.name} | Eurovision 2026 Wien | ${certText} Hotel ab €${hotel.price.amount}`
+export default class SeoUtils {
+  static generatePageTitle(hotels: BookingHotel[], searchType?: string): string {
+    const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
+    const searchPrefix = searchType ? `${searchType} ` : ''
+    return `${hotels.length} ${searchPrefix}Eurovision 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | Pride Certified`
   }
-  
-  static generateHotelDescription(hotel: BookingHotel): string {
-    const certText = hotel.lgbt_certification === 'certified' ? 'Pride-zertifiziertes' : 'LGBTQ+ freundliches'
-    return `${certText} Hotel ${hotel.name} für Eurovision 2026 - nur ${hotel.distance_km_to_venue}km zur Wiener Stadthalle. Ab €${hotel.price.amount}/Nacht. ${hotel.description?.slice(0, 100)}... Jetzt buchen!`
+
+  static generatePageDescription(hotels: BookingHotel[]): string {
+    if (hotels.length === 0) return 'Keine Hotels gefunden. Versuchen Sie andere Suchkriterien für Eurovision 2026 in Wien.'
+    
+    const minPrice = Math.min(...hotels.map(h => h.price.amount))
+    const maxPrice = Math.max(...hotels.map(h => h.price.amount))
+    const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
+    const avgDistance = Math.round(hotels.reduce((sum, h) => sum + h.distance_km_to_venue, 0) / hotels.length * 10) / 10
+    
+    return `${hotels.length} verfügbare Hotels für Eurovision 2026 in Wien. ${lgbtqCount} LGBTQ+ freundlich, ab €${minPrice}-€${maxPrice}/Nacht. Durchschnittlich ${avgDistance}km zur Stadthalle.`
   }
-  
+
   static generateSearchTitle(hotels: BookingHotel[], searchType?: string): string {
     const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
     const searchPrefix = searchType ? `${searchType} ` : ''
     return `${hotels.length} ${searchPrefix}Eurovision 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | Pride Certified`
   }
-  
+
   static generateSearchDescription(hotels: BookingHotel[]): string {
     if (hotels.length === 0) return 'Keine Hotels gefunden. Versuchen Sie andere Suchkriterien für Eurovision 2026 in Wien.'
     
@@ -314,7 +34,7 @@ export class SEOUtils {
     
     return `${hotels.length} verfügbare Hotels für Eurovision 2026 in Wien. ${lgbtqCount} LGBTQ+ freundlich, ab €${minPrice}-€${maxPrice}/Nacht. Durchschnittlich ${avgDistance}km zur Stadthalle.`
   }
-  
+
   static generateStructuredBreadcrumb(currentHotel?: BookingHotel, searchType?: string) {
     const breadcrumb = {
       "@context": "https://schema.org",
@@ -354,5 +74,144 @@ export class SEOUtils {
     }
     
     return breadcrumb
+  }
+
+  static generateStructuredData(hotels: BookingHotel[]) {
+    const allHotels = getAllHotels()
+    const totalHotels = allHotels.length
+    const lgbtqCount = allHotels.filter(h => h.lgbtq_friendly).length
+    
+    // Main organization
+    const organization = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Eurovision 2026 Vienna - LGBTQ+ Freundliche Hotels",
+      "description": `Offizielle Hotelsuche für Eurovision Song Contest 2026 in Wien. ${totalHotels} geprüfte Hotels, ${lgbtqCount} LGBTQ+ zertifiziert.`,
+      "url": "https://esc-2026-vienna.com",
+      "logo": "https://esc-2026-vienna.com/logo.png",
+      "sameAs": [
+        "https://eurovision.tv/",
+        "https://www.wien.info/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+43-1-24555",
+        "contactType": "customer service",
+        "availableLanguage": ["German", "English"]
+      }
+    }
+
+    // Event data
+    const event = {
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      "name": "Eurovision Song Contest 2026",
+      "description": "Der 71. Eurovision Song Contest findet 2026 in der Wiener Stadthalle statt.",
+      "startDate": "2026-05-12",
+      "endDate": "2026-05-16",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Wiener Stadthalle",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Roland-Rainer-Platz 1",
+          "addressLocality": "Wien",
+          "postalCode": "1150",
+          "addressCountry": "AT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 48.2014,
+          "longitude": 16.3378
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "European Broadcasting Union",
+        "url": "https://eurovision.tv/"
+      }
+    }
+
+    // WebSite search action
+    const website = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Eurovision 2026 Vienna Hotels",
+      "url": "https://esc-2026-vienna.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://esc-2026-vienna.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+
+    // FAQ
+    const faq = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wann findet Eurovision 2026 in Wien statt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Der Eurovision Song Contest 2026 findet vom 12. bis 16. Mai 2026 in der Wiener Stadthalle statt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Hotels sind LGBTQ+ freundlich?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Von unseren ${totalHotels} gelisteten Hotels sind ${lgbtqCount} als LGBTQ+ freundlich zertifiziert und bieten sichere, inklusive Unterkünfte.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie weit sind die Hotels von der Stadthalle entfernt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alle Hotels sind nach Entfernung zur Wiener Stadthalle sortiert. Die meisten sind innerhalb von 5km und mit öffentlichen Verkehrsmitteln gut erreichbar."
+          }
+        }
+      ]
+    }
+
+    return [organization, event, website, faq]
+  }
+
+  // Generate robots.txt content
+  static generateRobotsTxt(): string {
+    return `User-agent: *
+Allow: /
+Sitemap: https://esc-2026-vienna.com/sitemap.xml`
+  }
+
+  static generateSitemap(hotels: BookingHotel[]): string {
+    const baseUrls = [
+      'https://esc-2026-vienna.com',
+      'https://esc-2026-vienna.com/hotels',
+      'https://esc-2026-vienna.com/lgbtq-friendly',
+      'https://esc-2026-vienna.com/budget-friendly',
+      'https://esc-2026-vienna.com/luxury'
+    ]
+
+    const hotelUrls = hotels.map(hotel => 
+      `https://esc-2026-vienna.com/hotel/${hotel.slug}`
+    )
+
+    const allUrls = [...baseUrls, ...hotelUrls]
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allUrls.map(url => `  <url>
+    <loc>${url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join('\n')}
+</urlset>`
+
+    return sitemap
   }
 }
