@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://esc-2026-vienna.com/sitemap.xml
