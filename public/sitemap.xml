@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://esc-2026-vienna.com</loc>
+    <loc>https://esc-2026-vienna.com/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -11,18 +11,6 @@
     <lastmod>2024-01-15</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/search</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/lgbtq-hotels</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://esc-2026-vienna.com/pride-certified-hotels</loc>
@@ -48,88 +36,5 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/hotelmotto</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/altstadt-vienna</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/sans-souci-wien</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/sacher-wien</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/rainbow-pride-hotel-vienna</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/triest</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotel/ruby-marie-hotel-vienna</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/boutique-hotels</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/luxury-hotels</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/budget-hotels</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotels/rudolfsheim-funfhaus</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotels/innere-stadt</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotels/mariahilf</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://esc-2026-vienna.com/hotels/neubau</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <!-- Weitere URLs hier nach gleichem Muster einfügen -->
 </urlset>
