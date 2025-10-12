@@ -132,7 +132,7 @@ export const translations = {
     
     // Image Credits - Source Labels
     sourceEBU: 'Von Europäische Rundfunkunion (EBU)',
-    sourceFrenchicTouch: 'Von French'Ic Touch',
+    sourceFrenchicTouch: "Von French'Ic Touch",
     sourceOfficialWebsite: 'Offizielle Website',
     sourceHotelGallery: 'Hotel Gallery',
     sourcePressGallery: 'Press Gallery',
@@ -466,7 +466,7 @@ export const translations = {
     
     // Image Credits - Source Labels
     sourceEBU: 'From European Broadcasting Union (EBU)',
-    sourceFrenchicTouch: 'From French'Ic Touch',
+    sourceFrenchicTouch: "From French'Ic Touch",
     sourceOfficialWebsite: 'Official Website',
     sourceHotelGallery: 'Hotel Gallery',
     sourcePressGallery: 'Press Gallery',
