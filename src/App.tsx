@@ -10,6 +10,7 @@ import { DynamicTitle } from '@/components/DynamicTitle'
 import { ImageCredits } from '@/components/ImageCredits'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { FAQSection } from '@/components/FAQSection'
+import { SEOContent } from '@/components/SEOContent'
 import { LegalNotice } from '@/pages/LegalNotice'
 import SEO from '@/components/SEO'
 import { BookingHotel, HotelSearchParams, searchBookingHotels, getAllHotels } from '@/services/hotelService'
@@ -229,6 +230,11 @@ export default function App() {
             <div className="mt-12 mb-8">
               <BookingSearchForm onSearch={handleSearch} />
             </div>
+            
+            {/* SEO Content - comprehensive hotel guide information */}
+            {!searchPerformed && !isSearching && (
+              <SEOContent />
+            )}
             
             {/* FAQ Section - only show on home page when no search is performed */}
             {!searchPerformed && !isSearching && (
