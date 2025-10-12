@@ -163,6 +163,55 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
+        <h2 id="complete-hotel-guide" className="text-3xl font-normal mt-12 mb-6">Complete Hotel Guide</h2>
+        <p className="italic text-muted-foreground mb-6">Independent comparison of Vienna hotels for Eurovision 2026 - not affiliated with official Eurovision organization</p>
+
+        <h3 className="text-2xl font-normal mt-8 mb-4">Luxury Hotels (5-Star)</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">Hotel Sacher Wien</h4>
+        <p className="mb-2"><strong>Distance to Wiener Stadthalle:</strong> 4.2 km (15 minutes by public transport)</p>
+        <p className="mb-2"><strong>Price Range:</strong> €450-800 per night during Eurovision week</p>
+        <p className="mb-4"><strong>Hotel Overview:</strong> Vienna's most legendary luxury hotel, famous for its original Sachertorte and imperial elegance. Located directly opposite the State Opera, Hotel Sacher represents the pinnacle of Austrian hospitality since 1876.</p>
+        
+        <p className="mb-2"><strong>Why Choose Hotel Sacher:</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>Historic Elegance:</strong> Original 19th-century décor with modern amenities</li>
+          <li><strong>Central Location:</strong> Heart of Vienna's cultural district</li>
+          <li><strong>Gourmet Dining:</strong> Multiple restaurants including the famous Café Sacher</li>
+          <li><strong>Concierge Service:</strong> Expert assistance with Eurovision tickets and city tours</li>
+          <li><strong>Rooms:</strong> 152 individually decorated rooms and suites</li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">Hotel Imperial</h4>
+        <p className="mb-2"><strong>Distance to Wiener Stadthalle:</strong> 3.8 km (12 minutes by public transport)</p>
+        <p className="mb-2"><strong>Price Range:</strong> €380-650 per night during Eurovision week</p>
+        <p className="mb-4"><strong>Hotel Overview:</strong> A Luxury Collection Hotel since 1873, the Imperial combines Habsburg grandeur with contemporary luxury. Originally built as a palace, it hosts dignitaries and celebrities from around the world.</p>
+        
+        <p className="mb-2"><strong>Imperial Features:</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>Palace Architecture:</strong> Former residence of Prince Philipp von Württemberg</li>
+          <li><strong>Luxury Suites:</strong> Spacious accommodations with historic details</li>
+          <li><strong>Fine Dining:</strong> Restaurant Opus and Imperial Bar</li>
+          <li><strong>Spa Services:</strong> THALASSO spa with wellness treatments</li>
+          <li><strong>Meeting Spaces:</strong> Grand ballroom and conference facilities</li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">Hotel Sans Souci Wien</h4>
+        <p className="mb-2"><strong>Distance to Wiener Stadthalle:</strong> 2.8 km (8 minutes by public transport)</p>
+        <p className="mb-2"><strong>Price Range:</strong> €280-450 per night during Eurovision week</p>
+        <p className="mb-4"><strong>Hotel Overview:</strong> A 5-star design hotel in the heart of Vienna's MuseumsQuartier. Sans Souci combines French elegance with contemporary Austrian design, featuring 63 rooms and suites designed by YOO Philippe Starck.</p>
+        
+        <p className="mb-2"><strong>Sans Souci Highlights:</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>Design Excellence:</strong> Philippe Starck interior design</li>
+          <li><strong>Wellness Spa:</strong> 20-meter indoor pool and spa treatments</li>
+          <li><strong>Location:</strong> Walking distance to major museums and attractions</li>
+          <li><strong>Gourmet Restaurant:</strong> Veranda Restaurant with garden terrace</li>
+          <li><strong>Rooms:</strong> 63 individually designed rooms and suites</li>
+        </ul>
+
+        <hr className="my-8" />
+
         <h2 id="booking-information" className="text-3xl font-normal mt-12 mb-6">Booking Information</h2>
 
         <h3 className="text-2xl font-normal mt-8 mb-4">How to Book Your Eurovision 2026 Vienna Hotel</h3>
