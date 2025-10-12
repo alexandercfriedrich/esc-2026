@@ -13,7 +13,7 @@ import { FAQSection } from '@/components/FAQSection'
 import SEO from '@/components/SEO'
 import { BookingHotel, HotelSearchParams, searchBookingHotels, getAllHotels } from '@/services/hotelService'
 import { useTranslation } from '@/hooks/useTranslation'
-import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform_colorful_impressive_mind_blowin_yrsl9hs8ik2077us0ncz_1.png'
+import eurovisionBanner from '@/assets/images/frontpage_banner_of_the_eurovision_songcontest_2026_vienna_platform.jpg'
 
 export default function App() {
   const [hotels, setHotels] = useState<BookingHotel[]>([])

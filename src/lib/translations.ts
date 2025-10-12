@@ -1,7 +1,7 @@
 export const translations = {
   de: {
     // Header and Navigation
-    title: 'ESC 2026 Hotelsuche Wien',
+    title: 'Top hotel accommodations for ESC 2026',
     subtitle: 'Unterkünfte für den ESC in Wien',
     backToHome: '← Zurück zur Startseite',
     imageCredits: 'Bildnachweis',
@@ -76,7 +76,7 @@ export const translations = {
   
   en: {
     // Header and Navigation
-    title: 'ESC 2026 Hotel Search Vienna',
+    title: 'Top hotel accommodations for ESC 2026',
     subtitle: 'Accommodations for ESC in Vienna',
     backToHome: '← Back to Homepage',
     imageCredits: 'Image Credits',
