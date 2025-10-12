@@ -106,6 +106,18 @@ export const translations = {
     // Image Credits Page
     imageCreditsTitle: 'Bildnachweis',
     
+    // Legal Notice Page
+    legalNoticeTitle: 'Rechtliche Hinweise',
+    legalNoticeIntro: 'Diese Website ist ein unabhängiges Fan-Projekt, das erstellt wurde, um Eurovision-Fans zu helfen.',
+    legalNoticeDisclaimerTitle: 'Wichtige Hinweise',
+    legalNoticeNotAffiliated: 'Nicht verbunden mit dem Eurovision Song Contest, EBU, ORF oder einer offiziellen Eurovision-Organisation',
+    legalNoticeNoDirectBookings: 'Keine direkten Buchungen - alle Reservierungen erfolgen über etablierte Buchungsplattformen',
+    legalNoticeInfoAccuracy: 'Die Richtigkeit der Informationen wird nicht garantiert - bitte immer direkt bei den Hotels überprüfen',
+    legalNoticeAffiliateLinks: 'Es können Affiliate-Links verwendet werden (booking.com, hotels.com)',
+    legalNoticePersonalProject: 'Persönliches Projekt von Alexander Friedrich für die Eurovision-Community',
+    legalNoticeContact: 'Bei Fragen oder Anliegen kontaktieren Sie uns bitte.',
+    legalNotice: 'Rechtliche Hinweise',
+    
     // Error Messages
     searchError: 'Fehler bei der Hotelsuche',
     imageLoadError: 'Bild konnte nicht geladen werden',
@@ -225,6 +237,18 @@ export const translations = {
     
     // Image Credits Page
     imageCreditsTitle: 'Image Credits',
+    
+    // Legal Notice Page
+    legalNoticeTitle: 'Legal Notice',
+    legalNoticeIntro: 'This website is an independent fan project created to help Eurovision fans.',
+    legalNoticeDisclaimerTitle: 'Important Information',
+    legalNoticeNotAffiliated: 'Not affiliated with Eurovision Song Contest, EBU, ORF, or any official Eurovision organization',
+    legalNoticeNoDirectBookings: 'No direct bookings - all reservations through established booking platforms',
+    legalNoticeInfoAccuracy: 'Information accuracy not guaranteed - always verify with hotels directly',
+    legalNoticeAffiliateLinks: 'Affiliate links may be used (booking.com, hotels.com)',
+    legalNoticePersonalProject: 'Personal project by Alexander Friedrich for the Eurovision community',
+    legalNoticeContact: 'If you have any questions or concerns, please contact us.',
+    legalNotice: 'Legal Notice',
     
     // Error Messages
     searchError: 'Error in hotel search',
