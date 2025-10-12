@@ -183,10 +183,11 @@ export default class SeoUtils {
 
   // Generate robots.txt content
   static generateRobotsTxt(): string {
-    return `User-agent: *
+  return `User-agent: *
 Allow: /
-Sitemap: https://esc-2026-vienna.com/sitemap.xml`
-  }
+Sitemap: https://esc-2026-vienna.com/sitemap.xml`;
+}
+
 
   static generateSitemap(hotels: BookingHotel[]): string {
     const baseUrls = [
@@ -205,11 +206,28 @@ Sitemap: https://esc-2026-vienna.com/sitemap.xml`
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(url => `  <url>
-    <loc>${url}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n')}
+  ${
+    hotels.map(hotel => `
+      <url>
+        <loc>https://esc-2026-vienna.com/hotel/${hotel.slug}</loc>
+        <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+      </url>
+    `).join('\n')
+  }
+  <url>
+    <loc>https://esc-2026-vienna.com/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>`
 
     return sitemap
