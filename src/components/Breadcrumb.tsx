@@ -39,7 +39,7 @@ export function Breadcrumb({
     items.push({
       "@type": "ListItem",
       "position": 1,
-      "name": t('language') === 'de' ? "Eurovision 2026 Wien" : "Eurovision 2026 Vienna",
+      "name": t('eurovision2026'),
       "item": "https://esc-2026-vienna.com"
     })
     
@@ -97,7 +97,7 @@ export function Breadcrumb({
     
     // Home
     crumbs.push({
-      name: t('language') === 'de' ? "Eurovision 2026" : "Eurovision 2026",
+      name: t('eurovision2026'),
       href: "/",
       icon: <House className="w-4 h-4" />
     })

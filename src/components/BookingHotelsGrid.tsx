@@ -51,10 +51,7 @@ export function BookingHotelsGrid({
     // Open booking URL in new tab
     window.open(affiliateUrl, '_blank', 'noopener,noreferrer')
     
-    toast.success(t('language') === 'de' 
-      ? `Weiterleitung zu Booking.com für ${hotel.name}...`
-      : `Redirecting to Booking.com for ${hotel.name}...`
-    )
+    toast.success(`${t('bookingRedirect')} ${hotel.name}...`)
   }
 
 

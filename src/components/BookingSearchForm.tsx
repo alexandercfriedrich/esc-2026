@@ -29,12 +29,12 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
 
   const handleSearch = () => {
     if (!checkIn || !checkOut) {
-      toast.error(t('language') === 'de' ? 'Bitte wählen Sie Check-in und Check-out Daten' : 'Please select check-in and check-out dates')
+      toast.error(t('selectCheckInOut'))
       return
     }
 
     if (new Date(checkIn) >= new Date(checkOut)) {
-      toast.error(t('language') === 'de' ? 'Check-out Datum muss nach Check-in Datum liegen' : 'Check-out date must be after check-in date')
+      toast.error(t('checkOutAfterCheckIn'))
       return
     }
 
@@ -52,7 +52,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
     }
 
     onSearch(searchParams)
-    toast.success(t('language') === 'de' ? 'Suche Hotels von Booking.com...' : 'Searching hotels from Booking.com...')
+    toast.success(t('searchingBookingCom'))
   }
 
   return (
@@ -63,7 +63,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
         </CardTitle>
         <div className="flex gap-2 flex-wrap">
           <Badge className="bg-pride-red text-white">🏳️‍🌈 {t('lgbtqFriendly')}</Badge>
-          <Badge className="bg-pride-green text-white">📍 {t('language') === 'de' ? 'Nahe Stadthalle' : 'Near Stadthalle'}</Badge>
+          <Badge className="bg-pride-green text-white">📍 {t('nearStadthalle')}</Badge>
           <Badge variant="outline">🎵 Eurovision 2026</Badge>
         </div>
       </CardHeader>
@@ -104,7 +104,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label htmlFor="adults" className="flex items-center gap-1">
               <Users className="w-4 h-4" />
-              {t('language') === 'de' ? 'Erwachsene' : 'Adults'}
+              {t('adults')}
             </Label>
             <Select value={adults.toString()} onValueChange={(value) => setAdults(parseInt(value))}>
               <SelectTrigger>
@@ -113,7 +113,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
               <SelectContent>
                 {[1,2,3,4,5,6].map(num => (
                   <SelectItem key={num} value={num.toString()}>
-                    {num} {t('language') === 'de' ? 'Erwachsene' : 'Adults'}
+                    {num} {t('adults')}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -121,7 +121,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="rooms">{t('language') === 'de' ? 'Zimmer' : 'Rooms'}</Label>
+            <Label htmlFor="rooms">{t('rooms')}</Label>
             <Select value={rooms.toString()} onValueChange={(value) => setRooms(parseInt(value))}>
               <SelectTrigger>
                 <SelectValue />
@@ -129,7 +129,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
               <SelectContent>
                 {[1,2,3,4,5].map(num => (
                   <SelectItem key={num} value={num.toString()}>
-                    {num} {t('language') === 'de' ? 'Zimmer' : 'Rooms'}
+                    {num} {t('rooms')}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -139,10 +139,10 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
 
         {/* Price Range */}
         <div className="space-y-2">
-          <Label>{t('language') === 'de' ? 'Preisspanne pro Nacht' : 'Price range per night'}</Label>
+          <Label>{t('priceRange')}</Label>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="priceMin" className="text-sm text-muted-foreground">Min. €</Label>
+              <Label htmlFor="priceMin" className="text-sm text-muted-foreground">{t('priceMin')}</Label>
               <Input
                 id="priceMin"
                 type="number"
@@ -153,7 +153,7 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
               />
             </div>
             <div>
-              <Label htmlFor="priceMax" className="text-sm text-muted-foreground">Max. €</Label>
+              <Label htmlFor="priceMax" className="text-sm text-muted-foreground">{t('priceMax')}</Label>
               <Input
                 id="priceMax"
                 type="number"
@@ -171,17 +171,17 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <Star className="w-4 h-4" />
-              {t('language') === 'de' ? 'Sterne-Kategorie' : 'Star Category'}
+              {t('starCategory')}
             </Label>
             <Select value={stars} onValueChange={setStars}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{t('language') === 'de' ? 'Alle Kategorien' : 'All Categories'}</SelectItem>
-                <SelectItem value="3">{t('language') === 'de' ? '3+ Sterne' : '3+ Stars'}</SelectItem>
-                <SelectItem value="4">{t('language') === 'de' ? '4+ Sterne' : '4+ Stars'}</SelectItem>
-                <SelectItem value="5">{t('language') === 'de' ? '5 Sterne' : '5 Stars'}</SelectItem>
+                <SelectItem value="all">{t('allCategories')}</SelectItem>
+                <SelectItem value="3">{t('threePlusStars')}</SelectItem>
+                <SelectItem value="4">{t('fourPlusStars')}</SelectItem>
+                <SelectItem value="5">{t('fiveStars')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -189,15 +189,15 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              {t('language') === 'de' ? 'Entfernung zur Stadthalle' : 'Distance to Stadthalle'}
+              {t('distanceToStadthalle')}
             </Label>
             <Select value={distanceFilter} onValueChange={setDistanceFilter}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{t('language') === 'de' ? 'Alle Entfernungen' : 'All distances'}</SelectItem>
-                <SelectItem value="walking">{t('language') === 'de' ? 'Zu Fuß erreichbar (max. 1km)' : 'Walking distance (max. 1km)'}</SelectItem>
+                <SelectItem value="all">{t('allDistances')}</SelectItem>
+                <SelectItem value="walking">{t('walkingDistance')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -205,14 +205,14 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
           <div className="space-y-2">
             <Label className="flex items-center gap-1">
               <Heart className="w-4 h-4" />
-              {t('language') === 'de' ? 'LGBTQ+ Freundlichkeit' : 'LGBTQ+ Friendliness'}
+              {t('lgbtqFriendliness')}
             </Label>
             <Select value={lgbtFilter} onValueChange={setLgbtFilter}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">{t('language') === 'de' ? 'Alle Hotels' : 'All hotels'}</SelectItem>
+                <SelectItem value="all">{t('allHotels')}</SelectItem>
                 <SelectItem value="friendly">{t('lgbtqFriendly')}</SelectItem>
                 <SelectItem value="certified">{t('prideCertified')}</SelectItem>
               </SelectContent>
@@ -233,23 +233,23 @@ export function BookingSearchForm({ onSearch }: BookingSearchFormProps) {
         {/* ESC 2026 Info */}
         <div className="bg-gradient-to-r from-pride-blue/10 to-pride-indigo/10 rounded-lg p-4">
           <h3 className="font-semibold mb-2 flex items-center gap-2">
-            🎵 {t('language') === 'de' ? 'Eurovision Song Contest 2026 in Wien' : 'Eurovision Song Contest 2026 in Vienna'}
+            🎵 {t('eurovisionSongContest')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <strong>📅 {t('language') === 'de' ? 'Termine' : 'Dates'}:</strong><br />
-              {t('language') === 'de' ? 'Semifinale: 13.+15. Mai 2026' : 'Semi-finals: May 13 & 15, 2026'}<br />
-              {t('language') === 'de' ? 'Finale: 17. Mai 2026' : 'Final: May 17, 2026'}
+              <strong>📅 {t('dates')}:</strong><br />
+              {t('semiFinalsText')}<br />
+              {t('finalText')}
             </div>
             <div>
-              <strong>📍 {t('language') === 'de' ? 'Austragungsort' : 'Venue'}:</strong><br />
+              <strong>📍 {t('venue')}:</strong><br />
               Wiener Stadthalle<br />
               Roland-Rainer-Platz 1, 1150 Wien
             </div>
             <div>
-              <strong>🚇 {t('language') === 'de' ? 'Öffentliche Verkehrsmittel' : 'Public Transport'}:</strong><br />
+              <strong>🚇 {t('publicTransport')}:</strong><br />
               U6 Station Burggasse-Stadthalle<br />
-              {t('language') === 'de' ? '3 Minuten Gehweg' : '3 minutes walk'}
+              {t('threeMinutesWalk')}
             </div>
           </div>
         </div>

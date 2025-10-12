@@ -154,7 +154,7 @@ export default function App() {
             </div>
             <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
               <div className="text-center text-white">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">{t('title')}</h1>
+                <h1 className="text-3xl md:text-5xl mb-4 drop-shadow-lg text-slate-50 bg-gray-900 font-normal font-sans capital letters\n">{t('title')}</h1>
               </div>
             </div>
           </section>

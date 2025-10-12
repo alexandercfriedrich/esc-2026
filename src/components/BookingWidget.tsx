@@ -16,7 +16,7 @@ export function BookingWidget({ searchPerformed, bookingHotelsCount, isSearching
     <Card className="mb-6 border-pride-blue/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          🏨 {t('language') === 'de' ? 'Wien Eurovision Hotels' : 'Vienna Eurovision Hotels'}
+          🏨 {t('viennaEurovisionHotels')}
         </CardTitle>
       </CardHeader>
       <CardContent>

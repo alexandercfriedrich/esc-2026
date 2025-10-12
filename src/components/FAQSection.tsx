@@ -197,12 +197,11 @@ export function FAQSection() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <Question className="text-primary" size={32} />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Häufig gestellte Fragen
+                {t('faqTitle')}
               </h2>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Alle wichtigen Informationen zum Eurovision Song Contest 2026 in Wien - 
-              von Tickets über Hotels bis zu Veranstaltungsorten.
+              {t('faqSubtitle')}
             </p>
           </div>
 
@@ -218,12 +217,12 @@ export function FAQSection() {
                   {isExpanded ? (
                     <>
                       <CaretUp className="mr-2" size={20} />
-                      FAQ schließen
+                      {t('faqClose')}
                     </>
                   ) : (
                     <>
                       <CaretDown className="mr-2" size={20} />
-                      Alle FAQ anzeigen
+                      {t('faqShowAll')}
                     </>
                   )}
                 </Button>
@@ -238,14 +237,14 @@ export function FAQSection() {
                   onClick={expandAll}
                   className="text-sm"
                 >
-                  Alle öffnen
+                  {t('faqOpenAll')}
                 </Button>
                 <Button 
                   variant="secondary" 
                   onClick={collapseAll}
                   className="text-sm"
                 >
-                  Alle schließen
+                  {t('faqCloseAll')}
                 </Button>
               </div>
 
@@ -308,17 +307,16 @@ export function FAQSection() {
               <Card className="bg-primary/5 border-primary/20">
                 <CardContent className="p-6 text-center">
                   <h3 className="font-semibold text-lg mb-2 text-foreground">
-                    Weitere Fragen?
+                    {t('faqMoreQuestions')}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Dieser FAQ-Bereich wird regelmäßig mit den neuesten Informationen zum 
-                    Eurovision Song Contest 2026 in Wien aktualisiert.
+                    {t('faqUpdateInfo')}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Für die aktuellsten Updates besuchen Sie die offiziellen Eurovision- und ORF-Kanäle.
+                    {t('faqOfficialInfo')}
                   </p>
                   <p className="text-sm text-muted-foreground mt-4">
-                    Eine handverlesene Auswahl an Hotels, die speziell an die Community des ESC gerichtet sind und als LGBT freundlich geratet sind findest du ganz oben auf dieser Seite - also{' '}
+                    {t('faqHotelSelection')}{' '}
                     <button 
                       onClick={() => {
                         const searchForm = document.querySelector('[data-search-form]');
@@ -328,7 +326,7 @@ export function FAQSection() {
                       }}
                       className="text-primary hover:text-primary/80 underline font-medium cursor-pointer bg-transparent border-none p-0"
                     >
-                      hier
+                      {t('faqHere')}
                     </button>.
                   </p>
                 </CardContent>

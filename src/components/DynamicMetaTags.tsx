@@ -23,30 +23,21 @@ export function DynamicMetaTags({
   const generateTitle = () => {
     if (currentHotel) {
       const certText = currentHotel.lgbt_certification === 'certified' ? '🏳️‍🌈 Pride Certified' : '🤝 Gay Friendly'
-      return t('language') === 'de' 
-        ? `${currentHotel.name} | ESC 2026 Wien | LGBTQ+ Hotel ${certText}`
-        : `${currentHotel.name} | ESC 2026 Vienna | LGBTQ+ Hotel ${certText}`
+      return `${currentHotel.name} | ${t('eurovision2026')} | LGBTQ+ Hotel ${certText}`
     }
     
     if (pageType === 'credits') {
-      return t('language') === 'de'
-        ? 'Bildnachweis | ESC 2026 Vienna Hotels | LGBTQ+ Freundliche ESC Unterkünfte'
-        : 'Image Credits | ESC 2026 Vienna Hotels | LGBTQ+ Friendly ESC Accommodations'
+      return `${t('imageCreditsTitle')} | ${t('metaTitle')}`
     }
     
     if (pageType === 'search' && hotels.length > 0) {
       const lgbtqCount = hotels.filter(h => h.lgbtq_friendly).length
       const prideCount = hotels.filter(h => h.lgbt_certification === 'certified').length
-      return t('language') === 'de'
-        ? `${hotels.length} ESC 2026 Hotels Wien | ${lgbtqCount} LGBTQ+ freundlich | ${prideCount} Pride Certified`
-        : `${hotels.length} ESC 2026 Hotels Vienna | ${lgbtqCount} LGBTQ+ friendly | ${prideCount} Pride Certified`
+      return `${hotels.length} ESC 2026 Hotels ${location} | ${lgbtqCount} LGBTQ+ friendly | ${prideCount} Pride Certified`
     }
     
     if (searchQuery) {
-      const location = t('language') === 'de' ? 'Wien' : 'Vienna'
-      return t('language') === 'de'
-        ? `${searchQuery} | ESC 2026 ${location} Hotels | LGBTQ+ Unterkünfte ESC`
-        : `${searchQuery} | ESC 2026 ${location} Hotels | LGBTQ+ Accommodations ESC`
+      return `${searchQuery} | ESC 2026 ${location} Hotels | LGBTQ+ Accommodations ESC`
     }
     
     return t('metaTitle')

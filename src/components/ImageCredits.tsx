@@ -1,13 +1,16 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export function ImageCredits() {
+  const { t } = useTranslation()
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-4xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Bildnachweis</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">{t('imageCreditsTitle')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
