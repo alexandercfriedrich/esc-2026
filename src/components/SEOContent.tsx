@@ -11,17 +11,17 @@ export function SEOContent() {
       {/* HTML comment indicating this is SEO content for insertion after hotel listings */}
       <div className="prose prose-lg max-w-none">
         
-        <h2 className="text-3xl font-bold mb-6">Eurovision 2026 Vienna Hotels - Your Complete Accommodation Guide</h2>
+        <h2 className="text-3xl font-normal mb-6">Eurovision 2026 Vienna Hotels - Your Complete Accommodation Guide</h2>
         <p className="italic text-muted-foreground mb-6">Independent fan platform for Eurovision Song Contest 2026 hotel bookings in Vienna, Austria</p>
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">Overview</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">Overview</h3>
         <p className="mb-6">
           Welcome to the most comprehensive hotel guide for Eurovision Song Contest 2026 in Vienna! This independent fan platform helps Eurovision enthusiasts from around the world find the perfect accommodation for the 70th Eurovision Song Contest, taking place May 12-16, 2026, at the iconic Wiener Stadthalle.
         </p>
 
         <hr className="my-8" />
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">Table of Contents</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">Table of Contents</h3>
         <ol className="list-decimal list-inside mb-6 space-y-2">
           <li><a href="#esc-2026-vienna" className="text-primary hover:underline">Eurovision Song Contest 2026 Vienna</a></li>
           <li><a href="#wiener-stadthalle" className="text-primary hover:underline">Wiener Stadthalle - The Eurovision Venue</a></li>
@@ -32,14 +32,14 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
-        <h2 id="esc-2026-vienna" className="text-3xl font-bold mt-12 mb-6">Eurovision Song Contest 2026 Vienna</h2>
+        <h2 id="esc-2026-vienna" className="text-3xl font-normal mt-12 mb-6">Eurovision Song Contest 2026 Vienna</h2>
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">The 70th Eurovision Song Contest Returns to Vienna</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">The 70th Eurovision Song Contest Returns to Vienna</h3>
         <p className="mb-6">
           After an exciting selection process, Vienna has been chosen to host the <strong>70th Eurovision Song Contest in 2026</strong> - marking the third time Austria's capital welcomes the world's biggest music competition. Following the tremendous success of Eurovision 2015, Vienna once again opens its doors to Eurovision fans from across Europe and beyond.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Eurovision 2026 Key Information</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Eurovision 2026 Key Information</h4>
         <p className="mb-4"><strong>Event Dates:</strong></p>
         <ul className="list-disc list-inside mb-4 space-y-1">
           <li><strong>Semi-Final 1:</strong> Tuesday, May 12, 2026</li>
@@ -51,7 +51,7 @@ export function SEOContent() {
         <p className="mb-2"><strong>Participating Countries:</strong> 37+ nations competing</p>
         <p className="mb-6"><strong>Language:</strong> Shows conducted in English, French, and German</p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Eurovision History in Vienna</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Eurovision History in Vienna</h4>
         <p className="mb-4">Vienna's Eurovision legacy dates back decades, with the city having successfully hosted the competition twice before:</p>
         <p className="mb-2"><strong>Eurovision 1967:</strong> Austria's first hosting experience at the Wiener Stadthalle</p>
         <p className="mb-6"><strong>Eurovision 2015:</strong> The spectacular 60th contest, won by Måns Zelmerlöw (Sweden)</p>
@@ -59,7 +59,7 @@ export function SEOContent() {
           The 2026 contest marks a special milestone as it represents the 70th anniversary of the Eurovision Song Contest, making Vienna the perfect host city to celebrate seven decades of European music unity.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">What Makes Eurovision 2026 Special</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">What Makes Eurovision 2026 Special</h4>
         <ul className="list-disc list-inside mb-6 space-y-2">
           <li><strong>Anniversary Edition:</strong> Celebrating 70 years of Eurovision</li>
           <li><strong>Enhanced Production:</strong> State-of-the-art stage design and lighting</li>
@@ -70,20 +70,20 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
-        <h2 id="wiener-stadthalle" className="text-3xl font-bold mt-12 mb-6">Wiener Stadthalle - The Eurovision Venue</h2>
+        <h2 id="wiener-stadthalle" className="text-3xl font-normal mt-12 mb-6">Wiener Stadthalle - The Eurovision Venue</h2>
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">Austria's Premier Entertainment Venue</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">Austria's Premier Entertainment Venue</h3>
         <p className="mb-6">
           The <strong>Wiener Stadthalle</strong> stands as Austria's most important event venue and serves as the magnificent host location for Eurovision Song Contest 2026. Located in Vienna's 15th district (Rudolfsheim-Fünfhaus), this iconic venue has been the heart of Austrian entertainment since 1958.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Venue Specifications</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Venue Specifications</h4>
         <p className="mb-2"><strong>Capacity:</strong> 16,000 spectators for Eurovision configuration</p>
         <p className="mb-2"><strong>Address:</strong> Roland-Rainer-Platz 1, 1150 Vienna, Austria</p>
         <p className="mb-2"><strong>Built:</strong> 1958 (renovated multiple times, most recently 2010-2020)</p>
         <p className="mb-6"><strong>Halls:</strong> 6 different event spaces, with Hall D hosting Eurovision</p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Getting to Wiener Stadthalle</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Getting to Wiener Stadthalle</h4>
         <p className="mb-4"><strong>Public Transportation:</strong></p>
         <ul className="list-disc list-inside mb-4 space-y-1">
           <li><strong>U6 Metro Line:</strong> Längenfeldgasse station (2-minute walk)</li>
@@ -99,7 +99,7 @@ export function SEOContent() {
           <li><strong>Walking Distance:</strong> Several hotels within 10-15 minutes on foot</li>
         </ul>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Venue Amenities</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Venue Amenities</h4>
         <ul className="list-disc list-inside mb-6 space-y-2">
           <li><strong>VIP Areas:</strong> Premium hospitality sections</li>
           <li><strong>Restaurants &amp; Bars:</strong> Multiple dining options inside venue</li>
@@ -110,14 +110,14 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
-        <h2 id="vienna-host-city" className="text-3xl font-bold mt-12 mb-6">Vienna - The Host City</h2>
+        <h2 id="vienna-host-city" className="text-3xl font-normal mt-12 mb-6">Vienna - The Host City</h2>
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">Discover Austria's Imperial Capital</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">Discover Austria's Imperial Capital</h3>
         <p className="mb-6">
           Vienna, Austria's magnificent capital, combines imperial grandeur with modern sophistication, making it the perfect backdrop for Eurovision 2026. Home to 1.9 million residents in the greater metropolitan area, Vienna consistently ranks among the world's most liveable cities.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Why Vienna is Perfect for Eurovision</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Why Vienna is Perfect for Eurovision</h4>
         <p className="mb-4"><strong>Musical Heritage:</strong></p>
         <p className="mb-4">
           Vienna's musical legacy spans centuries, from Mozart and Beethoven to modern electronic music. The city houses the famous Vienna State Opera, Musikverein, and numerous concert halls, making it naturally suited for Eurovision's celebration of music.
@@ -133,7 +133,7 @@ export function SEOContent() {
           With over 15 million annual visitors, Vienna boasts world-class hotels, restaurants, and tourist attractions, ensuring Eurovision fans experience the best hospitality.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Top Vienna Attractions During Eurovision Week</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Top Vienna Attractions During Eurovision Week</h4>
         <p className="mb-4"><strong>Historic City Center (UNESCO World Heritage):</strong></p>
         <ul className="list-disc list-inside mb-4 space-y-1">
           <li><strong>St. Stephen's Cathedral:</strong> Gothic masterpiece in the heart of Vienna</li>
@@ -155,7 +155,7 @@ export function SEOContent() {
           <li><strong>Museums Quarter:</strong> Contemporary art and cultural complex</li>
         </ul>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Vienna's Eurovision Villages and Fan Zones</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Vienna's Eurovision Villages and Fan Zones</h4>
         <p className="mb-6">During Eurovision week, Vienna transforms into a celebration of European culture:</p>
         <p className="mb-2"><strong>Eurovision Village:</strong> Large outdoor fan zone with live music, food, and activities</p>
         <p className="mb-2"><strong>Song Contest Boulevard:</strong> Decorated streets connecting major Eurovision locations</p>
@@ -163,12 +163,12 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
-        <h2 id="booking-information" className="text-3xl font-bold mt-12 mb-6">Booking Information</h2>
+        <h2 id="booking-information" className="text-3xl font-normal mt-12 mb-6">Booking Information</h2>
 
-        <h3 className="text-2xl font-semibold mt-8 mb-4">How to Book Your Eurovision 2026 Vienna Hotel</h3>
+        <h3 className="text-2xl font-normal mt-8 mb-4">How to Book Your Eurovision 2026 Vienna Hotel</h3>
         <p className="italic text-muted-foreground mb-6">This independent platform provides comparison information only. All bookings are processed through established hotel booking platforms.</p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Booking Process</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Booking Process</h4>
         <ol className="list-decimal list-inside mb-6 space-y-2">
           <li><strong>Compare Hotels:</strong> Review our detailed hotel descriptions and locations</li>
           <li><strong>Check Availability:</strong> Visit hotel websites or booking platforms</li>
@@ -177,7 +177,7 @@ export function SEOContent() {
           <li><strong>Prepare for Eurovision:</strong> Plan transportation and activities</li>
         </ol>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Important Booking Notes</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Important Booking Notes</h4>
         <p className="mb-4">
           <strong>Price Fluctuations:</strong> Hotel rates during Eurovision week are typically 200-400% higher than normal periods due to high demand.
         </p>
@@ -191,7 +191,7 @@ export function SEOContent() {
           <strong>Payment Methods:</strong> Most Vienna hotels accept major credit cards, PayPal, and bank transfers.
         </p>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Transportation from Hotels to Venue</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Transportation from Hotels to Venue</h4>
         <p className="mb-4"><strong>Public Transportation:</strong> Vienna's excellent public transport system connects all recommended hotels to Wiener Stadthalle:</p>
         <ul className="list-disc list-inside mb-4 space-y-1">
           <li><strong>U6 Metro Line:</strong> Direct service to Längenfeldgasse (venue station)</li>
@@ -206,7 +206,7 @@ export function SEOContent() {
           <li><strong>20+ minutes:</strong> Most other hotels, with excellent public transport connections</li>
         </ul>
 
-        <h4 className="text-xl font-semibold mt-6 mb-3">Additional Services</h4>
+        <h4 className="text-xl font-normal mt-6 mb-3">Additional Services</h4>
         <p className="mb-4"><strong>Airport Transfer:</strong> Vienna International Airport is well-connected to the city center:</p>
         <ul className="list-disc list-inside mb-4 space-y-1">
           <li><strong>CAT (City Airport Train):</strong> 16 minutes to Wien Mitte, then U6 to venue</li>
@@ -223,7 +223,7 @@ export function SEOContent() {
 
         <hr className="my-8" />
 
-        <h2 className="text-3xl font-bold mt-12 mb-6">Legal Disclaimer</h2>
+        <h2 className="text-3xl font-normal mt-12 mb-6">Legal Disclaimer</h2>
         <p className="mb-4">
           This website is an <strong>independent fan project</strong> created to help Eurovision Song Contest fans find accommodation in Vienna during Eurovision 2026.
         </p>
