@@ -14,29 +14,6 @@ export function ImageCredits() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-lg">Eurovision Logo</h3>
-              <p className="text-sm text-muted-foreground">
-                {t('sourceEBU')} - 
-                <a 
-                  href="https://logos.fandom.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline ml-1"
-                >
-                  https://logos.fandom.com
-                </a>
-                , Logo, 
-                <a 
-                  href="https://de.wikipedia.org/w/index.php?curid=13511211" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline ml-1"
-                >
-                  https://de.wikipedia.org/w/index.php?curid=13511211
-                </a>
-              </p>
-            </div>
             
             <Separator />
             
