@@ -2,13 +2,16 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle, ArrowSquareOut, CurrencyEur } from '@phosphor-icons/react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export function AffiliateInfo() {
+  const { t } = useTranslation()
+  
   return (
     <Card className="border-pride-blue/20 bg-pride-blue/5">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-pride-blue">
-          🤝 Booking.com Partnership & Commission Junction Integration
+          🤝 {t('affiliateTitle')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -16,28 +19,28 @@ export function AffiliateInfo() {
           <div className="space-y-3">
             <h4 className="font-semibold flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-pride-green" />
-              Affiliate Integration Features
+              {t('affiliateIntegrationFeatures')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Commission Junction Affiliate ID: 101370188
+                {t('affiliateCommissionJunctionId')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Deep-Link Generator mit Tracking
+                {t('affiliateDeepLinkGenerator')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Hotel-Suchmaske mit Filter
+                {t('affiliateHotelSearch')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                LGBTQ+ und Pride-Filter
+                {t('affiliateLGBTQFilter')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Echtzeit Booking.com API Mock
+                {t('affiliateBookingAPI')}
               </li>
             </ul>
           </div>
@@ -45,28 +48,28 @@ export function AffiliateInfo() {
           <div className="space-y-3">
             <h4 className="font-semibold flex items-center gap-2">
               <CurrencyEur className="w-4 h-4 text-pride-orange" />
-              Tracking & Analytics
+              {t('affiliateTracking')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                CJ Event Tracking für Booking-Clicks
+                {t('affiliateCJTracking')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Automatische Provisionserfassung
+                {t('affiliateCommissionTracking')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Eurovision-spezifische Labels
+                {t('affiliateEurovisionLabels')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                Performance Analytics
+                {t('affiliatePerformanceAnalytics')}
               </li>
               <li className="flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">✓</Badge>
-                LGBTQ+ Hotel Kategorisierung
+                {t('affiliateLGBTQCategories')}
               </li>
             </ul>
           </div>
@@ -75,24 +78,22 @@ export function AffiliateInfo() {
         <div className="bg-muted rounded-lg p-4">
           <h4 className="font-semibold mb-2 flex items-center gap-2">
             <ArrowSquareOut className="w-4 h-4" />
-            Link-Struktur Beispiele
+            {t('affiliateLinkStructure')}
           </h4>
           <div className="space-y-2 text-xs text-muted-foreground font-mono">
             <div>
-              <strong>Direkter Hotel-Link:</strong><br />
+              <strong>{t('affiliateDirectHotelLink')}</strong><br />
               https://www.booking.com/hotel/at/[hotel-id].html?aid=101370188&checkin=[date]&checkout=[date]...
             </div>
             <div>
-              <strong>Wien Such-Link:</strong><br />
+              <strong>{t('affiliateViennaSearchLink')}</strong><br />
               https://www.booking.com/searchresults.html?aid=101370188&dest_id=-1991997&dest_type=city&checkin=[date]...
             </div>
           </div>
         </div>
         
         <div className="text-xs text-muted-foreground p-3 bg-pride-yellow/10 rounded border border-pride-yellow/20">
-          <strong>💡 Implementierungshinweis:</strong> Diese Demo zeigt eine vollständige Booking.com Affiliate-Integration 
-          mit Commission Junction Tracking (ID: 101370188). In der Produktion würde die echte Booking.com API verwendet 
-          und alle Links würden echte Provisionen generieren.
+          <strong>💡 {t('affiliateImplementationNote')}</strong> {t('affiliateImplementationText')}
         </div>
       </CardContent>
     </Card>
