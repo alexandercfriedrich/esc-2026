@@ -244,10 +244,50 @@ export default function App() {
         </>)
       )}
       {/* Footer */}
-      <footer className="bg-muted py-6 mt-16">
+      <footer className="bg-muted py-8 mt-16">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <div className="space-y-2">
-            <p>{t('footerCopyright')}</p>
+          <p className="font-bold text-base mb-2">ESC 2026 Vienna Hotels</p>
+          <p className="mb-4">Ihre unabhängige Plattform für LGBTQ+ freundliche Hotels zum Eurovision Song Contest 2026 in Wien</p>
+          
+          <nav className="flex justify-center space-x-2 mb-4">
+            <a href="https://www.esc-2026-vienna.com/" className="hover:text-foreground transition-colors text-[#667eea]">
+              Startseite
+            </a>
+            <span>|</span>
+            <a href="https://www.esc-2026-vienna.com/hotels-vienna" className="hover:text-foreground transition-colors text-[#667eea]">
+              Alle Hotels
+            </a>
+            <span>|</span>
+            <a href="https://www.esc-2026-vienna.com/#about" className="hover:text-foreground transition-colors text-[#667eea]">
+              Über uns
+            </a>
+          </nav>
+          
+          <div className="mt-4">
+            <p className="font-semibold mb-2">Unsere Hotels:</p>
+            <p className="text-sm leading-relaxed">
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/andaz-vienna-eurovision.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Andaz Vienna</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/art-hotel-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">ART HOTEL</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/boutique-hotel-donauwalzer.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Donauwalzer</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/boutique-hotel-motto.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Hotel Motto</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/boutiquehotel-esc.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Boutiquehotel Stadthalle</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/do-co-hotel-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">DO&CO</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/henriette-stadthotel-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Henriette Stadthotel</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel-altstadt-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Altstadt Vienna</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel-imperial-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Imperial</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel-mercure-wien-city.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Mercure Wien City</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel-sacher-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Sacher</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel-zeitgeist-vienna.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Zeitgeist</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/hotel_sans_souci.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Sans Souci</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/leonardo-vienna-hauptbahnhof.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Leonardo Hauptbahnhof</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/moxy_vienna_es6.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Moxy Vienna</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/prize-radisson-vienna-city.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Prize by Radisson</a> •
+              <a href="https://www.esc-2026-vienna.com/hotels-vienna/ruby-marie-hotel.html" className="hover:text-foreground transition-colors text-[#667eea] mx-1">Ruby Marie</a>
+            </p>
+          </div>
+          
+          <div className="mt-4 space-y-2">
+            <p className="text-xs text-gray-500">© 2025 ESC 2026 Vienna • Alle Rechte vorbehalten</p>
             <nav className="flex justify-center space-x-4">
               <a 
                 href="#bildnachweis" 
@@ -263,61 +303,7 @@ export default function App() {
               </a>
             </nav>
           </div>
-          {/* Hotels Section */}
-<div className="mt-4">
-  <h3 className="font-semibold mb-2">Hotels</h3>
-  <ul className="flex flex-col items-center gap-1">
-    <li>
-      <a href="/hotels-vienna/andaz-vienna-eurovision.html" className="hover:text-foreground transition-colors">
-        Andaz Vienna
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/boutique-hotel-motto.html" className="hover:text-foreground transition-colors">
-        Boutique Hotel Motto
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/boutiquehotel-esc.html" className="hover:text-foreground transition-colors">
-        Boutiquehotel ESC
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/hotel-altstadt-vienna.html" className="hover:text-foreground transition-colors">
-        Hotel Altstadt Vienna
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/hotel-imperial-vienna.html" className="hover:text-foreground transition-colors">
-        Hotel Imperial Vienna
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/hotel-sacher-vienna.html" className="hover:text-foreground transition-colors">
-        Hotel Sacher Vienna
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/hotel_sans_souci.html" className="hover:text-foreground transition-colors">
-        Hotel Sans Souci
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/moxy_vienna_es6.html" className="hover:text-foreground transition-colors">
-        Moxy Vienna
-      </a>
-    </li>
-    <li>
-      <a href="/hotels-vienna/ruby-marie-hotel.html" className="hover:text-foreground transition-colors">
-        Ruby Marie Hotel
-      </a>
-    </li>
-  </ul>
-</div>
-
-
         </div>
-        
       </footer>
       <Toaster />
     </div>
