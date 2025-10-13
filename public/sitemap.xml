@@ -91,4 +91,53 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- New Hotel Pages Added 2025-10-13 -->
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/do-co-hotel-vienna.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/hotel-mercure-wien-city.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/prize-radisson-vienna-city.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/hotel-zeitgeist-vienna.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/henriette-stadthotel-vienna.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/boutique-hotel-donauwalzer.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/leonardo-vienna-hauptbahnhof.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://esc-2026-vienna.com/hotels-vienna/art-hotel-vienna.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
