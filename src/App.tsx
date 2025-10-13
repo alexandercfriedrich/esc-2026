@@ -263,7 +263,42 @@ export default function App() {
               </a>
             </nav>
           </div>
+          {/* Hotels Section */}
+<div className="mt-4">
+  <h3 className="font-semibold mb-2">Hotels</h3>
+  <nav className="flex flex-wrap justify-center gap-2">
+    <a href="/hotels-vienna/andaz-vienna-eurovision.html" className="hover:text-foreground transition-colors">
+      Andaz Vienna
+    </a>
+    <a href="/hotels-vienna/boutique-hotel-motto.html" className="hover:text-foreground transition-colors">
+      Boutique Hotel Motto
+    </a>
+    <a href="/hotels-vienna/boutiquehotel-esc.html" className="hover:text-foreground transition-colors">
+      Boutiquehotel ESC
+    </a>
+    <a href="/hotels-vienna/hotel-altstadt-vienna.html" className="hover:text-foreground transition-colors">
+      Hotel Altstadt Vienna
+    </a>
+    <a href="/hotels-vienna/hotel-imperial-vienna.html" className="hover:text-foreground transition-colors">
+      Hotel Imperial Vienna
+    </a>
+    <a href="/hotels-vienna/hotel-sacher-vienna.html" className="hover:text-foreground transition-colors">
+      Hotel Sacher Vienna
+    </a>
+    <a href="/hotels-vienna/hotel_sans_souci.html" className="hover:text-foreground transition-colors">
+      Hotel Sans Souci
+    </a>
+    <a href="/hotels-vienna/moxy_vienna_es6.html" className="hover:text-foreground transition-colors">
+      Moxy Vienna
+    </a>
+    <a href="/hotels-vienna/ruby-marie-hotel.html" className="hover:text-foreground transition-colors">
+      Ruby Marie Hotel
+    </a>
+  </nav>
+</div>
+
         </div>
+        
       </footer>
       <Toaster />
     </div>
