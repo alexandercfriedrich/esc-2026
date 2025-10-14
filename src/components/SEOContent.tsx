@@ -197,6 +197,282 @@ export function SEOContent() {
           <li><strong>{t('seoSansSouciRooms')}</strong></li>
         </ul>
 
+        <h3 className="text-2xl font-normal mt-8 mb-4">{t('seoBoutiqueHotels')}</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelStadthalleTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelStadthalleDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelStadthallePrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelStadthalleOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoStadthalleFeatures')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoStadthalleGreenBuilding')}</strong></li>
+          <li><strong>{t('seoStadthalleSolar')}</strong></li>
+          <li><strong>{t('seoStadthalleOrganic')}</strong></li>
+          <li><strong>{t('seoStadthalleRooms')}</strong></li>
+          <li><strong>{t('seoStadthalleRooftop')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelMOTTOTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelMOTTODistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelMOTTOPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelMOTTOOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoMOTTOAmenities')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoMOTTOArchitecture')}</strong></li>
+          <li><strong>{t('seoMOTTOShopping')}</strong></li>
+          <li><strong>{t('seoMOTTODesign')}</strong></li>
+          <li><strong>{t('seoMOTTORestaurant')}</strong></li>
+          <li><strong>{t('seoMOTTOBusiness')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelAltstadtTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelAltstadtDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelAltstadtPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelAltstadtOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoAltstadtCharacter')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoAltstadtArtistic')}</strong></li>
+          <li><strong>{t('seoAltstadtQuarter')}</strong></li>
+          <li><strong>{t('seoAltstadtService')}</strong></li>
+          <li><strong>{t('seoAltstadtCultural')}</strong></li>
+          <li><strong>{t('seoAltstadtRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelAndazTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelAndazDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelAndazPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelAndazOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoAndazFeatures')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoAndazRooftop')}</strong></li>
+          <li><strong>{t('seoAndazDesign')}</strong></li>
+          <li><strong>{t('seoAndazLocation')}</strong></li>
+          <li><strong>{t('seoAndazFitness')}</strong></li>
+          <li><strong>{t('seoAndazRooms')}</strong></li>
+        </ul>
+
+        <h3 className="text-2xl font-normal mt-8 mb-4">{t('seoBusinessHotels')}</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelDOCOTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelDOCODistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelDOCOPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelDOCOOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoDOCOAdvantages')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoDOCOLocation')}</strong></li>
+          <li><strong>{t('seoDOCOViews')}</strong></li>
+          <li><strong>{t('seoDOCODining')}</strong></li>
+          <li><strong>{t('seoDOCODesign')}</strong></li>
+          <li><strong>{t('seoDOCOSuites')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelKonzerthausTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelKonzerthausDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelKonzerthausPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelKonzerthausOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoKonzerthausFeatures')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoKonzerthausMusical')}</strong></li>
+          <li><strong>{t('seoKonzerthausProximity')}</strong></li>
+          <li><strong>{t('seoKonzerthausBusiness')}</strong></li>
+          <li><strong>{t('seoKonzerthausDining')}</strong></li>
+          <li><strong>{t('seoKonzerthausRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelMercureTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelMercureDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelMercurePrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelMercureOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoMercureBenefits')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoMercureShopping')}</strong></li>
+          <li><strong>{t('seoMercureEco')}</strong></li>
+          <li><strong>{t('seoMercureBusinessServices')}</strong></li>
+          <li><strong>{t('seoMercureRestaurant')}</strong></li>
+          <li><strong>{t('seoMercureRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelLeonardoTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelLeonardoDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelLeonardoPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelLeonardoOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoLeonardoAdvantages')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoLeonardoTransport')}</strong></li>
+          <li><strong>{t('seoLeonardoModern')}</strong></li>
+          <li><strong>{t('seoLeonardoFitness')}</strong></li>
+          <li><strong>{t('seoLeonardoRestaurant')}</strong></li>
+          <li><strong>{t('seoLeonardoRooms')}</strong></li>
+        </ul>
+
+        <h3 className="text-2xl font-normal mt-8 mb-4">{t('seoContemporaryHotels')}</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelRubyMarieTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelRubyMarieDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelRubyMariePrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelRubyMarieOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoRubyMarieHighlights')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoRubyMarieLean')}</strong></li>
+          <li><strong>{t('seoRubyMarieRooftop')}</strong></li>
+          <li><strong>{t('seoRubyMarieShopping')}</strong></li>
+          <li><strong>{t('seoRubyMarieDesign')}</strong></li>
+          <li><strong>{t('seoRubyMarieRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelMoxyTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelMoxyDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelMoxyPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelMoxyOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoMoxyExperience')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoMoxySocial')}</strong></li>
+          <li><strong>{t('seoMoxyBar')}</strong></li>
+          <li><strong>{t('seoMoxyRooms')}</strong></li>
+          <li><strong>{t('seoMoxyFitness')}</strong></li>
+          <li><strong>{t('seoMoxyRoomsCount')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelZeitgeistTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelZeitgeistDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelZeitgeistPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelZeitgeistOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoZeitgeistFeatures')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoZeitgeistDesign')}</strong></li>
+          <li><strong>{t('seoZeitgeistCourtyard')}</strong></li>
+          <li><strong>{t('seoZeitgeistStation')}</strong></li>
+          <li><strong>{t('seoZeitgeistBusiness')}</strong></li>
+          <li><strong>{t('seoZeitgeistRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelARTTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelARTDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelARTPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelARTOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoARTCharacter')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoARTArtistic')}</strong></li>
+          <li><strong>{t('seoARTExterior')}</strong></li>
+          <li><strong>{t('seoARTDistrict')}</strong></li>
+          <li><strong>{t('seoARTAmenities')}</strong></li>
+          <li><strong>{t('seoARTRooms')}</strong></li>
+        </ul>
+
+        <h3 className="text-2xl font-normal mt-8 mb-4">{t('seoBudgetHotels')}</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelPrizeTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelPrizeDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelPrizePrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelPrizeOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoPrizeBenefits')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoPrizeValue')}</strong></li>
+          <li><strong>{t('seoPrizeAmenities')}</strong></li>
+          <li><strong>{t('seoPrizeLocation')}</strong></li>
+          <li><strong>{t('seoPrizeStandards')}</strong></li>
+          <li><strong>{t('seoPrizeRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelHenrietteTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelHenrietteDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelHenriettePrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelHenrietteOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoHenrietteSustainability')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoHenrietteCommonGood')}</strong></li>
+          <li><strong>{t('seoHenriettePractices')}</strong></li>
+          <li><strong>{t('seoHenrietteLocation')}</strong></li>
+          <li><strong>{t('seoHenrietteComfort')}</strong></li>
+          <li><strong>{t('seoHenrietteRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelReginaTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelReginaDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelReginaPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelReginaOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoReginaAdvantages')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoReginaTraditional')}</strong></li>
+          <li><strong>{t('seoReginaLocation')}</strong></li>
+          <li><strong>{t('seoReginaCharacter')}</strong></li>
+          <li><strong>{t('seoReginaValue')}</strong></li>
+          <li><strong>{t('seoReginaRooms')}</strong></li>
+        </ul>
+
+        <h3 className="text-2xl font-normal mt-8 mb-4">{t('seoChainHotels')}</h3>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelHiltonPlazaTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelHiltonPlazaDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelHiltonPlazaPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelHiltonPlazaOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoHiltonPlazaFeatures')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoHiltonPlazaLocation')}</strong></li>
+          <li><strong>{t('seoHiltonPlazaBusiness')}</strong></li>
+          <li><strong>{t('seoHiltonPlazaStandards')}</strong></li>
+          <li><strong>{t('seoHiltonPlazaFitness')}</strong></li>
+          <li><strong>{t('seoHiltonPlazaRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelHiltonWaterfrontTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelHiltonWaterfrontDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelHiltonWaterfrontPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelHiltonWaterfrontOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoWaterfrontBenefits')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoWaterfrontLocation')}</strong></li>
+          <li><strong>{t('seoWaterfrontSpa')}</strong></li>
+          <li><strong>{t('seoWaterfrontPool')}</strong></li>
+          <li><strong>{t('seoWaterfrontBusiness')}</strong></li>
+          <li><strong>{t('seoWaterfrontRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelDonauwalzerTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelDonauwalzerDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelDonauwalzerPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelDonauwalzerOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoDonauwalzerCharacter')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoDonauwalzerDesign')}</strong></li>
+          <li><strong>{t('seoDonauwalzerCharm')}</strong></li>
+          <li><strong>{t('seoDonauwalzerArea')}</strong></li>
+          <li><strong>{t('seoDonauwalzerFamily')}</strong></li>
+          <li><strong>{t('seoDonauwalzerRooms')}</strong></li>
+        </ul>
+
+        <h4 className="text-xl font-normal mt-6 mb-3">{t('seoHotelDasTriestTitle')}</h4>
+        <p className="mb-2"><strong>{t('seoHotelDasTriestDistance')}</strong></p>
+        <p className="mb-2"><strong>{t('seoHotelDasTriestPrice')}</strong></p>
+        <p className="mb-4"><strong>{t('seoHotelDasTriestOverview')}</strong></p>
+        
+        <p className="mb-2"><strong>{t('seoDasTriestExcellence')}</strong></p>
+        <ul className="list-disc list-inside mb-6 space-y-1">
+          <li><strong>{t('seoDasTriestHeritage')}</strong></li>
+          <li><strong>{t('seoDasTriestStandards')}</strong></li>
+          <li><strong>{t('seoDasTriestStyle')}</strong></li>
+          <li><strong>{t('seoDasTriestLocation')}</strong></li>
+          <li><strong>{t('seoDasTriestRooms')}</strong></li>
+        </ul>
+
         <hr className="my-8" />
 
         <h2 id="booking-information" className="text-3xl font-normal mt-12 mb-6">{t('seoBookingInfoTitle')}</h2>
