@@ -16,8 +16,9 @@
  * - Pattern: {hotel-id}_{description}.{ext}
  * 
  * VALIDATION BEISPIEL:
- * - Check-in: 2026-05-15, Check-out: 2026-05-17, Erwachsene: 2, Zimmer: 1
- * - Generiert: https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fat%2Fboutiquehotel-stadthalle.de.html%3Fsrc%3Dindex%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0
+ * - Check-in: 2026-05-15, Check-out: 2026-05-18, Erwachsene: 2, Zimmer: 1
+ * - Booking URL: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.de.html?src=index&checkin=2026-05-15&checkout=2026-05-18&group_adults=2&no_rooms=1&group_children=0
+ * - Tracking URL: https://www.tkqlhce.com/click-101370188-14082404?url=[URL-ENCODED]
  * 
  * BETROFFENE DATEIEN:
  * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
