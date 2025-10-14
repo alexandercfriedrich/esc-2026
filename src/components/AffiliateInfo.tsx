@@ -83,11 +83,11 @@ export function AffiliateInfo() {
           <div className="space-y-2 text-xs text-muted-foreground font-mono">
             <div>
               <strong>{t('affiliateDirectHotelLink')}</strong><br />
-              https://www.booking.com/hotel/at/[hotel-id].html?aid=101370188&checkin=[date]&checkout=[date]...
+              https://www.tkqlhce.com/click-101370188-14082404?url=[encoded-hotel-url]
             </div>
             <div>
               <strong>{t('affiliateViennaSearchLink')}</strong><br />
-              https://www.booking.com/searchresults.html?aid=101370188&dest_id=-1991997&dest_type=city&checkin=[date]...
+              https://www.tkqlhce.com/click-101370188-14082404?url=[encoded-search-url]
             </div>
           </div>
         </div>
