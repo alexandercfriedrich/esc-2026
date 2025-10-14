@@ -1,27 +1,23 @@
 /**
- * ✅ BOOKING.COM AFFILIATE LINK PARAMETER-ÜBERGABE IMPLEMENTIERT
+ * ✅ COMMISSION JUNCTION TRACKING LINKS IMPLEMENTIERT
  * 
  * KRITISCHE AUFGABE ERFÜLLT:
- * 1. ✅ Alle UI-Suchparameter werden korrekt übertragen (Check-in/out, Erwachsene, Zimmer)
- * 2. ✅ Hotel-spezifische booking.com URLs mit Affiliate-ID (aid=101370188)
- * 3. ✅ Exaktes Link-Format: https://www.booking.com/hotel/at/[hotel-slug].html?aid=101370188&checkin=[DATE]&checkout=[DATE]&group_adults=[ADULTS]&no_rooms=[ROOMS]
- * 4. ✅ Dynamische Parameter aus Form-State (nicht statische Defaults)
- * 5. ✅ Datumsformat YYYY-MM-DD korrekt
- * 6. ✅ Fallback auf city-wide search wenn Hotel-slug fehlt
+ * 1. ✅ ALLE Links verwenden die gleiche statische CJ-Tracking-URL
+ * 2. ✅ Keine dynamischen Parameter oder Hotel-spezifischen Links
+ * 3. ✅ Exakter Link: https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0
+ * 4. ✅ Link wird NICHT angepasst oder verändert (statisch für alle Hotels)
+ * 5. ✅ Vienna dest_id: -1995499
  * 
  * ✅ BILDERZUORDNUNG AUF HOTEL-ID UMGESTELLT:
  * - Bildnamen enthalten hotel ID statt hotel slug zur Zuordnung
  * - Bilder werden nach hotel.id gemappt (z.B. 'boutiquehotel-stadthalle_1.webp')
  * - Pattern: {hotel-id}_{description}.{ext}
  * 
- * VALIDATION BEISPIEL:
- * - Check-in: 2025-05-12, Check-out: 2025-05-17, Erwachsene: 2, Zimmer: 1
- * - Generiert: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.html?aid=101370188&checkin=2025-05-12&checkout=2025-05-17&group_adults=2&no_rooms=1
- * 
  * BETROFFENE DATEIEN:
  * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
- * - ✅ BookingHotelsGrid.tsx: Verwendet dynamische Parameter für Affiliate-Links
- * - ✅ hotelService.ts: Generiert korrekte booking.com URLs mit allen Parametern + ID-basierte Bilderzuordnung
+ * - ✅ BookingHotelsGrid.tsx: Verwendet statische CJ-Tracking-URL für alle Hotels
+ * - ✅ hotelService.ts: Gibt statische CJ-Tracking-URL zurück + ID-basierte Bilderzuordnung
+ * - ✅ index.html: Commission Junction Tracking Script entfernt
  */
 
 import { toast } from 'sonner'
@@ -596,31 +592,14 @@ const hotels: BookingHotel[] = [
 
 // Build booking.com deep link for city-wide search
 export function buildSearchDeepLink(criteria: HotelSearchCriteria): string {
-  const params = new URLSearchParams({
-    aid: '101370188',
-    dest_id: '-1991997',
-    dest_type: 'city',
-    checkin: criteria.checkin,
-    checkout: criteria.checkout,
-    group_adults: String(criteria.adults),
-    no_rooms: String(criteria.rooms),
-  })
-
-  return `https://www.booking.com/searchresults.html?${params.toString()}`
+  // All links use the same static CJ tracking URL - no dynamic parameters
+  return 'https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0'
 }
 
 // Build booking.com deep link for a specific hotel
 export function buildHotelDeepLink(hotel: BookingHotel, criteria: HotelSearchCriteria): string | null {
-  if (!hotel.slug) return null
-  const base = `https://www.booking.com/hotel/at/${hotel.slug}.html`
-  const params = new URLSearchParams({
-    aid: '101370188',
-    checkin: criteria.checkin,
-    checkout: criteria.checkout,
-    group_adults: String(criteria.adults),
-    no_rooms: String(criteria.rooms),
-  })
-  return `${base}?${params.toString()}`
+  // All links use the same static CJ tracking URL - no dynamic parameters
+  return 'https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0'
 }
 
 // Alias for compatibility with existing components
