@@ -351,7 +351,7 @@ export const translations = {
     seoHotelKonzerthausOverview: 'Teil der MGallery Collection von Accor, bietet dieses Hotel in der Nähe des Wiener Konzerthauses elegante Unterkünfte mit Fokus auf Musik und Kultur, perfekt für Eurovision-Besucher.',
     seoKonzerthausFeatures: 'Konzerthaus Hotel-Merkmale:',
     seoKonzerthausMusical: 'Musikalisches Thema: Dekor inspiriert von Wiens musikalischem Erbe',
-    seoKonzerthaусProximity: 'Konzerthaus-Nähe: Neben dem Wiener Konzerthaus',
+    seoKonzerthausProximity: 'Konzerthaus-Nähe: Neben dem Wiener Konzerthaus',
     seoKonzerthausBusiness: 'Business-Ausstattung: Tagungsräume und Business Center',
     seoKonzerthausDining: 'Feine Küche: Restaurant mit österreichischer und internationaler Küche',
     seoKonzerthausRooms: '211 Zimmer: Komfortable Business-Class-Unterkünfte',
