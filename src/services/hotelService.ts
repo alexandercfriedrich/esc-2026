@@ -2,28 +2,21 @@
  * ✅ COMMISSION JUNCTION TRACKING LINKS IMPLEMENTIERT
  * 
  * KRITISCHE AUFGABE ERFÜLLT:
- * 1. ✅ Alle UI-Suchparameter werden korrekt übertragen (Check-in/out, Erwachsene, Zimmer)
- * 2. ✅ Hotel-spezifische booking.com URLs mit CJ Tracking (ID: 101370188-14082404)
- * 3. ✅ Exaktes Link-Format: https://www.tkqlhce.com/click-101370188-14082404?url=[URL-ENCODED-BOOKING-URL]
- * 4. ✅ Dynamische Parameter aus Form-State (nicht statische Defaults)
- * 5. ✅ Datumsformat YYYY-MM-DD korrekt
- * 6. ✅ Fallback auf city-wide search wenn Hotel-slug fehlt
- * 7. ✅ Vienna dest_id aktualisiert auf -1995499
+ * 1. ✅ ALLE Links verwenden die gleiche statische CJ-Tracking-URL
+ * 2. ✅ Keine dynamischen Parameter oder Hotel-spezifischen Links
+ * 3. ✅ Exakter Link: https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0
+ * 4. ✅ Link wird NICHT angepasst oder verändert (statisch für alle Hotels)
+ * 5. ✅ Vienna dest_id: -1995499
  * 
  * ✅ BILDERZUORDNUNG AUF HOTEL-ID UMGESTELLT:
  * - Bildnamen enthalten hotel ID statt hotel slug zur Zuordnung
  * - Bilder werden nach hotel.id gemappt (z.B. 'boutiquehotel-stadthalle_1.webp')
  * - Pattern: {hotel-id}_{description}.{ext}
  * 
- * VALIDATION BEISPIEL:
- * - Check-in: 2026-05-15, Check-out: 2026-05-18, Erwachsene: 2, Zimmer: 1
- * - Booking URL: https://www.booking.com/hotel/at/boutiquehotel-stadthalle.de.html?src=index&checkin=2026-05-15&checkout=2026-05-18&group_adults=2&no_rooms=1&group_children=0
- * - Tracking URL: https://www.tkqlhce.com/click-101370188-14082404?url=[URL-ENCODED]
- * 
  * BETROFFENE DATEIEN:
  * - ✅ App.tsx: Speichert und übergibt aktuelle Suchparameter
- * - ✅ BookingHotelsGrid.tsx: Verwendet dynamische Parameter für Affiliate-Links
- * - ✅ hotelService.ts: Generiert korrekte booking.com URLs mit CJ Tracking + ID-basierte Bilderzuordnung
+ * - ✅ BookingHotelsGrid.tsx: Verwendet statische CJ-Tracking-URL für alle Hotels
+ * - ✅ hotelService.ts: Gibt statische CJ-Tracking-URL zurück + ID-basierte Bilderzuordnung
  * - ✅ index.html: Commission Junction Tracking Script entfernt
  */
 
@@ -599,35 +592,14 @@ const hotels: BookingHotel[] = [
 
 // Build booking.com deep link for city-wide search
 export function buildSearchDeepLink(criteria: HotelSearchCriteria): string {
-  const params = new URLSearchParams({
-    src: 'index',
-    dest_id: '-1995499',
-    dest_type: 'city',
-    checkin: criteria.checkin,
-    checkout: criteria.checkout,
-    group_adults: String(criteria.adults),
-    no_rooms: String(criteria.rooms),
-    group_children: '0',
-  })
-
-  const bookingUrl = `https://www.booking.com/searchresults.de.html?${params.toString()}`
-  return `https://www.tkqlhce.com/click-101370188-14082404?url=${encodeURIComponent(bookingUrl)}`
+  // All links use the same static CJ tracking URL - no dynamic parameters
+  return 'https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0'
 }
 
 // Build booking.com deep link for a specific hotel
 export function buildHotelDeepLink(hotel: BookingHotel, criteria: HotelSearchCriteria): string | null {
-  if (!hotel.slug) return null
-  const base = `https://www.booking.com/hotel/at/${hotel.slug}.de.html`
-  const params = new URLSearchParams({
-    src: 'index',
-    checkin: criteria.checkin,
-    checkout: criteria.checkout,
-    group_adults: String(criteria.adults),
-    no_rooms: String(criteria.rooms),
-    group_children: '0',
-  })
-  const bookingUrl = `${base}?${params.toString()}`
-  return `https://www.tkqlhce.com/click-101370188-14082404?url=${encodeURIComponent(bookingUrl)}`
+  // All links use the same static CJ tracking URL - no dynamic parameters
+  return 'https://www.tkqlhce.com/click-101370188-14082404?url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.de.html%3F%26src%3Dindex%26dest_id%3D-1995499%26dest_type%3Dcity%26checkin%3D2026-05-15%26checkout%3D2026-05-17%26group_adults%3D2%26no_rooms%3D1%26group_children%3D0'
 }
 
 // Alias for compatibility with existing components
